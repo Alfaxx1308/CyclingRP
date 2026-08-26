@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: alfaxx1308/Cycling-RP
+  repo: alfaxx1308/CyclingRP-
   branch: main
 
 media_folder: "images"
