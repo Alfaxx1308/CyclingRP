@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: TON-PSEUDO/Cycling-RP
+  repo: alfaxx1308/Cycling-RP
   branch: main
 
 media_folder: "images"
