@@ -1,13 +1,12 @@
 backend:
   name: github
-  repo: alfaxx1308/CyclingRP
+  repo: TON-PSEUDO/Cycling-RP
   branch: main
 
 media_folder: "images"
 public_folder: "/images"
 
 collections:
-
   - name: "coureurs"
     label: "🚴 Coureurs"
     folder: "content/coureurs"
@@ -15,7 +14,6 @@ collections:
     identifier_field: "nom"
 
     fields:
-
       - label: "Nom"
         name: "nom"
         widget: "string"
@@ -73,7 +71,6 @@ collections:
         name: "palmares"
         widget: "list"
         fields:
-
           - label: "Course"
             name: "course"
             widget: "string"
@@ -85,5 +82,3 @@ collections:
           - label: "Résultat"
             name: "resultat"
             widget: "string"
-
-
