@@ -1,84 +1,79 @@
 backend:
-  name: github
-  repo: alfaxx1308/CyclingRP-
+  name: git-gateway
   branch: main
 
-media_folder: "images"
-public_folder: "/images"
+# Interface en français (optionnel mais cohérent avec le site)
+locale: "fr"
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
 
 collections:
-  - name: "coureurs"
-    label: "🚴 Coureurs"
-    folder: "content/coureurs"
-    create: true
-    identifier_field: "nom"
-
-    fields:
-      - label: "Nom"
-        name: "nom"
-        widget: "string"
-
-      - label: "Prénom"
-        name: "prenom"
-        widget: "string"
-
-      - label: "Nom complet"
-        name: "nom_complet"
-        widget: "string"
-
-      - label: "Nationalité"
-        name: "nationalite"
-        widget: "string"
-
-      - label: "Drapeau"
-        name: "drapeau"
-        widget: "string"
-
-      - label: "Date de naissance"
-        name: "date_naissance"
-        widget: "date"
-
-      - label: "Lieu de naissance"
-        name: "lieu_naissance"
-        widget: "string"
-
-      - label: "Équipe"
-        name: "equipe"
-        widget: "string"
-
-      - label: "Spécialités"
-        name: "specialite"
-        widget: "list"
-        field:
-          label: "Spécialité"
-          name: "specialite"
-          widget: "string"
-
-      - label: "Taille"
-        name: "taille"
-        widget: "string"
-
-      - label: "Poids"
-        name: "poids"
-        widget: "string"
-
-      - label: "Photo"
-        name: "photo"
-        widget: "image"
-        choose_url: false
-
-      - label: "Palmarès"
-        name: "palmares"
-        widget: "list"
+  - name: "riders"
+    label: "Coureurs"
+    files:
+      - name: "riders"
+        label: "Liste des coureurs"
+        file: "data/riders.json"
         fields:
-          - label: "Course"
-            name: "course"
-            widget: "string"
+          - label: "Coureurs"
+            name: "riders"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.team}}"
+            fields:
+              - { label: "ID (slug, unique, sans espaces)", name: "id", widget: "string", hint: "ex: egan-bernal" }
+              - { label: "Nom complet", name: "name", widget: "string" }
+              - { label: "Drapeau (emoji)", name: "flag", widget: "string", required: false }
+              - { label: "Nationalité", name: "nationality", widget: "string" }
+              - { label: "Équipe", name: "team", widget: "string" }
+              - { label: "Date de naissance", name: "dob", widget: "string", hint: "ex: 13 janv. 1997" }
+              - { label: "Poids", name: "weight", widget: "string", hint: "ex: 60 kg", required: false }
+              - { label: "Taille", name: "height", widget: "string", hint: "ex: 1,75 m", required: false }
+              - { label: "Classement RP", name: "rpRank", widget: "number", value_type: "int" }
+              - { label: "Photo", name: "image", widget: "image", required: false, hint: "Glisse une image ou colle un chemin (ex: images/coureurs/nom.jpg)" }
 
-          - label: "Année"
-            name: "annee"
-            widget: "number"
+              - label: "Spécialités"
+                name: "specialties"
+                widget: "list"
+                required: false
+                summary: "{{fields.label}} — {{fields.value}}"
+                fields:
+                  - { label: "Nom", name: "label", widget: "string", hint: "ex: Grimpeur, Sprint, GC..." }
+                  - { label: "Valeur (0 à 100)", name: "value", widget: "number", value_type: "int", min: 0, max: 100 }
 
-          - label: "Résultat"
-            name: "resultat"
-            widget: "string"
+              - label: "Liens"
+                name: "links"
+                widget: "list"
+                required: false
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Libellé", name: "label", widget: "string", hint: "ex: Instagram" }
+                  - { label: "URL", name: "url", widget: "string" }
+
+              - label: "Palmarès"
+                name: "palmares"
+                widget: "list"
+                required: false
+                summary: "{{fields.year}}"
+                fields:
+                  - { label: "Année", name: "year", widget: "number", value_type: "int" }
+                  - label: "Résultats de l'année"
+                    name: "results"
+                    widget: "list"
+                    summary: "{{fields.pos}} — {{fields.race}}"
+                    fields:
+                      - { label: "Position", name: "pos", widget: "string", hint: "ex: 1er, 3e..." }
+                      - { label: "Victoire ?", name: "win", widget: "boolean", default: false }
+                      - { label: "Course", name: "race", widget: "string" }
+                      - { label: "Note (optionnel)", name: "note", widget: "string", required: false, hint: "ex: étape de montagne" }
+
+              - label: "Résultats récents"
+                name: "recentResults"
+                widget: "list"
+                required: false
+                summary: "{{fields.race}} — {{fields.pos}}"
+                fields:
+                  - { label: "Course", name: "race", widget: "string" }
+                  - { label: "Étape", name: "stage", widget: "string", required: false }
+                  - { label: "Position", name: "pos", widget: "string" }
+                  - { label: "Temps", name: "time", widget: "string" }
