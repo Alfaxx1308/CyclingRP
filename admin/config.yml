@@ -1,1 +1,90 @@
+```yaml
+backend:
+  name: github
+  repo: alfaxx1308/CyclingRP
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+
+  - name: "coureurs"
+    label: "🚴 Coureurs"
+    folder: "content/coureurs"
+    create: true
+    identifier_field: "nom"
+
+    fields:
+
+      - label: "Nom"
+        name: "nom"
+        widget: "string"
+
+      - label: "Prénom"
+        name: "prenom"
+        widget: "string"
+
+      - label: "Nom complet"
+        name: "nom_complet"
+        widget: "string"
+
+      - label: "Nationalité"
+        name: "nationalite"
+        widget: "string"
+
+      - label: "Drapeau"
+        name: "drapeau"
+        widget: "string"
+
+      - label: "Date de naissance"
+        name: "date_naissance"
+        widget: "date"
+
+      - label: "Lieu de naissance"
+        name: "lieu_naissance"
+        widget: "string"
+
+      - label: "Équipe"
+        name: "equipe"
+        widget: "string"
+
+      - label: "Spécialités"
+        name: "specialite"
+        widget: "list"
+        field:
+          label: "Spécialité"
+          name: "specialite"
+          widget: "string"
+
+      - label: "Taille"
+        name: "taille"
+        widget: "string"
+
+      - label: "Poids"
+        name: "poids"
+        widget: "string"
+
+      - label: "Photo"
+        name: "photo"
+        widget: "image"
+        choose_url: false
+
+      - label: "Palmarès"
+        name: "palmares"
+        widget: "list"
+        fields:
+
+          - label: "Course"
+            name: "course"
+            widget: "string"
+
+          - label: "Année"
+            name: "annee"
+            widget: "number"
+
+          - label: "Résultat"
+            name: "resultat"
+            widget: "string"
+```
 
