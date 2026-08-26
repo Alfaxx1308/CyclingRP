@@ -8,14 +8,13 @@
    Pour ajouter/éditer un coureur : va dans data/riders.json
    ============================================================ */
 
-const RIDERS_JSON_PATH = "data/riders.json";
-
 async function loadRiders() {
     const res = await fetch(RIDERS_JSON_PATH);
     if (!res.ok) {
         throw new Error("Impossible de charger data/riders.json (code " + res.status + ")");
     }
-    return res.json();
+    const data = await res.json();
+    return data.riders; // ← le tableau est maintenant sous la clé "riders"
 }
 
 function getInitials(name) {
