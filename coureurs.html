@@ -1,92 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Coureurs - Cycle League RP</title>
-
+    <title>Coureurs — Cycle League RP</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <header>
+<header>
+    <h1>Cycle League <span class="tag">RP</span></h1>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="coureurs.html" class="active">Coureurs</a>
+        <a href="equipes.html">Équipes</a>
+        <a href="courses.html">Courses</a>
+        <a href="classements.html">Classements</a>
+    </nav>
+</header>
 
-        <h1>Cycle League RP</h1>
+<main>
+    <section>
+        <h2>Les coureurs</h2>
+        <p>Retrouvez ici les coureurs présents dans le Cycle League RP.</p>
+    </section>
 
-        <nav>
-            <a href="index.html">Accueil</a>
-            <a href="coureurs.html">Coureurs</a>
-            <a href="equipes.html">Équipes</a>
-            <a href="courses.html">Courses</a>
-            <a href="classements.html">Classements</a>
-        </nav>
+    <section>
+        <h2>Coureurs populaires</h2>
+        <div id="riders-list" class="card-grid">
+            <p class="empty-state">Chargement des coureurs…</p>
+        </div>
+    </section>
+</main>
 
-    </header>
+<footer>
+    Cycle League RP — 2026
+</footer>
 
-
-    <main>
-
-        <section>
-
-            <h2>Les coureurs</h2>
-
-            <p>
-                Retrouvez ici les coureurs présents dans le Cycle League RP.
-            </p>
-
-        </section>
-
-
-        <section>
-
-            <h2>Coureurs populaires</h2>
-
-            
-  <div class="card">
-    <img src="images/bernal.jpg" alt="Egan Bernal">
-    <h3>Egan Bernal</h3>
-    <p class="meta"><span class="flag">🇨🇴</span>Ineos</p>
-    <a href="coureurs/egan-bernal.html" class="btn">Voir le profil</a>
-  </div>
-                            </div>
-
-
-                <div class="coureur">
-                    <h3>Tadej Pogačar 🇸🇮</h3>
-                    <p>UAE Team Emirates</p>
-                    <a href="#">Voir le profil</a>
-                </div>
-
-
-                <div class="coureur">
-                    <h3>Mathieu van der Poel 🇳🇱</h3>
-                    <p>Alpecin-Deceuninck</p>
-                    <a href="#">Voir le profil</a>
-                </div>
-
-
-                <div class="coureur">
-                    <h3>Remco Evenepoel 🇧🇪</h3>
-                    <p>RedBull Bora-Hansgrohe</p>
-                    <a href="#">Voir le profil</a>
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <footer>
-
-        <p>Cycle League RP — 2026</p>
-
-    </footer>
-
+<script src="js/riders.js"></script>
 </body>
-
 </html>
