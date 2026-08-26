@@ -1,60 +1,796 @@
-```html
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Egan Bernal | Fiche coureur</title>
+    <title>Egan Bernal - Cycle League RP</title>
 
     <link rel="stylesheet" href="../style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6f8;
+            color: #1c2530;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* =========================
+           HEADER COUREUR
+        ========================= */
+
+        .rider-header {
+            background: #ffffff;
+            border-bottom: 1px solid #dfe3e8;
+        }
+
+        .rider-cover {
+            height: 190px;
+            background:
+                linear-gradient(120deg, #111827, #263445);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rider-cover::after {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            border: 70px solid rgba(255,255,255,0.04);
+            right: -150px;
+            top: -250px;
+        }
+
+        .rider-main {
+            max-width: 1200px;
+            margin: -90px auto 0;
+            position: relative;
+            padding: 0 25px 25px;
+        }
+
+        .rider-card {
+            display: flex;
+            align-items: flex-end;
+            gap: 25px;
+        }
+
+        .rider-photo {
+            width: 170px;
+            height: 170px;
+            background: #dfe4e8;
+            border: 6px solid white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #66717c;
+            font-weight: bold;
+        }
+
+        .rider-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rider-information {
+            padding-bottom: 10px;
+        }
+
+        .rider-name {
+            font-size: 42px;
+            font-weight: 800;
+            margin: 0 0 8px;
+        }
+
+        .rider-team {
+            font-size: 19px;
+            color: #56616d;
+            margin-bottom: 10px;
+        }
+
+        .rider-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .detail {
+            background: #eef1f4;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .stat {
+            background: white;
+            border: 1px solid #e0e4e8;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            color: #69747e;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        .navigation {
+            background: white;
+            border-top: 1px solid #e0e4e8;
+            border-bottom: 1px solid #e0e4e8;
+        }
+
+        .navigation-inner {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            overflow-x: auto;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: #59636d;
+            padding: 16px 20px;
+            font-weight: 600;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+        }
+
+        .navigation a.active {
+            color: #111827;
+            border-bottom-color: #111827;
+        }
+
+        /* =========================
+           CONTENU
+        ========================= */
+
+        .content {
+            max-width: 1200px;
+            margin: 25px auto;
+            padding: 0 25px;
+        }
+
+        .section {
+            background: white;
+            border: 1px solid #e0e4e8;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            padding: 17px 20px;
+            border-bottom: 1px solid #e5e8eb;
+            font-size: 18px;
+            font-weight: 750;
+        }
+
+        /* =========================
+           ANNÉES
+        ========================= */
+
+        .years {
+            display: flex;
+            gap: 7px;
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        .year {
+            background: #eef1f4;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .year.active {
+            background: #1f2937;
+            color: white;
+        }
+
+        /* =========================
+           CATEGORIES
+        ========================= */
+
+        .categories {
+            display: flex;
+            gap: 8px;
+            padding: 0 15px 15px;
+            overflow-x: auto;
+        }
+
+        .category {
+            border: 1px solid #d8dde2;
+            background: white;
+            padding: 7px 13px;
+            border-radius: 5px;
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .category.active {
+            background: #f0f2f4;
+            font-weight: bold;
+        }
+
+        /* =========================
+           RESULTATS
+        ========================= */
+
+        .race-header {
+            padding: 14px 20px;
+            background: #f7f8f9;
+            border-top: 1px solid #e2e5e8;
+            border-bottom: 1px solid #e2e5e8;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .flag {
+            font-size: 20px;
+        }
+
+        .result {
+            display: grid;
+            grid-template-columns: 70px 1fr 180px;
+            align-items: center;
+            padding: 13px 20px;
+            border-bottom: 1px solid #edf0f2;
+            gap: 10px;
+        }
+
+        .result:last-child {
+            border-bottom: none;
+        }
+
+        .position {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .race-name {
+            font-weight: 600;
+        }
+
+        .race-type {
+            display: inline-block;
+            margin-left: 8px;
+            background: #e9edf0;
+            border-radius: 5px;
+            padding: 4px 7px;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .points {
+            text-align: right;
+            color: #69747e;
+            font-size: 13px;
+        }
+
+        /* =========================
+           PROFIL
+        ========================= */
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .profile-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid #edf0f2;
+        }
+
+        .profile-label {
+            color: #747e87;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .profile-value {
+            font-weight: 600;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            .rider-main {
+                margin-top: -60px;
+            }
+
+            .rider-card {
+                align-items: center;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .rider-photo {
+                width: 145px;
+                height: 145px;
+            }
+
+            .rider-name {
+                font-size: 30px;
+            }
+
+            .rider-details {
+                justify-content: center;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .result {
+                grid-template-columns: 50px 1fr;
+            }
+
+            .points {
+                display: none;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header class="site-header">
-        <div class="header-container">
+    <!-- =========================
+         HEADER
+    ========================= -->
 
-            <a href="../index.html" class="logo">
-                <span>CYCLING</span>
-                <strong>RP</strong>
-            </a>
+    <header class="rider-header">
 
-            <nav>
-                <a href="../index.html">Accueil</a>
-                <a href="../coureurs.html">Coureurs</a>
-                <a href="#">Équipes</a>
-                <a href="#">Courses</a>
-            </nav>
+        <div class="rider-cover"></div>
+
+        <div class="rider-main">
+
+            <div class="rider-card">
+
+                <div class="rider-photo">
+                    <span>PHOTO</span>
+                </div>
+
+                <div class="rider-information">
+
+                    <h1 class="rider-name">
+                        Egan Bernal
+                    </h1>
+
+                    <div class="rider-team">
+                        🇨🇴 Colombie · INEOS Grenadiers
+                    </div>
+
+                    <div class="rider-details">
+
+                        <span class="detail">
+                            🎂 13 janvier 1997
+                        </span>
+
+                        <span class="detail">
+                            👤 29 ans
+                        </span>
+
+                        <span class="detail">
+                            ⛰️ Grimpeur
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
+
+        <!-- STATISTIQUES -->
+
+        <div class="stats">
+
+            <div class="stat">
+                <div class="stat-number">28</div>
+                <div class="stat-label">Victoires</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">31</div>
+                <div class="stat-label">Podiums</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Grands Tours</div>
+            </div>
+
+            <div class="stat">
+                <div class="stat-number">2019</div>
+                <div class="stat-label">Année pro</div>
+            </div>
+
+        </div>
+
     </header>
 
 
-    <!-- HERO COUREUR -->
-    <main>
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
 
-        <section class="rider-hero">
+    <nav class="navigation">
 
-            <div class="rider-photo">
-                <!-- Image d'Egan Bernal -->
-                <img src="../images/egan-bernal.jpg" alt="Egan Bernal">
+        <div class="navigation-inner">
+
+            <a href="#" class="active">
+                RÉSULTATS
+            </a>
+
+            <a href="#">
+                PALMARÈS
+            </a>
+
+            <a href="#">
+                CLASSEMENT
+            </a>
+
+            <a href="#">
+                ÉQUIPES
+            </a>
+
+            <a href="#">
+                PCM
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         CONTENU
+    ========================= -->
+
+    <main class="content">
+
+
+        <!-- ANNÉES -->
+
+        <section class="section">
+
+            <div class="section-title">
+                Résultats
             </div>
 
-            <div class="rider-main-info">
+            <div class="years">
 
-                <p class="rider-country">🇨🇴 COLOMBIE</p>
+                <div class="year active">2026</div>
+                <div class="year">2025</div>
+                <div class="year">2024</div>
+                <div class="year">2023</div>
+                <div class="year">2022</div>
+                <div class="year">2021</div>
+                <div class="year">2020</div>
+                <div class="year">2019</div>
 
-                <h1>Egan Bernal</h1>
+            </div>
 
-                <p class="rider-team">
-                    INEOS Grenadiers
-                </p>
+            <div class="categories">
 
-                <div class="rider-tags">
-                    <span>Grimpeur</span>
-                    <span>Classement général</span>
+                <div class="category active">
+                    Tous
+                </div>
+
+                <div class="category">
+                    Plat
+                </div>
+
+                <div class="category">
+                    Vallonné
+                </div>
+
+                <div class="category">
+                    Montagne
+                </div>
+
+                <div class="category">
+                    Contre-la-montre
+                </div>
+
+            </div>
+
+
+            <!-- TOUR DE FRANCE -->
+
+            <div class="race-header">
+
+                <span class="flag">🇫🇷</span>
+
+                Tour de France
+
+            </div>
+
+
+            <div class="result">
+
+                <div class="position">
+                    20
+                </div>
+
+                <div class="race-name">
+                    Tour de France
+
+                    <span class="race-type">
+                        Général
+                    </span>
+                </div>
+
+                <div class="points">
+                    Classement général
+                </div>
+
+            </div>
+
+
+            <div class="result">
+
+                <div class="position">
+                    83
+                </div>
+
+                <div class="race-name">
+                    Tour de France
+
+                    <span class="race-type">
+                        Points
+                    </span>
+                </div>
+
+                <div class="points">
+                    Classement par points
+                </div>
+
+            </div>
+
+
+            <div class="result">
+
+                <div class="position">
+                    50
+                </div>
+
+                <div class="race-name">
+                    Tour de France
+
+                    <span class="race-type">
+                        Montagne
+                    </span>
+                </div>
+
+                <div class="points">
+                    Classement montagne
+                </div>
+
+            </div>
+
+
+            <div class="result">
+
+                <div class="position">
+                    20
+                </div>
+
+                <div class="race-name">
+                    Tour de France
+
+                    <span class="race-type">
+                        21e étape
+                    </span>
+
+                </div>
+
+                <div class="points">
+                    Étape
+                </div>
+
+            </div>
+
+
+            <div class="result">
+
+                <div class="position">
+                    39
+                </div>
+
+                <div class="race-name">
+                    Tour de France
+
+                    <span class="race-type">
+                        20e étape
+                    </span>
+
+                </div>
+
+                <div class="points">
+                    Étape
+                </div>
+
+            </div>
+
+
+            <div class="result">
+
+                <div class="position">
+                    98
+                </div>
+
+                <div class="race-name">
+                    Tour de France
+
+                    <span class="race-type">
+                        19e étape
+                    </span>
+
+                </div>
+
+                <div class="points">
+                    Étape
+                </div>
+
+            </div>
+
+
+            <div class="result">
+
+                <div class="position">
+                    47
+                </div>
+
+                <div class="race-name">
+                    Tour de France
+
+                    <span class="race-type">
+                        18e étape
+                    </span>
+
+                </div>
+
+                <div class="points">
+                    Étape
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =========================
+             PROFIL
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-title">
+                Informations du coureur
+            </div>
+
+            <div class="profile-grid">
+
+                <div class="profile-item">
+                    <div class="profile-label">
+                        Nom complet
+                    </div>
+                    <div class="profile-value">
+                        Egan Arley Bernal Gómez
+                    </div>
+                </div>
+
+                <div class="profile-item">
+                    <div class="profile-label">
+                        Nationalité
+                    </div>
+                    <div class="profile-value">
+                        🇨🇴 Colombienne
+                    </div>
+                </div>
+
+                <div class="profile-item">
+                    <div class="profile-label">
+                        Date de naissance
+                    </div>
+                    <div class="profile-value">
+                        13 janvier 1997
+                    </div>
+                </div>
+
+                <div class="profile-item">
+                    <div class="profile-label">
+                        Lieu de naissance
+                    </div>
+                    <div class="profile-value">
+                        Bogotá, Colombie
+                    </div>
+                </div>
+
+                <div class="profile-item">
+                    <div class="profile-label">
+                        Taille
+                    </div>
+                    <div class="profile-value">
+                        1,75 m
+                    </div>
+                </div>
+
+                <div class="profile-item">
+                    <div class="profile-label">
+                        Poids
+                    </div>
+                    <div class="profile-value">
+                        60 kg
+                    </div>
+                </div>
+
+                <div class="profile-item">
+                    <div class="profile-label">
+                        Spécialité
+                    </div>
+                    <div class="profile-value">
+                        Grimpeur
+                    </div>
+                </div>
+
+                <div class="profile-item">
+                    <div class="profile-label">
+                        Équipe actuelle
+                    </div>
+                    <div class="profile-value">
+                        INEOS Grenadiers
+                    </div>
                 </div>
 
             </div>
@@ -62,161 +798,69 @@
         </section>
 
 
-        <!-- INFORMATIONS -->
-        <section class="rider-content">
+        <!-- =========================
+             PALMARÈS
+        ========================= -->
 
-            <div class="rider-card">
+        <section class="section">
 
-                <div class="card-title">
-                    <h2>Informations</h2>
+            <div class="section-title">
+                Palmarès
+            </div>
+
+            <div class="result">
+
+                <div class="position">
+                    1er
                 </div>
 
-                <div class="info-grid">
+                <div class="race-name">
+                    Tour de France
+                    <span class="race-type">
+                        2019
+                    </span>
+                </div>
 
-                    <div>
-                        <span>Nom complet</span>
-                        <strong>Egan Arley Bernal Gómez</strong>
-                    </div>
-
-                    <div>
-                        <span>Date de naissance</span>
-                        <strong>13 janvier 1997</strong>
-                    </div>
-
-                    <div>
-                        <span>Nationalité</span>
-                        <strong>Colombienne 🇨🇴</strong>
-                    </div>
-
-                    <div>
-                        <span>Lieu de naissance</span>
-                        <strong>Bogotá, Colombie</strong>
-                    </div>
-
-                    <div>
-                        <span>Taille</span>
-                        <strong>1,75 m</strong>
-                    </div>
-
-                    <div>
-                        <span>Poids</span>
-                        <strong>60 kg</strong>
-                    </div>
-
-                    <div>
-                        <span>Spécialité</span>
-                        <strong>Grimpeur / Général</strong>
-                    </div>
-
-                    <div>
-                        <span>Équipe</span>
-                        <strong>INEOS Grenadiers</strong>
-                    </div>
-
+                <div class="points">
+                    Général
                 </div>
 
             </div>
 
+            <div class="result">
 
-            <!-- PALMARÈS -->
-            <div class="rider-card">
-
-                <div class="card-title">
-                    <h2>Palmarès</h2>
+                <div class="position">
+                    1er
                 </div>
 
-                <div class="palmares-grid">
+                <div class="race-name">
+                    Giro d'Italia
+                    <span class="race-type">
+                        2021
+                    </span>
+                </div>
 
-                    <div class="palmares-item">
-                        <strong>1</strong>
-                        <span>Tour de France</span>
-                        <small>2019</small>
-                    </div>
-
-                    <div class="palmares-item">
-                        <strong>1</strong>
-                        <span>Giro d'Italia</span>
-                        <small>2021</small>
-                    </div>
-
-                    <div class="palmares-item">
-                        <strong>1</strong>
-                        <span>Paris-Nice</span>
-                        <small>2019</small>
-                    </div>
-
+                <div class="points">
+                    Général
                 </div>
 
             </div>
 
+            <div class="result">
 
-            <!-- STATISTIQUES -->
-            <div class="rider-card">
-
-                <div class="card-title">
-                    <h2>Statistiques</h2>
+                <div class="position">
+                    1er
                 </div>
 
-                <div class="stats-grid">
-
-                    <div class="stat">
-                        <strong>2016</strong>
-                        <span>Début professionnel</span>
-                    </div>
-
-                    <div class="stat">
-                        <strong>2019</strong>
-                        <span>Victoire Tour de France</span>
-                    </div>
-
-                    <div class="stat">
-                        <strong>2021</strong>
-                        <span>Victoire Giro d'Italia</span>
-                    </div>
-
-                    <div class="stat">
-                        <strong>🇨🇴</strong>
-                        <span>Colombie</span>
-                    </div>
-
+                <div class="race-name">
+                    Paris-Nice
+                    <span class="race-type">
+                        2019
+                    </span>
                 </div>
 
-            </div>
-
-
-            <!-- RÉSULTATS -->
-            <div class="rider-card">
-
-                <div class="card-title">
-                    <h2>Résultats récents</h2>
-                </div>
-
-                <div class="results-table">
-
-                    <div class="result-row result-header">
-                        <span>Course</span>
-                        <span>Année</span>
-                        <span>Résultat</span>
-                    </div>
-
-                    <div class="result-row">
-                        <span>Tour de France</span>
-                        <span>2019</span>
-                        <strong>🥇 1er</strong>
-                    </div>
-
-                    <div class="result-row">
-                        <span>Giro d'Italia</span>
-                        <span>2021</span>
-                        <strong>🥇 1er</strong>
-                    </div>
-
-                    <div class="result-row">
-                        <span>Paris-Nice</span>
-                        <span>2019</span>
-                        <strong>🥇 1er</strong>
-                    </div>
-
+                <div class="points">
+                    Général
                 </div>
 
             </div>
@@ -225,13 +869,6 @@
 
     </main>
 
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 Cycling RP — Site non officiel</p>
-    </footer>
-
 </body>
-</html>
-```
 
+</html>
