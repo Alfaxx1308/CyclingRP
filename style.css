@@ -1,80 +1,452 @@
-/* ===== STYLE GÉNÉRAL ===== */
+/* ============================================================
+   CYCLE LEAGUE RP — FEUILLE DE STYLE
+   Thème : "Broadcast de course" — sombre, accents fluo,
+   inspiré des profils d'étape et des écrans de chrono TV.
+   ============================================================ */
 
+/* ---- Polices Google Fonts ----
+   Bebas Neue  : titres condensés, effet "dossard / panneau de chrono"
+   Inter       : texte courant, très lisible
+   JetBrains Mono : chiffres, temps, classements (effet télémétrie) */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
+
+/* ============================================================
+   1. VARIABLES — la palette et les tokens du design
+   ============================================================ */
+:root {
+    /* Fond & surfaces */
+    --bg: #0b0d10;              /* asphalte */
+    --surface: #14181d;         /* cartes, sections */
+    --surface-alt: #191e24;     /* cartes au survol / lignes alternées */
+    --border: #262b31;
+
+    /* Texte */
+    --text: #eef1f3;
+    --text-muted: #8b939b;
+
+    /* Accents fluo */
+    --accent: #e3ff3c;          /* jaune maillot — accent principal */
+    --accent-2: #00e0c6;        /* cyan — accent secondaire */
+    --accent-danger: #ff4d5e;   /* rouge — alertes, DNF, etc. */
+
+    /* Ombres & effets */
+    --glow-accent: 0 0 18px rgba(227, 255, 60, 0.35);
+    --glow-accent-2: 0 0 18px rgba(0, 224, 198, 0.35);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+
+    /* Typo */
+    --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+    --font-body: 'Inter', Arial, Helvetica, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+    /* Rythme */
+    --radius: 10px;
+    --container: 1200px;
+}
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
 * {
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f3f4f6;
-    color: #222;
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    /* Léger grain d'asphalte en fond, très discret */
+    background-image:
+        radial-gradient(circle at 20% -10%, rgba(227, 255, 60, 0.06), transparent 40%),
+        radial-gradient(circle at 90% 0%, rgba(0, 224, 198, 0.05), transparent 35%);
+    background-attachment: fixed;
+}
 
-/* ===== EN-TÊTE ===== */
+/* Accessibilité : on respecte les préférences de mouvement réduit */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+    }
+    html {
+        scroll-behavior: auto;
+    }
+}
 
+/* Focus clavier toujours visible (accessibilité) */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.5px;
+    color: var(--text);
+}
+
+/* ============================================================
+   3. EN-TÊTE
+   ============================================================ */
 header {
-    background: #1d3557;
-    color: white;
-    padding: 20px 40px;
+    background: linear-gradient(135deg, #0f1216 0%, #14181d 60%, #0f1216 100%);
+    color: var(--text);
+    padding: 28px 40px 0;
+    position: relative;
+    border-bottom: 1px solid var(--border);
 }
 
 header h1 {
-    margin: 0 0 15px 0;
-    font-size: 30px;
+    margin: 0 0 20px 0;
+    font-size: 42px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
 }
 
+/* Petit accent "dossard" à côté du titre — optionnel,
+   ajoute <span class="tag">RP</span> après le nom si tu veux l'effet */
+header h1 .tag {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    background: var(--accent);
+    color: #0b0d10;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+}
 
-/* ===== MENU ===== */
+/* ---- Signature visuelle : profil d'étape en dents de scie ----
+   Une bande de "montagne" façon profil d'étape TV, sous le header. */
+header::after {
+    content: "";
+    display: block;
+    height: 14px;
+    margin-top: 24px;
+    background:
+        linear-gradient(135deg, var(--accent) 25%, transparent 25%) 0 50% / 20px 14px,
+        linear-gradient(225deg, var(--accent) 25%, transparent 25%) 0 50% / 20px 14px,
+        linear-gradient(315deg, var(--accent-2) 25%, transparent 25%) 0 50% / 20px 14px,
+        linear-gradient(45deg,  var(--accent-2) 25%, transparent 25%) 0 50% / 20px 14px;
+    background-color: var(--bg);
+    opacity: 0.9;
+}
 
+/* ============================================================
+   4. NAVIGATION
+   ============================================================ */
 nav {
     display: flex;
-    gap: 25px;
+    gap: 8px;
     flex-wrap: wrap;
+    padding-bottom: 18px;
 }
 
 nav a {
-    color: white;
+    position: relative;
+    color: var(--text-muted);
     text-decoration: none;
-    font-weight: bold;
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: color 0.2s ease, background 0.2s ease;
 }
 
-nav a:hover {
-    text-decoration: underline;
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 2px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
 }
 
+nav a:hover,
+nav a:focus-visible {
+    color: var(--text);
+    background: rgba(227, 255, 60, 0.06);
+}
 
-/* ===== CONTENU ===== */
+nav a:hover::after,
+nav a:focus-visible::after {
+    transform: scaleX(1);
+}
 
+/* Page active — ajoute class="active" sur le lien courant dans ton HTML */
+nav a.active {
+    color: var(--accent);
+}
+
+nav a.active::after {
+    transform: scaleX(1);
+}
+
+/* ============================================================
+   5. CONTENU / SECTIONS
+   ============================================================ */
 main {
-    max-width: 1200px;
-    margin: 30px auto;
+    max-width: var(--container);
+    margin: 40px auto;
     padding: 0 20px;
 }
 
 section {
-    background: white;
-    margin-bottom: 25px;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    padding: 28px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
 }
 
 section h2 {
-    margin-top: 0;
-    color: #1d3557;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
+    margin: 0 0 20px 0;
+    font-size: 28px;
+    text-transform: uppercase;
+    color: var(--text);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
+/* Petit repère façon "borne kilométrique" devant les titres de section */
+section h2::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 2px;
+    box-shadow: var(--glow-accent);
+    flex-shrink: 0;
+}
 
-/* ===== PIED DE PAGE ===== */
+section p {
+    color: var(--text-muted);
+}
 
-footer {
-    background: #1d3557;
-    color: white;
+/* État vide (ex : "Aucune course pour le moment") */
+.empty-state {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    padding: 24px;
     text-align: center;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-alt);
+}
+
+/* ============================================================
+   6. GRILLE DE CARTES (coureurs, équipes, courses)
+   ============================================================ */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
     padding: 20px;
-    margin-top: 40px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-left-color: var(--accent-2);
+    box-shadow: var(--glow-accent-2);
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    filter: grayscale(20%);
+    transition: filter 0.2s ease;
+}
+
+.card:hover img {
+    filter: grayscale(0%);
+}
+
+.card h3 {
+    margin: 0 0 4px 0;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.card .meta {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+}
+
+.card .flag {
+    margin-right: 6px;
+}
+
+/* Bouton "Voir le profil" */
+.btn {
+    display: inline-block;
+    font-family: var(--font-display);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 15px;
+    color: var(--bg);
+    background: var(--accent);
+    padding: 8px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.15s ease, background 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+    box-shadow: var(--glow-accent);
+    transform: translateY(-1px);
+}
+
+.btn.btn-outline {
+    background: transparent;
+    color: var(--accent-2);
+    border: 1px solid var(--accent-2);
+}
+
+.btn.btn-outline:hover {
+    background: rgba(0, 224, 198, 0.1);
+    box-shadow: var(--glow-accent-2);
+}
+
+/* ============================================================
+   7. TABLEAUX (classements)
+   ============================================================ */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-mono);
+    font-size: 14px;
+}
+
+thead th {
+    text-align: left;
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--accent);
+}
+
+tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+tbody tr:hover {
+    background: var(--surface-alt);
+}
+
+/* Les 3 premiers du classement mis en valeur */
+tbody tr:nth-child(1) td:first-child { color: var(--accent); font-weight: 700; }
+tbody tr:nth-child(2) td:first-child { color: #cfd6dc; font-weight: 700; }
+tbody tr:nth-child(3) td:first-child { color: #c98a4b; font-weight: 700; }
+
+/* ============================================================
+   8. BADGES (spécialité coureur, statut course...)
+   ============================================================ */
+.badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+}
+
+.badge.badge-accent {
+    color: var(--bg);
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.badge.badge-live {
+    color: var(--accent-danger);
+    border-color: var(--accent-danger);
+}
+
+/* ============================================================
+   9. PIED DE PAGE
+   ============================================================ */
+footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    text-align: center;
+    padding: 24px;
+    margin-top: 50px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+
+footer a {
+    color: var(--accent-2);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================================
+   10. RESPONSIVE
+   ============================================================ */
+@media (max-width: 640px) {
+    header {
+        padding: 20px 20px 0;
+    }
+    header h1 {
+        font-size: 30px;
+    }
+    nav a {
+        font-size: 15px;
+        padding: 6px 10px;
+    }
+    section {
+        padding: 20px;
+    }
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
 }
