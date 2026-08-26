@@ -85,5 +85,5 @@ collections:
           - label: "Résultat"
             name: "resultat"
             widget: "string"
-```
+
 
