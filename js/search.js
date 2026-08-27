@@ -1,7 +1,5 @@
 /* ============================================================
    SEARCH.JS — recherche globale du site
-   Cherche parmi les pages principales et tous les coureurs.
-   Fonctionne sur n'importe quelle page indépendamment.
    ============================================================ */
 
 const SITE_PAGES = [
@@ -23,15 +21,11 @@ function normalizeText(str) {
 
 async function getSearchableRiders() {
     if (searchRidersCache) return searchRidersCache;
-    try {
-        const res = await fetch("data/riders.json");
-        if (!res.ok) return [];
-        const data = await res.json();
-        searchRidersCache = Array.isArray(data.riders) ? data.riders : [];
-        return searchRidersCache;
-    } catch (err) {
-        return [];
-    }
+    const res = await fetch("data/riders.json");
+    if (!res.ok) throw new Error("riders.json introuvable (" + res.status + ")");
+    const data = await res.json();
+    searchRidersCache = Array.isArray(data.riders) ? data.riders : [];
+    return searchRidersCache;
 }
 
 async function runSiteSearch(query) {
@@ -68,20 +62,23 @@ function renderSearchResults(container, results) {
         container.classList.add("open");
         return;
     }
-
-    container.innerHTML = results.map(r => `
-        <a href="${r.url}" class="site-search-result">
-            <span>${r.label}${r.sub ? ` <span style="color:var(--text-muted);font-size:12px;">— ${r.sub}</span>` : ""}</span>
-            <span class="result-type">${r.type}</span>
-        </a>
-    `).join("");
+    container.innerHTML = results.map(r =>
+        '<a href="' + r.url + '" class="site-search-result">' +
+        "<span>" + r.label + (r.sub ? ' <span style="color:var(--text-muted);font-size:12px;">— ' + r.sub + "</span>" : "") + "</span>" +
+        '<span class="result-type">' + r.type + "</span>" +
+        "</a>"
+    ).join("");
     container.classList.add("open");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+function initSearch() {
     const input = document.getElementById("site-search-input");
     const resultsBox = document.getElementById("site-search-results");
-    if (!input || !resultsBox) return;
+
+    if (!input || !resultsBox) {
+        console.warn("Barre de recherche : élément #site-search-input ou #site-search-results introuvable sur cette page.");
+        return;
+    }
 
     let debounceTimer = null;
 
@@ -96,8 +93,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         debounceTimer = setTimeout(async () => {
-            const results = await runSiteSearch(query);
-            renderSearchResults(resultsBox, results);
+            try {
+                const results = await runSiteSearch(query);
+                renderSearchResults(resultsBox, results);
+            } catch (err) {
+                resultsBox.innerHTML = '<div class="site-search-empty" style="color:#ff4d5e;">' + err.message + "</div>";
+                resultsBox.classList.add("open");
+            }
         }, 150);
     });
 
@@ -117,4 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
             resultsBox.classList.remove("open");
         }
     });
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSearch);
+} else {
+    initSearch();
+}
