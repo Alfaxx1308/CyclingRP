@@ -3,45 +3,18 @@
     {
       "id": "egan-bernal",
       "name": "Egan Bernal",
-      "flag": "🇨🇴",
-      "nationality": "Colombie",
-      "team": "Ineos",
-      "dob": "13 janv. 1997",
-      "weight": "60 kg",
-      "height": "1,75 m",
-      "rpRank": 4,
+      "flag": "",
+      "nationality": "",
+      "team": "",
+      "dob": "",
+      "weight": "",
+      "height": "",
+      "rpRank": null,
       "image": "images/coureurs/egan-bernal.jpg",
-      "specialties": [
-        { "label": "Grimpeur", "value": 92 },
-        { "label": "Général (GC)", "value": 88 },
-        { "label": "Contre-la-montre", "value": 55 },
-        { "label": "Sprint", "value": 20 },
-        { "label": "Classiques", "value": 40 }
-      ],
-      "links": [
-        { "label": "Instagram", "url": "#" },
-        { "label": "Strava", "url": "#" }
-      ],
-      "palmares": [
-        {
-          "year": 2026,
-          "results": [
-            { "pos": "1er", "win": true, "race": "Classement général — Tour RP de Colombie" },
-            { "pos": "3e", "win": false, "race": "Étape 8 — Tour RP de France", "note": "étape de montagne" }
-          ]
-        },
-        {
-          "year": 2025,
-          "results": [
-            { "pos": "1er", "win": true, "race": "Étape 14 — Tour RP de France" },
-            { "pos": "5e", "win": false, "race": "Classement général — Critérium RP" }
-          ]
-        }
-      ],
-      "recentResults": [
-        { "race": "Tour RP de France", "stage": "8", "pos": "3e", "time": "4:12:08" },
-        { "race": "Tour RP de France", "stage": "7", "pos": "12e", "time": "3:58:41" }
-      ]
+      "specialties": [],
+      "links": [],
+      "palmares": [],
+      "recentResults": []
     },
     {
       "id": "tadej-pogacar",
@@ -55,27 +28,61 @@
       "rpRank": 1,
       "image": "images/coureurs/tadej-pogacar.jpg",
       "specialties": [
-        { "label": "Grimpeur", "value": 95 },
-        { "label": "Général (GC)", "value": 97 },
-        { "label": "Contre-la-montre", "value": 80 },
-        { "label": "Sprint", "value": 45 },
-        { "label": "Classiques", "value": 90 }
+        {
+          "label": "Grimpeur",
+          "value": 95
+        },
+        {
+          "label": "Général (GC)",
+          "value": 97
+        },
+        {
+          "label": "Contre-la-montre",
+          "value": 80
+        },
+        {
+          "label": "Sprint",
+          "value": 45
+        },
+        {
+          "label": "Classiques",
+          "value": 90
+        }
       ],
       "links": [
-        { "label": "Instagram", "url": "#" },
-        { "label": "Strava", "url": "#" }
+        {
+          "label": "Instagram",
+          "url": "#"
+        },
+        {
+          "label": "Strava",
+          "url": "#"
+        }
       ],
       "palmares": [
         {
           "year": 2026,
           "results": [
-            { "pos": "1er", "win": true, "race": "Classement général — Tour RP de France" },
-            { "pos": "1er", "win": true, "race": "Liège-Bastogne-Liège RP" }
+            {
+              "pos": "1er",
+              "win": true,
+              "race": "Classement général — Tour RP de France"
+            },
+            {
+              "pos": "1er",
+              "win": true,
+              "race": "Liège-Bastogne-Liège RP"
+            }
           ]
         }
       ],
       "recentResults": [
-        { "race": "Tour RP de France", "stage": "8", "pos": "1er", "time": "4:09:52" }
+        {
+          "race": "Tour RP de France",
+          "stage": "8",
+          "pos": "1er",
+          "time": "4:09:52"
+        }
       ]
     },
     {
@@ -90,25 +97,52 @@
       "rpRank": 6,
       "image": "images/coureurs/mathieu-van-der-poel.jpg",
       "specialties": [
-        { "label": "Classiques", "value": 96 },
-        { "label": "Sprint", "value": 78 },
-        { "label": "Général (GC)", "value": 30 },
-        { "label": "Contre-la-montre", "value": 60 },
-        { "label": "Grimpeur", "value": 50 }
+        {
+          "label": "Classiques",
+          "value": 96
+        },
+        {
+          "label": "Sprint",
+          "value": 78
+        },
+        {
+          "label": "Général (GC)",
+          "value": 30
+        },
+        {
+          "label": "Contre-la-montre",
+          "value": 60
+        },
+        {
+          "label": "Grimpeur",
+          "value": 50
+        }
       ],
       "links": [
-        { "label": "Instagram", "url": "#" }
+        {
+          "label": "Instagram",
+          "url": "#"
+        }
       ],
       "palmares": [
         {
           "year": 2025,
           "results": [
-            { "pos": "1er", "win": true, "race": "Paris-Roubaix RP" }
+            {
+              "pos": "1er",
+              "win": true,
+              "race": "Paris-Roubaix RP"
+            }
           ]
         }
       ],
       "recentResults": [
-        { "race": "Paris-Roubaix RP", "stage": "-", "pos": "1er", "time": "5:41:10" }
+        {
+          "race": "Paris-Roubaix RP",
+          "stage": "-",
+          "pos": "1er",
+          "time": "5:41:10"
+        }
       ]
     },
     {
@@ -123,26 +157,56 @@
       "rpRank": 2,
       "image": "images/coureurs/remco-evenepoel.jpg",
       "specialties": [
-        { "label": "Contre-la-montre", "value": 98 },
-        { "label": "Général (GC)", "value": 85 },
-        { "label": "Grimpeur", "value": 75 },
-        { "label": "Sprint", "value": 25 },
-        { "label": "Classiques", "value": 55 }
+        {
+          "label": "Contre-la-montre",
+          "value": 98
+        },
+        {
+          "label": "Général (GC)",
+          "value": 85
+        },
+        {
+          "label": "Grimpeur",
+          "value": 75
+        },
+        {
+          "label": "Sprint",
+          "value": 25
+        },
+        {
+          "label": "Classiques",
+          "value": 55
+        }
       ],
       "links": [
-        { "label": "Instagram", "url": "#" },
-        { "label": "Strava", "url": "#" }
+        {
+          "label": "Instagram",
+          "url": "#"
+        },
+        {
+          "label": "Strava",
+          "url": "#"
+        }
       ],
       "palmares": [
         {
           "year": 2026,
           "results": [
-            { "pos": "1er", "win": true, "race": "Championnat RP du monde du CLM" }
+            {
+              "pos": "1er",
+              "win": true,
+              "race": "Championnat RP du monde du CLM"
+            }
           ]
         }
       ],
       "recentResults": [
-        { "race": "Vuelta RP", "stage": "10", "pos": "1er", "time": "0:38:12" }
+        {
+          "race": "Vuelta RP",
+          "stage": "10",
+          "pos": "1er",
+          "time": "0:38:12"
+        }
       ]
     }
   ]
