@@ -1047,3 +1047,30 @@ footer a:hover {
         gap: 6px;
     }
 }
+/* Boutons des cartes coureurs */
+.card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+/* Bouton modifier */
+.edit-btn {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.edit-btn:hover {
+    transform: scale(1.08);
+    opacity: 0.85;
+}
