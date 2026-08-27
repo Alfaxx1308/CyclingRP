@@ -1074,3 +1074,76 @@ footer a:hover {
     transform: scale(1.08);
     opacity: 0.85;
 }
+
+/* Style du sticker dans la navigation */
+.tdf-icon {
+    height: 20px;
+    width: auto;
+    vertical-align: middle;
+    margin-right: 6px;
+    border-radius: 3px;
+    object-fit: cover;
+}
+
+.nav-tdf {
+    display: inline-flex;
+    align-items: center;
+    font-weight: bold;
+    color: #ffe600; /* Jaune Tour de France */
+}
+
+/* Style de la page TdF 2026 */
+.tdf-hero {
+    background: linear-gradient(135deg, #2b2b2b 0%, #111111 100%);
+    border-left: 6px solid #ffe600;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.tdf-logo-hero {
+    max-width: 180px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.tdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.tdf-table th, .tdf-table td {
+    padding: 10px 14px;
+    border: 1px solid #444;
+    text-align: left;
+}
+
+.tdf-table th {
+    background-color: #ffe600;
+    color: #000;
+}
+
+/* Grille des maillots */
+.jerseys-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.jersey-card {
+    background: #222;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    border-top: 4px solid #fff;
+}
+
+.jersey-card.yellow { border-color: #ffe600; }
+.jersey-card.green { border-color: #27ae60; }
+.jersey-card.polka { border-color: #e74c3c; }
+.jersey-card.white { border-color: #ecf0f1; }
+
