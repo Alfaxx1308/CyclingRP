@@ -1,6 +1,3 @@
-# `js/riders.js` — affichage des coureurs avec modification
-
-```javascript
 /* ============================================================
    RIDERS.JS — moteur d'affichage des coureurs
    Lit data/riders.json et génère :
