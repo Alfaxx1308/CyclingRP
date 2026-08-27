@@ -1,52 +1,68 @@
 /* ============================================================
    CYCLE LEAGUE RP — FEUILLE DE STYLE
-   Thème : "Broadcast de course" — sombre, accents fluo,
-   inspiré des profils d'étape et des écrans de chrono TV.
+   Thème : Broadcast cycliste / Chrono TV
    ============================================================ */
-
-/* ---- Polices Google Fonts ----
-   Bebas Neue  : titres condensés, effet "dossard / panneau de chrono"
-   Inter       : texte courant, très lisible
-   JetBrains Mono : chiffres, temps, classements (effet télémétrie) */
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
 
 /* ============================================================
-   1. VARIABLES — la palette et les tokens du design
+   0. POLICES
    ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
+
+
+/* ============================================================
+   1. VARIABLES
+   ============================================================ */
+
 :root {
-    /* Fond & surfaces */
-    --bg: #0b0d10;              /* asphalte */
-    --surface: #14181d;         /* cartes, sections */
-    --surface-alt: #191e24;     /* cartes au survol / lignes alternées */
+
+    --bg: #0b0d10;
+    --surface: #14181d;
+    --surface-alt: #191e24;
     --border: #262b31;
 
-    /* Texte */
     --text: #eef1f3;
     --text-muted: #8b939b;
 
-    /* Accents fluo */
-    --accent: #e3ff3c;          /* jaune maillot — accent principal */
-    --accent-2: #00e0c6;        /* cyan — accent secondaire */
-    --accent-danger: #ff4d5e;   /* rouge — alertes, DNF, etc. */
+    --accent: #e3ff3c;
+    --accent-2: #00e0c6;
+    --accent-danger: #ff4d5e;
 
-    /* Ombres & effets */
-    --glow-accent: 0 0 18px rgba(227, 255, 60, 0.35);
-    --glow-accent-2: 0 0 18px rgba(0, 224, 198, 0.35);
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    --glow-accent:
+        0 0 18px rgba(227, 255, 60, 0.35);
 
-    /* Typo */
-    --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
-    --font-body: 'Inter', Arial, Helvetica, sans-serif;
-    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+    --glow-accent-2:
+        0 0 18px rgba(0, 224, 198, 0.35);
 
-    /* Rythme */
+    --shadow:
+        0 4px 20px rgba(0, 0, 0, 0.45);
+
+    --font-display:
+        'Bebas Neue',
+        'Arial Narrow',
+        sans-serif;
+
+    --font-body:
+        'Inter',
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    --font-mono:
+        'JetBrains Mono',
+        'Courier New',
+        monospace;
+
     --radius: 10px;
+
     --container: 1200px;
 }
 
+
 /* ============================================================
-   2. RESET & BASE
+   2. RESET
    ============================================================ */
+
 * {
     box-sizing: border-box;
 }
@@ -61,1089 +77,2413 @@ body {
     background: var(--bg);
     color: var(--text);
     line-height: 1.5;
-    /* Léger grain d'asphalte en fond, très discret */
+
     background-image:
-        radial-gradient(circle at 20% -10%, rgba(227, 255, 60, 0.06), transparent 40%),
-        radial-gradient(circle at 90% 0%, rgba(0, 224, 198, 0.05), transparent 35%);
+        radial-gradient(
+            circle at 20% -10%,
+            rgba(227, 255, 60, 0.06),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 90% 0%,
+            rgba(0, 224, 198, 0.05),
+            transparent 35%
+        );
+
     background-attachment: fixed;
 }
 
-/* Accessibilité : on respecte les préférences de mouvement réduit */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.001ms !important;
-        transition-duration: 0.001ms !important;
-    }
-    html {
-        scroll-behavior: auto;
-    }
+a {
+    color: inherit;
 }
 
-/* Focus clavier toujours visible (accessibilité) */
+button,
+input,
+textarea {
+    font-family: inherit;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* ============================================================
+   3. ACCESSIBILITÉ
+   ============================================================ */
+
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
     border-radius: 4px;
 }
 
-h1, h2, h3 {
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+
+/* ============================================================
+   4. TYPOGRAPHIE
+   ============================================================ */
+
+h1,
+h2,
+h3 {
     font-family: var(--font-display);
     letter-spacing: 0.5px;
     color: var(--text);
 }
 
+h1,
+h2,
+h3,
+p {
+    overflow-wrap: break-word;
+}
+
+
 /* ============================================================
-   3. EN-TÊTE
+   5. HEADER
    ============================================================ */
+
 header {
-    background: linear-gradient(135deg, #0f1216 0%, #14181d 60%, #0f1216 100%);
+
+    background:
+        linear-gradient(
+            135deg,
+            #0f1216 0%,
+            #14181d 60%,
+            #0f1216 100%
+        );
+
     color: var(--text);
+
     padding: 28px 40px 0;
+
     position: relative;
+
     border-bottom: 1px solid var(--border);
 }
 
-header h1 {
-    margin: 0 0 20px 0;
-    font-size: 42px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.header-top {
+
+    max-width: var(--container);
+
+    margin: 0 auto;
+
     display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 16px;
+}
+
+header h1 {
+
+    margin: 0 0 20px 0;
+
+    font-size: 42px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    display: flex;
+
     align-items: baseline;
+
     gap: 12px;
 }
 
-/* Petit accent "dossard" à côté du titre — optionnel,
-   ajoute <span class="tag">RP</span> après le nom si tu veux l'effet */
 header h1 .tag {
+
     font-family: var(--font-mono);
+
     font-size: 14px;
+
     background: var(--accent);
+
     color: #0b0d10;
+
     padding: 4px 10px;
+
     border-radius: 4px;
+
     letter-spacing: 1px;
 }
 
-/* ---- Signature visuelle : profil d'étape en dents de scie ----
-   Une bande de "montagne" façon profil d'étape TV, sous le header. */
+
+/* Bande graphique sous le header */
+
 header::after {
+
     content: "";
+
     display: block;
+
     height: 14px;
+
     margin-top: 24px;
+
     background:
-        linear-gradient(135deg, var(--accent) 25%, transparent 25%) 0 50% / 20px 14px,
-        linear-gradient(225deg, var(--accent) 25%, transparent 25%) 0 50% / 20px 14px,
-        linear-gradient(315deg, var(--accent-2) 25%, transparent 25%) 0 50% / 20px 14px,
-        linear-gradient(45deg,  var(--accent-2) 25%, transparent 25%) 0 50% / 20px 14px;
+
+        linear-gradient(
+            135deg,
+            var(--accent) 25%,
+            transparent 25%
+        ) 0 50% / 20px 14px,
+
+        linear-gradient(
+            225deg,
+            var(--accent) 25%,
+            transparent 25%
+        ) 0 50% / 20px 14px,
+
+        linear-gradient(
+            315deg,
+            var(--accent-2) 25%,
+            transparent 25%
+        ) 0 50% / 20px 14px,
+
+        linear-gradient(
+            45deg,
+            var(--accent-2) 25%,
+            transparent 25%
+        ) 0 50% / 20px 14px;
+
     background-color: var(--bg);
+
     opacity: 0.9;
 }
 
+
 /* ============================================================
-   4. NAVIGATION
+   6. NAVIGATION
    ============================================================ */
+
 nav {
+
     display: flex;
+
     gap: 8px;
+
     flex-wrap: wrap;
+
     padding-bottom: 18px;
 }
 
 nav a {
+
     position: relative;
+
     color: var(--text-muted);
+
     text-decoration: none;
+
     font-family: var(--font-display);
+
     font-size: 18px;
+
     letter-spacing: 1px;
+
     text-transform: uppercase;
+
     padding: 8px 14px;
+
     border-radius: 6px;
-    transition: color 0.2s ease, background 0.2s ease;
+
+    transition:
+        color 0.2s ease,
+        background 0.2s ease;
 }
 
 nav a::after {
+
     content: "";
+
     position: absolute;
+
     left: 14px;
+
     right: 14px;
+
     bottom: 2px;
+
     height: 2px;
+
     background: var(--accent);
+
     transform: scaleX(0);
+
     transform-origin: left;
+
     transition: transform 0.25s ease;
 }
 
 nav a:hover,
 nav a:focus-visible {
+
     color: var(--text);
-    background: rgba(227, 255, 60, 0.06);
+
+    background:
+        rgba(227, 255, 60, 0.06);
 }
 
 nav a:hover::after,
 nav a:focus-visible::after {
+
     transform: scaleX(1);
 }
 
-/* Page active — ajoute class="active" sur le lien courant dans ton HTML */
 nav a.active {
+
     color: var(--accent);
 }
 
 nav a.active::after {
+
     transform: scaleX(1);
 }
 
-/* ============================================================
-   5. CONTENU / SECTIONS
-   ============================================================ */
-main {
-    max-width: var(--container);
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    margin-bottom: 28px;
-    padding: 28px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-}
-
-section h2 {
-    margin: 0 0 20px 0;
-    font-size: 28px;
-    text-transform: uppercase;
-    color: var(--text);
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Petit repère façon "borne kilométrique" devant les titres de section */
-section h2::before {
-    content: "";
-    width: 10px;
-    height: 10px;
-    background: var(--accent);
-    border-radius: 2px;
-    box-shadow: var(--glow-accent);
-    flex-shrink: 0;
-}
-
-section p {
-    color: var(--text-muted);
-}
-
-/* État vide (ex : "Aucune course pour le moment") */
-.empty-state {
-    color: var(--text-muted);
-    font-family: var(--font-mono);
-    font-size: 14px;
-    padding: 24px;
-    text-align: center;
-    border: 1px dashed var(--border);
-    border-radius: var(--radius);
-    background: var(--surface-alt);
-}
 
 /* ============================================================
-   6. GRILLE DE CARTES (coureurs, équipes, courses)
+   7. RECHERCHE
    ============================================================ */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 20px;
-}
-
-.card {
-    background: var(--surface-alt);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: var(--radius);
-    padding: 20px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    border-left-color: var(--accent-2);
-    box-shadow: var(--glow-accent-2);
-}
-
-.card img,
-.card .img-fallback {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 14px;
-    filter: grayscale(20%);
-    transition: filter 0.2s ease;
-}
-
-/* Avatar de secours : affiché automatiquement par riders.js si l'image
-   d'un coureur ne charge pas. Mêmes dimensions que l'image réelle. */
-.img-fallback {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--surface-alt), var(--surface));
-    border: 1px dashed var(--border);
-    color: var(--accent);
-    font-family: var(--font-display);
-    font-size: 32px;
-    letter-spacing: 1px;
-}
-
-.card:hover img {
-    filter: grayscale(0%);
-}
-
-.card h3 {
-    margin: 0 0 4px 0;
-    font-size: 22px;
-    text-transform: uppercase;
-}
-
-.card .meta {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 14px;
-}
-
-.card .flag {
-    margin-right: 6px;
-}
-
-/* Bouton "Voir le profil" */
-.btn {
-    display: inline-block;
-    font-family: var(--font-display);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-size: 15px;
-    color: var(--bg);
-    background: var(--accent);
-    padding: 8px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: box-shadow 0.2s ease, transform 0.15s ease, background 0.2s ease;
-}
-
-.btn:hover,
-.btn:focus-visible {
-    box-shadow: var(--glow-accent);
-    transform: translateY(-1px);
-}
-
-.btn.btn-outline {
-    background: transparent;
-    color: var(--accent-2);
-    border: 1px solid var(--accent-2);
-}
-
-.btn.btn-outline:hover {
-    background: rgba(0, 224, 198, 0.1);
-    box-shadow: var(--glow-accent-2);
-}
-
-/* ============================================================
-   7. TABLEAUX (classements)
-   ============================================================ */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: var(--font-mono);
-    font-size: 14px;
-}
-
-thead th {
-    text-align: left;
-    font-family: var(--font-body);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    color: var(--text-muted);
-    padding: 10px 14px;
-    border-bottom: 2px solid var(--accent);
-}
-
-tbody td {
-    padding: 12px 14px;
-    border-bottom: 1px solid var(--border);
-}
-
-tbody tr:hover {
-    background: var(--surface-alt);
-}
-
-/* Les 3 premiers du classement mis en valeur */
-tbody tr:nth-child(1) td:first-child { color: var(--accent); font-weight: 700; }
-tbody tr:nth-child(2) td:first-child { color: #cfd6dc; font-weight: 700; }
-tbody tr:nth-child(3) td:first-child { color: #c98a4b; font-weight: 700; }
-
-/* ============================================================
-   8. BADGES (spécialité coureur, statut course...)
-   ============================================================ */
-.badge {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 3px 8px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    color: var(--text-muted);
-}
-
-.badge.badge-accent {
-    color: var(--bg);
-    background: var(--accent);
-    border-color: var(--accent);
-}
-
-.badge.badge-live {
-    color: var(--accent-danger);
-    border-color: var(--accent-danger);
-}
-
-/* ============================================================
-   9. PIED DE PAGE
-   ============================================================ */
-footer {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    color: var(--text-muted);
-    text-align: center;
-    padding: 24px;
-    margin-top: 50px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-}
-
-footer a {
-    color: var(--accent-2);
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
-
-/* ============================================================
-   12. PROFIL COUREUR v2 — style FirstCycling (noir & blanc)
-   ============================================================ */
-.fc-profile {
-    background: #ffffff;
-    color: #1a1a1a;
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1px solid #e0e0e0;
-}
-
-.fc-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 20px;
-    background: #f0f0f0;
-    border-bottom: 1px solid #e0e0e0;
-    flex-wrap: wrap;
-}
-
-.fc-header img,
-.fc-header .img-fallback {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #000;
-    font-size: 22px;
-    color: #000;
-    background: #ddd;
-}
-
-.fc-header-info h1 {
-    margin: 0;
-    font-size: 26px;
-    font-family: var(--font-body);
-    font-weight: 700;
-    text-transform: none;
-    letter-spacing: 0;
-    color: #111;
-}
-
-.fc-header-info p {
-    margin: 4px 0 0;
-    color: #555;
-    font-size: 15px;
-}
-
-.fc-stats-row {
-    display: flex;
-    gap: 24px;
-    padding: 10px 20px;
-    background: #fafafa;
-    border-bottom: 1px solid #e0e0e0;
-    font-size: 14px;
-    color: #333;
-    flex-wrap: wrap;
-    font-family: var(--font-mono);
-}
-
-.fc-stats-row span {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.fc-tabs {
-    display: flex;
-    gap: 4px;
-    padding: 0 20px;
-    background: #fff;
-    border-bottom: 2px solid #e0e0e0;
-    overflow-x: auto;
-}
-
-.fc-tab {
-    padding: 12px 14px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #888;
-    background: none;
-    border: none;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    white-space: nowrap;
-}
-
-.fc-tab.active {
-    color: #000;
-    border-bottom-color: #000;
-    font-weight: 700;
-}
-
-.fc-tab:hover {
-    color: #000;
-}
-
-.fc-year-tabs {
-    display: flex;
-    gap: 6px;
-    padding: 12px 20px;
-    overflow-x: auto;
-    border-bottom: 1px solid #e0e0e0;
-    background: #fff;
-}
-
-.fc-year-tab {
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background: #fff;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: #333;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.fc-year-tab.active {
-    background: #000;
-    color: #fff;
-    border-color: #000;
-}
-
-.fc-category-tabs {
-    display: flex;
-    gap: 16px;
-    padding: 10px 20px;
-    border-bottom: 1px solid #e0e0e0;
-    font-size: 13px;
-    color: #888;
-    flex-wrap: wrap;
-    background: #fff;
-}
-
-.fc-category-tab {
-    cursor: pointer;
-    padding-bottom: 6px;
-    border-bottom: 2px solid transparent;
-}
-
-.fc-category-tab.active {
-    color: #000;
-    border-bottom-color: #000;
-    font-weight: 700;
-}
-
-.fc-results-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    background: #fff;
-}
-
-.fc-results-table td {
-    padding: 10px 20px;
-    border-bottom: 1px solid #eee;
-    color: #222;
-    vertical-align: middle;
-}
-
-.fc-results-table tr:hover {
-    background: #fafafa;
-}
-
-.fc-date {
-    color: #888;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    width: 60px;
-}
-
-.fc-pos {
-    font-weight: 700;
-    width: 36px;
-}
-
-.fc-race {
-    font-weight: 600;
-}
-
-.fc-tag {
-    display: inline-block;
-    background: #eee;
-    color: #555;
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 4px;
-    margin-left: 8px;
-}
-
-.jersey-icon {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.25);
-    vertical-align: middle;
-}
-
-.jersey-icon.yellow { background: #FFD700; }
-.jersey-icon.green { background: #3aa655; }
-.jersey-icon.polka { background: radial-gradient(circle, #e63946 30%, #fff 31%) 0 0 / 8px 8px, #fff; }
-.jersey-icon.rainbow { background: conic-gradient(red, orange, yellow, green, blue, indigo, violet, red); }
-.jersey-icon.plain { background: #ddd; }
-.jersey-icon.none { background: transparent; border-color: transparent; }
-
-.fc-panel {
-    padding: 20px;
-    background: #fff;
-}
-
-.fc-empty {
-    padding: 30px;
-    text-align: center;
-    color: #888;
-    font-family: var(--font-mono);
-    font-size: 13px;
-}
-
-.fc-classement-box {
-    display: inline-flex;
-    flex-direction: column;
-    gap: 6px;
-    background: #f5f5f5;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 16px 24px;
-}
-
-.fc-classement-box .fc-classement-label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #888;
-}
-
-.fc-classement-box .fc-classement-value {
-    font-size: 32px;
-    font-weight: 700;
-    color: #111;
-}
-/* ============================================================
-   10bis. PROFIL COUREUR (façon FirstCycling)
-   Fiche technique dense : identité, stats, spécialités, palmarès.
-   ============================================================ */
-
-/* ---- En-tête du profil : photo + identité ---- */
-.rider-header {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
-
-.rider-header img,
-.rider-header .img-fallback {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: var(--radius);
-    border: 2px solid var(--accent);
-    box-shadow: var(--glow-accent);
-    flex-shrink: 0;
-    font-size: 40px;
-}
-
-.rider-header .rider-identity h1 {
-    font-size: 38px;
-    margin: 0 0 6px 0;
-    text-transform: uppercase;
-    line-height: 1;
-}
-
-.rider-header .rider-team {
-    font-family: var(--font-mono);
-    font-size: 14px;
-    color: var(--accent-2);
-    margin: 0 0 10px 0;
-}
-
-.rider-header .rider-rank {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 6px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--text-muted);
-    background: var(--surface-alt);
-    border: 1px solid var(--border);
-    padding: 4px 10px;
-    border-radius: 6px;
-}
-
-.rider-header .rider-rank strong {
-    color: var(--accent);
-    font-size: 16px;
-}
-
-/* ---- Grille d'infos clé/valeur (Nom, DDN, Nationalité, Poids, Taille...) ---- */
-.rider-info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-    margin: 24px 0;
-}
-
-.rider-info-grid dl {
-    margin: 0;
-    background: var(--surface-alt);
-    padding: 12px 16px;
-}
-
-.rider-info-grid dt {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--text-muted);
-    margin-bottom: 4px;
-}
-
-.rider-info-grid dd {
-    margin: 0;
-    font-family: var(--font-mono);
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-}
-
-/* ---- Barres de spécialité (GC, Sprint, Grimpeur, CLM...) ---- */
-.specialty-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.specialty-row {
-    display: grid;
-    grid-template-columns: 110px 1fr 40px;
-    align-items: center;
-    gap: 12px;
-}
-
-.specialty-row .specialty-label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-}
-
-.specialty-row .specialty-track {
-    height: 8px;
-    background: var(--surface-alt);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.specialty-row .specialty-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent-2), var(--accent));
-    border-radius: 4px;
-}
-
-.specialty-row .specialty-value {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    text-align: right;
-    color: var(--text);
-}
-
-/* ---- Liens réseaux ---- */
-.rider-links {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 14px;
-}
-
-.rider-links a {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-    padding: 5px 10px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.rider-links a:hover {
-    color: var(--accent-2);
-    border-color: var(--accent-2);
-}
-
-/* ---- Palmarès, groupé par année ---- */
-.palmares {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.palmares-year {
-    display: grid;
-    grid-template-columns: 70px 1fr;
-    gap: 16px;
-}
-
-.palmares-year .year-label {
-    font-family: var(--font-display);
-    font-size: 26px;
-    color: var(--accent);
-    line-height: 1;
-}
-
-.palmares-year ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.palmares-year li {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    padding: 8px 12px;
-    background: var(--surface-alt);
-    border-left: 2px solid var(--border);
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.palmares-year li.win {
-    border-left-color: var(--accent);
-}
-
-.palmares-year li .result-pos {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    color: var(--accent);
-    min-width: 24px;
-}
-
-.palmares-year li .result-race {
-    color: var(--text);
-}
-
-.palmares-year li .result-race .stage {
-    color: var(--text-muted);
-    font-size: 12px;
-}
-
-/* ============================================================
-   13. RECHERCHE GLOBALE (en-tête)
-   ============================================================ */
-.header-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.header-top h1 {
-    margin: 0;
-}
 
 .site-search {
+
     position: relative;
+
     width: 260px;
+
     max-width: 100%;
 }
 
 .site-search input {
+
     width: 100%;
+
     background: var(--surface-alt);
+
     border: 1px solid var(--border);
+
     border-radius: 8px;
+
     padding: 9px 14px;
+
     color: var(--text);
+
     font-family: var(--font-body);
+
     font-size: 14px;
 }
 
 .site-search input:focus {
+
     outline: none;
+
     border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(227, 255, 60, 0.15);
+
+    box-shadow:
+        0 0 0 2px
+        rgba(227, 255, 60, 0.15);
 }
 
 .site-search input::placeholder {
+
     color: var(--text-muted);
 }
 
 .site-search-results {
+
     display: none;
+
     position: absolute;
+
     top: calc(100% + 6px);
+
     left: 0;
+
     right: 0;
+
     background: var(--surface);
+
     border: 1px solid var(--border);
+
     border-radius: 8px;
+
     box-shadow: var(--shadow);
+
     max-height: 320px;
+
     overflow-y: auto;
+
     z-index: 500;
 }
 
 .site-search-results.open {
+
     display: block;
 }
 
 .site-search-result {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 10px;
+
     padding: 10px 14px;
+
     text-decoration: none;
+
     color: var(--text);
+
     border-bottom: 1px solid var(--border);
+
     font-size: 14px;
 }
 
 .site-search-result:last-child {
+
     border-bottom: none;
 }
 
 .site-search-result:hover,
 .site-search-result.active {
+
     background: var(--surface-alt);
+
     color: var(--accent);
 }
 
 .site-search-result .result-type {
+
     font-family: var(--font-mono);
+
     font-size: 10px;
+
     text-transform: uppercase;
+
     color: var(--text-muted);
+
     border: 1px solid var(--border);
+
     padding: 2px 6px;
+
     border-radius: 4px;
+
     flex-shrink: 0;
 }
 
 .site-search-empty {
+
     padding: 14px;
+
     color: var(--text-muted);
+
     font-family: var(--font-mono);
+
     font-size: 13px;
+
     text-align: center;
 }
 
+
 /* ============================================================
-   10. RESPONSIVE
+   8. CONTENU
    ============================================================ */
-@media (max-width: 640px)   
 
-    .header-top { flex-direction: column; align-items: stretch; }
+main {
 
-    .site-search { width: 100%; }{
-    header {
-        padding: 20px 20px 0;
-    }
-    header h1 {
-        font-size: 30px;
-    }
-    nav a {
-        font-size: 15px;
-        padding: 6px 10px;
-    }
-    section {
-        padding: 20px;
-    }
-    .card-grid {
-        grid-template-columns: 1fr;
-    }
-    .rider-header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .specialty-row {
-        grid-template-columns: 90px 1fr 32px;
-    }
-    .palmares-year {
-        grid-template-columns: 1fr;
-        gap: 6px;
-    }
+    max-width: var(--container);
+
+    margin: 40px auto;
+
+    padding: 0 20px;
 }
-/* Boutons des cartes coureurs */
-.card-actions {
+
+section {
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    margin-bottom: 28px;
+
+    padding: 28px;
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+section h2 {
+
+    margin: 0 0 20px 0;
+
+    font-size: 28px;
+
+    text-transform: uppercase;
+
+    color: var(--text);
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid var(--border);
+
     display: flex;
+
+    align-items: center;
+
     gap: 10px;
-    margin-top: 15px;
-    align-items: center;
 }
 
-/* Bouton modifier */
-.edit-btn {
-    width: 42px;
-    height: 42px;
-    padding: 0;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
+section h2::before {
+
+    content: "";
+
+    width: 10px;
+
+    height: 10px;
+
+    background: var(--accent);
+
+    border-radius: 2px;
+
+    box-shadow: var(--glow-accent);
+
+    flex-shrink: 0;
+}
+
+section p {
+
+    color: var(--text-muted);
+}
+
+
+/* ============================================================
+   9. ÉTAT VIDE
+   ============================================================ */
+
+.empty-state {
+
+    color: var(--text-muted);
+
+    font-family: var(--font-mono);
+
+    font-size: 14px;
+
+    padding: 24px;
+
+    text-align: center;
+
+    border: 1px dashed var(--border);
+
+    border-radius: var(--radius);
+
+    background: var(--surface-alt);
+}
+
+
+/* ============================================================
+   10. CARTES
+   ============================================================ */
+
+.card-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(240px, 1fr)
+        );
+
+    gap: 20px;
+}
+
+.card {
+
+    background: var(--surface-alt);
+
+    border: 1px solid var(--border);
+
+    border-left: 3px solid var(--accent);
+
+    border-radius: var(--radius);
+
+    padding: 20px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.card:hover {
+
+    transform: translateY(-4px);
+
+    border-left-color: var(--accent-2);
+
+    box-shadow: var(--glow-accent-2);
+}
+
+.card img,
+.card .img-fallback {
+
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+
+    border-radius: 6px;
+
+    margin-bottom: 14px;
+
+    filter: grayscale(20%);
+
+    transition: filter 0.2s ease;
+}
+
+.card:hover img {
+
+    filter: grayscale(0%);
+}
+
+.img-fallback {
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--surface-alt),
+            var(--surface)
+        );
+
+    border: 1px dashed var(--border);
+
+    color: var(--accent);
+
+    font-family: var(--font-display);
+
+    font-size: 32px;
+
+    letter-spacing: 1px;
 }
 
-.edit-btn:hover {
-    transform: scale(1.08);
-    opacity: 0.85;
+.card h3 {
+
+    margin: 0 0 4px 0;
+
+    font-size: 22px;
+
+    text-transform: uppercase;
 }
 
-/* Style du sticker dans la navigation */
-.tdf-icon {
-    height: 20px;
-    width: auto;
-    vertical-align: middle;
+.card .meta {
+
+    font-family: var(--font-mono);
+
+    font-size: 13px;
+
+    color: var(--text-muted);
+
+    margin-bottom: 14px;
+}
+
+.card .flag {
+
     margin-right: 6px;
+}
+
+
+/* ============================================================
+   11. BOUTONS
+   ============================================================ */
+
+.btn {
+
+    display: inline-block;
+
+    font-family: var(--font-display);
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    font-size: 15px;
+
+    color: var(--bg);
+
+    background: var(--accent);
+
+    padding: 8px 18px;
+
+    border-radius: 6px;
+
+    text-decoration: none;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.15s ease,
+        background 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+
+    box-shadow: var(--glow-accent);
+
+    transform: translateY(-1px);
+}
+
+.btn.btn-outline {
+
+    background: transparent;
+
+    color: var(--accent-2);
+
+    border: 1px solid var(--accent-2);
+}
+
+.btn.btn-outline:hover {
+
+    background:
+        rgba(0, 224, 198, 0.1);
+
+    box-shadow: var(--glow-accent-2);
+}
+
+
+/* ============================================================
+   12. TABLEAUX
+   ============================================================ */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-family: var(--font-mono);
+
+    font-size: 14px;
+}
+
+thead th {
+
+    text-align: left;
+
+    font-family: var(--font-body);
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    font-size: 12px;
+
+    letter-spacing: 0.5px;
+
+    color: var(--text-muted);
+
+    padding: 10px 14px;
+
+    border-bottom: 2px solid var(--accent);
+}
+
+tbody td {
+
+    padding: 12px 14px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+tbody tr:hover {
+
+    background: var(--surface-alt);
+}
+
+tbody tr:nth-child(1) td:first-child {
+
+    color: var(--accent);
+
+    font-weight: 700;
+}
+
+tbody tr:nth-child(2) td:first-child {
+
+    color: #cfd6dc;
+
+    font-weight: 700;
+}
+
+tbody tr:nth-child(3) td:first-child {
+
+    color: #c98a4b;
+
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   13. BADGES
+   ============================================================ */
+
+.badge {
+
+    display: inline-block;
+
+    font-family: var(--font-mono);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    padding: 3px 8px;
+
+    border-radius: 4px;
+
+    border: 1px solid var(--border);
+
+    color: var(--text-muted);
+}
+
+.badge.badge-accent {
+
+    color: var(--bg);
+
+    background: var(--accent);
+
+    border-color: var(--accent);
+}
+
+.badge.badge-live {
+
+    color: var(--accent-danger);
+
+    border-color: var(--accent-danger);
+}
+
+
+/* ============================================================
+   14. PROFIL FIRSTCYCLING
+   ============================================================ */
+
+.fc-profile {
+
+    background: #fff;
+
+    color: #1a1a1a;
+
+    border-radius: var(--radius);
+
+    overflow: hidden;
+
+    border: 1px solid #e0e0e0;
+}
+
+.fc-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 20px;
+
+    background: #f0f0f0;
+
+    border-bottom: 1px solid #e0e0e0;
+
+    flex-wrap: wrap;
+}
+
+.fc-header img,
+.fc-header .img-fallback {
+
+    width: 72px;
+
+    height: 72px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 2px solid #000;
+
+    font-size: 22px;
+
+    color: #000;
+
+    background: #ddd;
+}
+
+.fc-header-info h1 {
+
+    margin: 0;
+
+    font-size: 26px;
+
+    font-family: var(--font-body);
+
+    font-weight: 700;
+
+    text-transform: none;
+
+    letter-spacing: 0;
+
+    color: #111;
+}
+
+.fc-header-info p {
+
+    margin: 4px 0 0;
+
+    color: #555;
+
+    font-size: 15px;
+}
+
+.fc-stats-row {
+
+    display: flex;
+
+    gap: 24px;
+
+    padding: 10px 20px;
+
+    background: #fafafa;
+
+    border-bottom: 1px solid #e0e0e0;
+
+    font-size: 14px;
+
+    color: #333;
+
+    flex-wrap: wrap;
+
+    font-family: var(--font-mono);
+}
+
+.fc-stats-row span {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+.fc-tabs {
+
+    display: flex;
+
+    gap: 4px;
+
+    padding: 0 20px;
+
+    background: #fff;
+
+    border-bottom: 2px solid #e0e0e0;
+
+    overflow-x: auto;
+}
+
+.fc-tab {
+
+    padding: 12px 14px;
+
+    font-family: var(--font-mono);
+
+    font-size: 13px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    color: #888;
+
+    background: none;
+
+    border: none;
+
+    cursor: pointer;
+
+    border-bottom: 3px solid transparent;
+
+    white-space: nowrap;
+}
+
+.fc-tab.active {
+
+    color: #000;
+
+    border-bottom-color: #000;
+
+    font-weight: 700;
+}
+
+.fc-tab:hover {
+
+    color: #000;
+}
+
+.fc-year-tabs {
+
+    display: flex;
+
+    gap: 6px;
+
+    padding: 12px 20px;
+
+    overflow-x: auto;
+
+    border-bottom: 1px solid #e0e0e0;
+
+    background: #fff;
+}
+
+.fc-year-tab {
+
+    padding: 6px 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    background: #fff;
+
+    font-family: var(--font-mono);
+
+    font-size: 13px;
+
+    color: #333;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+.fc-year-tab.active {
+
+    background: #000;
+
+    color: #fff;
+
+    border-color: #000;
+}
+
+.fc-category-tabs {
+
+    display: flex;
+
+    gap: 16px;
+
+    padding: 10px 20px;
+
+    border-bottom: 1px solid #e0e0e0;
+
+    font-size: 13px;
+
+    color: #888;
+
+    flex-wrap: wrap;
+
+    background: #fff;
+}
+
+.fc-category-tab {
+
+    cursor: pointer;
+
+    padding-bottom: 6px;
+
+    border-bottom: 2px solid transparent;
+}
+
+.fc-category-tab.active {
+
+    color: #000;
+
+    border-bottom-color: #000;
+
+    font-weight: 700;
+}
+
+.fc-results-table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 14px;
+
+    background: #fff;
+}
+
+.fc-results-table td {
+
+    padding: 10px 20px;
+
+    border-bottom: 1px solid #eee;
+
+    color: #222;
+
+    vertical-align: middle;
+}
+
+.fc-results-table tr:hover {
+
+    background: #fafafa;
+}
+
+.fc-date {
+
+    color: #888;
+
+    font-family: var(--font-mono);
+
+    font-size: 12px;
+
+    width: 60px;
+}
+
+.fc-pos {
+
+    font-weight: 700;
+
+    width: 36px;
+}
+
+.fc-race {
+
+    font-weight: 600;
+}
+
+.fc-tag {
+
+    display: inline-block;
+
+    background: #eee;
+
+    color: #555;
+
+    font-size: 11px;
+
+    padding: 2px 8px;
+
+    border-radius: 4px;
+
+    margin-left: 8px;
+}
+
+.jersey-icon {
+
+    display: inline-block;
+
+    width: 16px;
+
+    height: 16px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(0, 0, 0, 0.25);
+
+    vertical-align: middle;
+}
+
+.jersey-icon.yellow {
+    background: #FFD700;
+}
+
+.jersey-icon.green {
+    background: #3aa655;
+}
+
+.jersey-icon.polka {
+
+    background:
+        radial-gradient(
+            circle,
+            #e63946 30%,
+            #fff 31%
+        ) 0 0 / 8px 8px,
+        #fff;
+}
+
+.jersey-icon.rainbow {
+
+    background:
+        conic-gradient(
+            red,
+            orange,
+            yellow,
+            green,
+            blue,
+            indigo,
+            violet,
+            red
+        );
+}
+
+.jersey-icon.plain {
+
+    background: #ddd;
+}
+
+.jersey-icon.none {
+
+    background: transparent;
+
+    border-color: transparent;
+}
+
+.fc-panel {
+
+    padding: 20px;
+
+    background: #fff;
+}
+
+.fc-empty {
+
+    padding: 30px;
+
+    text-align: center;
+
+    color: #888;
+
+    font-family: var(--font-mono);
+
+    font-size: 13px;
+}
+
+.fc-classement-box {
+
+    display: inline-flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+
+    background: #f5f5f5;
+
+    border: 1px solid #e0e0e0;
+
+    border-radius: 8px;
+
+    padding: 16px 24px;
+}
+
+.fc-classement-box .fc-classement-label {
+
+    font-family: var(--font-mono);
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    color: #888;
+}
+
+.fc-classement-box .fc-classement-value {
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    color: #111;
+}
+
+
+/* ============================================================
+   15. PROFIL COUREUR V2
+   ============================================================ */
+
+.rider-header {
+
+    display: flex;
+
+    gap: 24px;
+
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+}
+
+.rider-header img,
+.rider-header .img-fallback {
+
+    width: 140px;
+
+    height: 140px;
+
+    object-fit: cover;
+
+    border-radius: var(--radius);
+
+    border: 2px solid var(--accent);
+
+    box-shadow: var(--glow-accent);
+
+    flex-shrink: 0;
+
+    font-size: 40px;
+}
+
+.rider-header .rider-identity h1 {
+
+    font-size: 38px;
+
+    margin: 0 0 6px 0;
+
+    text-transform: uppercase;
+
+    line-height: 1;
+}
+
+.rider-header .rider-team {
+
+    font-family: var(--font-mono);
+
+    font-size: 14px;
+
+    color: var(--accent-2);
+
+    margin: 0 0 10px 0;
+}
+
+.rider-header .rider-rank {
+
+    display: inline-flex;
+
+    align-items: baseline;
+
+    gap: 6px;
+
+    font-family: var(--font-mono);
+
+    font-size: 13px;
+
+    color: var(--text-muted);
+
+    background: var(--surface-alt);
+
+    border: 1px solid var(--border);
+
+    padding: 4px 10px;
+
+    border-radius: 6px;
+}
+
+.rider-header .rider-rank strong {
+
+    color: var(--accent);
+
+    font-size: 16px;
+}
+
+.rider-info-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(150px, 1fr)
+        );
+
+    gap: 1px;
+
+    background: var(--border);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    overflow: hidden;
+
+    margin: 24px 0;
+}
+
+.rider-info-grid dl {
+
+    margin: 0;
+
+    background: var(--surface-alt);
+
+    padding: 12px 16px;
+}
+
+.rider-info-grid dt {
+
+    font-family: var(--font-mono);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    color: var(--text-muted);
+
+    margin-bottom: 4px;
+}
+
+.rider-info-grid dd {
+
+    margin: 0;
+
+    font-family: var(--font-mono);
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: var(--text);
+}
+
+.specialty-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.specialty-row {
+
+    display: grid;
+
+    grid-template-columns: 110px 1fr 40px;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.specialty-row .specialty-label {
+
+    font-family: var(--font-mono);
+
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    color: var(--text-muted);
+}
+
+.specialty-row .specialty-track {
+
+    height: 8px;
+
+    background: var(--surface-alt);
+
+    border: 1px solid var(--border);
+
+    border-radius: 4px;
+
+    overflow: hidden;
+}
+
+.specialty-row .specialty-fill {
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--accent-2),
+            var(--accent)
+        );
+
+    border-radius: 4px;
+}
+
+.specialty-row .specialty-value {
+
+    font-family: var(--font-mono);
+
+    font-size: 13px;
+
+    text-align: right;
+
+    color: var(--text);
+}
+
+.rider-links {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-top: 14px;
+}
+
+.rider-links a {
+
+    font-family: var(--font-mono);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    color: var(--text-muted);
+
+    border: 1px solid var(--border);
+
+    padding: 5px 10px;
+
+    border-radius: 4px;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.rider-links a:hover {
+
+    color: var(--accent-2);
+
+    border-color: var(--accent-2);
+}
+
+.palmares {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.palmares-year {
+
+    display: grid;
+
+    grid-template-columns: 70px 1fr;
+
+    gap: 16px;
+}
+
+.palmares-year .year-label {
+
+    font-family: var(--font-display);
+
+    font-size: 26px;
+
+    color: var(--accent);
+
+    line-height: 1;
+}
+
+.palmares-year ul {
+
+    list-style: none;
+
+    margin: 0;
+
+    padding: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.palmares-year li {
+
+    display: flex;
+
+    align-items: baseline;
+
+    gap: 10px;
+
+    padding: 8px 12px;
+
+    background: var(--surface-alt);
+
+    border-left: 2px solid var(--border);
+
+    border-radius: 4px;
+
+    font-size: 14px;
+}
+
+.palmares-year li.win {
+
+    border-left-color: var(--accent);
+}
+
+.palmares-year li .result-pos {
+
+    font-family: var(--font-mono);
+
+    font-weight: 700;
+
+    color: var(--accent);
+
+    min-width: 24px;
+}
+
+.palmares-year li .result-race {
+
+    color: var(--text);
+}
+
+.palmares-year li .result-race .stage {
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+}
+
+
+/* ============================================================
+   16. PAGE TOUR DE FRANCE
+   ============================================================ */
+
+.tdf-icon {
+
+    height: 20px;
+
+    width: auto;
+
+    vertical-align: middle;
+
+    margin-right: 6px;
+
     border-radius: 3px;
+
     object-fit: cover;
 }
 
 .nav-tdf {
+
     display: inline-flex;
+
     align-items: center;
+
     font-weight: bold;
-    color: #ffe600; /* Jaune Tour de France */
+
+    color: #ffe600;
 }
 
-/* Style de la page TdF 2026 */
 .tdf-hero {
-    background: linear-gradient(135deg, #2b2b2b 0%, #111111 100%);
+
+    background:
+        linear-gradient(
+            135deg,
+            #2b2b2b 0%,
+            #111111 100%
+        );
+
     border-left: 6px solid #ffe600;
+
     padding: 2rem;
+
     border-radius: 8px;
+
     margin-bottom: 2rem;
 }
 
 .tdf-logo-hero {
+
     max-width: 180px;
+
     height: auto;
+
     border-radius: 8px;
+
     margin-bottom: 1rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+    box-shadow:
+        0 4px 10px
+        rgba(0,0,0,0.3);
 }
 
 .tdf-table {
+
     width: 100%;
+
     border-collapse: collapse;
+
     margin-top: 1rem;
 }
 
-.tdf-table th, .tdf-table td {
+.tdf-table th,
+.tdf-table td {
+
     padding: 10px 14px;
+
     border: 1px solid #444;
+
     text-align: left;
 }
 
 .tdf-table th {
+
     background-color: #ffe600;
+
     color: #000;
 }
 
-/* Grille des maillots */
 .jerseys-grid {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(200px, 1fr)
+        );
+
     gap: 1rem;
+
     margin-top: 1rem;
 }
 
 .jersey-card {
+
     background: #222;
+
     padding: 1rem;
+
     border-radius: 8px;
+
     text-align: center;
+
     border-top: 4px solid #fff;
 }
 
-.jersey-card.yellow { border-color: #ffe600; }
-.jersey-card.green { border-color: #27ae60; }
-.jersey-card.polka { border-color: #e74c3c; }
-.jersey-card.white { border-color: #ecf0f1; }
+.jersey-card.yellow {
+    border-color: #ffe600;
+}
 
+.jersey-card.green {
+    border-color: #27ae60;
+}
+
+.jersey-card.polka {
+    border-color: #e74c3c;
+}
+
+.jersey-card.white {
+    border-color: #ecf0f1;
+}
+
+
+/* ============================================================
+   17. CARTES COUREURS — BOUTON MODIFIER
+   ============================================================ */
+
+.card-actions {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 15px;
+
+    align-items: center;
+}
+
+.edit-btn {
+
+    width: 42px;
+
+    height: 42px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.edit-btn:hover {
+
+    transform: scale(1.08);
+
+    opacity: 0.85;
+}
+
+
+/* ============================================================
+   18. ÉDITEUR GITHUB — TDF 2026
+   ============================================================ */
+
+#admin-edit-button {
+
+    position: fixed;
+
+    right: 22px;
+
+    bottom: 22px;
+
+    z-index: 9998;
+
+    border: 0;
+
+    background: var(--accent);
+
+    color: #111827;
+
+    padding: 13px 19px;
+
+    border-radius: 9px;
+
+    font-weight: 900;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.35);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+}
+
+#admin-edit-button:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.45);
+}
+
+
+/* Fenêtre */
+
+#github-editor {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    background:
+        rgba(0,0,0,.78);
+
+    padding: 25px;
+}
+
+.github-editor-box {
+
+    width: min(1200px, 100%);
+
+    height: 100%;
+
+    margin: auto;
+
+    background: #111827;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.65);
+}
+
+
+/* En-tête éditeur */
+
+.github-editor-header {
+
+    padding: 15px 20px;
+
+    background: #1f2937;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+.github-editor-header strong {
+
+    font-size: 17px;
+}
+
+.github-editor-close {
+
+    border: 0;
+
+    background: #374151;
+
+    color: white;
+
+    border-radius: 7px;
+
+    padding: 8px 12px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+.github-editor-close:hover {
+
+    background: #4b5563;
+}
+
+
+/* Zone de code */
+
+#github-code {
+
+    flex: 1;
+
+    width: 100%;
+
+    resize: none;
+
+    border: 0;
+
+    outline: 0;
+
+    padding: 20px;
+
+    background: #0b1120;
+
+    color: #e5e7eb;
+
+    font-family:
+        Consolas,
+        Monaco,
+        'Courier New',
+        monospace;
+
+    font-size: 13px;
+
+    line-height: 1.55;
+}
+
+
+/* Pied de l'éditeur */
+
+.github-editor-footer {
+
+    padding: 14px 18px;
+
+    background: #1f2937;
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+#github-token {
+
+    flex: 1;
+
+    min-width: 0;
+
+    background: #111827;
+
+    border: 1px solid #374151;
+
+    color: white;
+
+    padding: 11px;
+
+    border-radius: 7px;
+
+    outline: none;
+}
+
+#github-token:focus {
+
+    border-color: var(--accent);
+}
+
+.github-save {
+
+    border: 0;
+
+    background: var(--accent);
+
+    color: #111827;
+
+    padding: 11px 18px;
+
+    border-radius: 7px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+.github-save:hover {
+
+    background: #ffd82e;
+}
+
+#github-status {
+
+    color: #d1d5db;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   19. LIVE RP
+   ============================================================ */
+
+.live {
+
+    background: #111827;
+
+    color: white;
+
+    border-radius: 12px;
+
+    padding: 28px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.live::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+
+    height: 250px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(245,196,0,0.12);
+
+    right: -80px;
+
+    top: -100px;
+}
+
+.live-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 22px;
+
+    font-weight: 900;
+}
+
+.live-dot {
+
+    width: 10px;
+
+    height: 10px;
+
+    background: #ef4444;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 5px
+        rgba(239,68,68,0.15);
+}
+
+.live-content {
+
+    margin-top: 20px;
+
+    color: #d1d5db;
+
+    line-height: 1.7;
+}
+
+
+/* ============================================================
+   20. FOOTER
+   ============================================================ */
+
+footer {
+
+    background: var(--surface);
+
+    border-top: 1px solid var(--border);
+
+    color: var(--text-muted);
+
+    text-align: center;
+
+    padding: 24px;
+
+    margin-top: 50px;
+
+    font-family: var(--font-mono);
+
+    font-size: 13px;
+}
+
+footer strong {
+
+    color: white;
+}
+
+footer a {
+
+    color: var(--accent-2);
+
+    text-decoration: none;
+}
+
+footer a:hover {
+
+    text-decoration: underline;
+}
+
+
+/* ============================================================
+   21. RESPONSIVE — TABLETTES
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .header-top {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .stats,
+    .classification-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .riders {
+
+        grid-template-columns: 1fr;
+    }
+
+    .stage {
+
+        grid-template-columns:
+            75px 120px 1fr;
+    }
+
+    .stage-distance,
+    .stage-winner {
+
+        display: none;
+    }
+}
+
+
+/* ============================================================
+   22. RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 640px) {
+
+    header {
+
+        padding: 20px 20px 0;
+    }
+
+    .header-top {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    header h1 {
+
+        font-size: 30px;
+
+        margin-bottom: 14px;
+    }
+
+    nav {
+
+        gap: 5px;
+
+        padding-bottom: 14px;
+    }
+
+    nav a {
+
+        font-size: 15px;
+
+        padding: 6px 10px;
+    }
+
+    .site-search {
+
+        width: 100%;
+    }
+
+    main {
+
+        padding-left: 15px;
+
+        padding-right: 15px;
+
+        margin-top: 25px;
+    }
+
+    section {
+
+        padding: 20px;
+    }
+
+    section h2 {
+
+        font-size: 23px;
+    }
+
+    .card-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .rider-header {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+    .rider-header .rider-identity h1 {
+
+        font-size: 32px;
+    }
+
+    .specialty-row {
+
+        grid-template-columns:
+            90px 1fr 32px;
+    }
+
+    .palmares-year {
+
+        grid-template-columns: 1fr;
+
+        gap: 6px;
+    }
+
+    .tdf-hero {
+
+        padding: 1.25rem;
+    }
+
+    .tdf-table {
+
+        display: block;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+    }
+
+    /* Éditeur */
+
+    #admin-edit-button {
+
+        right: 14px;
+
+        bottom: 14px;
+
+        padding: 11px 14px;
+
+        font-size: 14px;
+    }
+
+    #github-editor {
+
+        padding: 8px;
+    }
+
+    .github-editor-box {
+
+        border-radius: 9px;
+    }
+
+    .github-editor-header {
+
+        padding: 12px 14px;
+    }
+
+    .github-editor-header strong {
+
+        font-size: 14px;
+    }
+
+    #github-code {
+
+        font-size: 11px;
+
+        padding: 14px;
+    }
+
+    .github-editor-footer {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    #github-token {
+
+        width: 100%;
+    }
+
+    #github-status {
+
+        white-space: normal;
+
+        text-align: center;
+    }
+
+    .github-save {
+
+        width: 100%;
+    }
+}
+
+
+/* ============================================================
+   23. TRÈS PETITS ÉCRANS
+   ============================================================ */
+
+@media (max-width: 420px) {
+
+    .stats {
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .classification-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .stage {
+
+        grid-template-columns:
+            65px 1fr;
+    }
+
+    .stage-type {
+
+        display: none;
+    }
+
+    .stage-route {
+
+        font-size: 14px;
+    }
+
+    .rider-header img,
+    .rider-header .img-fallback {
+
+        width: 115px;
+
+        height: 115px;
+    }
+
+    .specialty-row {
+
+        grid-template-columns:
+            75px 1fr 30px;
+
+        gap: 7px;
+    }
+}
