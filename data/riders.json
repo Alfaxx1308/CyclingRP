@@ -3,18 +3,34 @@
     {
       "id": "egan-bernal",
       "name": "Egan Bernal",
-      "flag": "",
-      "nationality": "",
-      "team": "",
-      "dob": "",
-      "weight": "",
-      "height": "",
-      "rpRank": null,
+      "flag": "🇨🇴",
+      "nationality": "Colombie",
+      "team": "Netcompany INEOS",
+      "age": 29,
+      "dob": "13 Jan 1997",
+      "weight": "60 kg",
+      "height": "1,75 m",
+      "bike": "Pinarello",
+      "gcRank": "4",
       "image": "images/coureurs/egan-bernal.jpg",
-      "specialties": [],
-      "links": [],
-      "palmares": [],
-      "recentResults": []
+      "specialties": [
+        { "label": "Grimpeur", "value": 92 },
+        { "label": "Général (GC)", "value": 88 },
+        { "label": "Contre-la-montre", "value": 55 },
+        { "label": "Sprint", "value": 20 },
+        { "label": "Classiques", "value": 40 }
+      ],
+      "links": [
+        { "label": "Instagram", "url": "#" },
+        { "label": "Strava", "url": "#" }
+      ],
+      "results": [
+        { "year": 2026, "date": "26.07", "pos": "3", "win": false, "category": "Montagne", "jersey": "polka", "race": "Tour RP de France", "tag": "8e étape" },
+        { "year": 2026, "date": "20.07", "pos": "12", "win": false, "category": "Montagne", "jersey": "plain", "race": "Tour RP de France", "tag": "7e étape" },
+        { "year": 2026, "date": "28.06", "pos": "1", "win": true, "category": "Montagne", "jersey": "yellow", "race": "Tour RP de Colombie", "tag": "Général" },
+        { "year": 2025, "date": "20.07", "pos": "1", "win": true, "category": "Montagne", "jersey": "plain", "race": "Tour RP de France", "tag": "14e étape" },
+        { "year": 2025, "date": "15.06", "pos": "5", "win": false, "category": "Vallonné", "jersey": "none", "race": "Critérium RP", "tag": "Général" }
+      ]
     },
     {
       "id": "tadej-pogacar",
@@ -22,67 +38,27 @@
       "flag": "🇸🇮",
       "nationality": "Slovénie",
       "team": "UAE Team Emirates",
-      "dob": "21 sept. 1998",
+      "age": 27,
+      "dob": "21 Sep 1998",
       "weight": "66 kg",
       "height": "1,76 m",
-      "rpRank": 1,
+      "bike": "Colnago",
+      "gcRank": "1",
       "image": "images/coureurs/tadej-pogacar.jpg",
       "specialties": [
-        {
-          "label": "Grimpeur",
-          "value": 95
-        },
-        {
-          "label": "Général (GC)",
-          "value": 97
-        },
-        {
-          "label": "Contre-la-montre",
-          "value": 80
-        },
-        {
-          "label": "Sprint",
-          "value": 45
-        },
-        {
-          "label": "Classiques",
-          "value": 90
-        }
+        { "label": "Grimpeur", "value": 95 },
+        { "label": "Général (GC)", "value": 97 },
+        { "label": "Contre-la-montre", "value": 80 },
+        { "label": "Sprint", "value": 45 },
+        { "label": "Classiques", "value": 90 }
       ],
       "links": [
-        {
-          "label": "Instagram",
-          "url": "#"
-        },
-        {
-          "label": "Strava",
-          "url": "#"
-        }
+        { "label": "Instagram", "url": "#" },
+        { "label": "Strava", "url": "#" }
       ],
-      "palmares": [
-        {
-          "year": 2026,
-          "results": [
-            {
-              "pos": "1er",
-              "win": true,
-              "race": "Classement général — Tour RP de France"
-            },
-            {
-              "pos": "1er",
-              "win": true,
-              "race": "Liège-Bastogne-Liège RP"
-            }
-          ]
-        }
-      ],
-      "recentResults": [
-        {
-          "race": "Tour RP de France",
-          "stage": "8",
-          "pos": "1er",
-          "time": "4:09:52"
-        }
+      "results": [
+        { "year": 2026, "date": "26.07", "pos": "1", "win": true, "category": "Montagne", "jersey": "yellow", "race": "Tour RP de France", "tag": "Général" },
+        { "year": 2026, "date": "20.04", "pos": "1", "win": true, "category": "Vallonné", "jersey": "plain", "race": "Liège-Bastogne-Liège RP", "tag": "Classique" }
       ]
     },
     {
@@ -91,58 +67,25 @@
       "flag": "🇳🇱",
       "nationality": "Pays-Bas",
       "team": "Alpecin-Deceuninck",
-      "dob": "19 janv. 1995",
+      "age": 31,
+      "dob": "19 Jan 1995",
       "weight": "74 kg",
       "height": "1,84 m",
-      "rpRank": 6,
+      "bike": "Canyon",
+      "gcRank": "34",
       "image": "images/coureurs/mathieu-van-der-poel.jpg",
       "specialties": [
-        {
-          "label": "Classiques",
-          "value": 96
-        },
-        {
-          "label": "Sprint",
-          "value": 78
-        },
-        {
-          "label": "Général (GC)",
-          "value": 30
-        },
-        {
-          "label": "Contre-la-montre",
-          "value": 60
-        },
-        {
-          "label": "Grimpeur",
-          "value": 50
-        }
+        { "label": "Classiques", "value": 96 },
+        { "label": "Sprint", "value": 78 },
+        { "label": "Général (GC)", "value": 30 },
+        { "label": "Contre-la-montre", "value": 60 },
+        { "label": "Grimpeur", "value": 50 }
       ],
       "links": [
-        {
-          "label": "Instagram",
-          "url": "#"
-        }
+        { "label": "Instagram", "url": "#" }
       ],
-      "palmares": [
-        {
-          "year": 2025,
-          "results": [
-            {
-              "pos": "1er",
-              "win": true,
-              "race": "Paris-Roubaix RP"
-            }
-          ]
-        }
-      ],
-      "recentResults": [
-        {
-          "race": "Paris-Roubaix RP",
-          "stage": "-",
-          "pos": "1er",
-          "time": "5:41:10"
-        }
+      "results": [
+        { "year": 2025, "date": "13.04", "pos": "1", "win": true, "category": "Plat", "jersey": "plain", "race": "Paris-Roubaix RP", "tag": "Classique" }
       ]
     },
     {
@@ -151,62 +94,27 @@
       "flag": "🇧🇪",
       "nationality": "Belgique",
       "team": "Red Bull-Bora-Hansgrohe",
-      "dob": "25 janv. 2000",
+      "age": 26,
+      "dob": "25 Jan 2000",
       "weight": "61 kg",
       "height": "1,71 m",
-      "rpRank": 2,
+      "bike": "Specialized",
+      "gcRank": "2",
       "image": "images/coureurs/remco-evenepoel.jpg",
       "specialties": [
-        {
-          "label": "Contre-la-montre",
-          "value": 98
-        },
-        {
-          "label": "Général (GC)",
-          "value": 85
-        },
-        {
-          "label": "Grimpeur",
-          "value": 75
-        },
-        {
-          "label": "Sprint",
-          "value": 25
-        },
-        {
-          "label": "Classiques",
-          "value": 55
-        }
+        { "label": "Contre-la-montre", "value": 98 },
+        { "label": "Général (GC)", "value": 85 },
+        { "label": "Grimpeur", "value": 75 },
+        { "label": "Sprint", "value": 25 },
+        { "label": "Classiques", "value": 55 }
       ],
       "links": [
-        {
-          "label": "Instagram",
-          "url": "#"
-        },
-        {
-          "label": "Strava",
-          "url": "#"
-        }
+        { "label": "Instagram", "url": "#" },
+        { "label": "Strava", "url": "#" }
       ],
-      "palmares": [
-        {
-          "year": 2026,
-          "results": [
-            {
-              "pos": "1er",
-              "win": true,
-              "race": "Championnat RP du monde du CLM"
-            }
-          ]
-        }
-      ],
-      "recentResults": [
-        {
-          "race": "Vuelta RP",
-          "stage": "10",
-          "pos": "1er",
-          "time": "0:38:12"
-        }
+      "results": [
+        { "year": 2026, "date": "05.10", "pos": "1", "win": true, "category": "Contre-la-montre", "jersey": "rainbow", "race": "Championnat RP du monde du CLM", "tag": "" },
+        { "year": 2026, "date": "12.09", "pos": "1", "win": true, "category": "Montagne", "jersey": "plain", "race": "Vuelta RP", "tag": "10e étape" }
       ]
     }
   ]
