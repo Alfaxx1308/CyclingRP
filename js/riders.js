@@ -2,26 +2,24 @@
    RIDERS.JS — moteur d'affichage des coureurs
    Lit data/riders.json et génère :
      1. la liste des cartes (page coureurs.html)
-     2. la fiche complète d'un coureur (page profil.html?id=...)
-
-   TU N'AS NORMALEMENT JAMAIS BESOIN DE MODIFIER CE FICHIER.
-   Pour ajouter/éditer un coureur : utilise les boutons + et ✎
-   (ou modifie directement data/riders.json)
+     2. la fiche complète d'un coureur, style FirstCycling
+        (page profil.html?id=...)
    ============================================================ */
 
 const RIDERS_JSON_PATH = "data/riders.json";
 
-/* ---- Récupère la liste des coureurs ---- */
+let currentRider = null;
+let profileState = { tab: "results", year: null, category: "Tous" };
+
 async function loadRiders() {
     const res = await fetch(RIDERS_JSON_PATH);
     if (!res.ok) {
         throw new Error("Impossible de charger data/riders.json (code " + res.status + ")");
     }
     const data = await res.json();
-    return data.riders; // le tableau de coureurs est sous la clé "riders"
+    return data.riders;
 }
 
-/* ---- Génère des initiales à partir d'un nom, pour l'avatar de secours ---- */
 function getInitials(name) {
     return name
         .split(" ")
@@ -32,8 +30,6 @@ function getInitials(name) {
         .toUpperCase();
 }
 
-/* ---- Construit un <img> avec repli automatique en initiales
-   si l'image n'existe pas ou ne charge pas ---- */
 function buildAvatar(imagePath, name) {
     const img = document.createElement("img");
     img.src = imagePath;
@@ -50,8 +46,6 @@ function buildAvatar(imagePath, name) {
 
 /* ============================================================
    PAGE LISTE — coureurs.html
-   Cherche un élément #riders-list et le remplit avec une carte
-   par coureur trouvé dans riders.json
    ============================================================ */
 async function renderRidersList() {
     const container = document.getElementById("riders-list");
@@ -101,7 +95,6 @@ async function renderRidersList() {
 
 /* ============================================================
    PAGE PROFIL — profil.html?id=egan-bernal
-   Cherche un élément #rider-profile et construit toute la fiche
    ============================================================ */
 async function renderRiderProfile() {
     const container = document.getElementById("rider-profile");
@@ -129,19 +122,52 @@ async function renderRiderProfile() {
         }
 
         document.title = `${rider.name} — Cycle League RP`;
-        container.innerHTML = buildProfileHTML(rider);
+        currentRider = rider;
 
-        const avatarSlot = container.querySelector("[data-avatar-slot]");
-        if (avatarSlot) {
-            avatarSlot.appendChild(buildAvatar(rider.image, rider.name));
-        }
+        const years = [...new Set((rider.results || []).map(r => r.year))].sort((a, b) => b - a);
+        profileState = { tab: "results", year: years[0] || null, category: "Tous" };
+
+        renderProfileView(container);
     } catch (err) {
         container.innerHTML = `<section><p class="empty-state">Erreur de chargement : ${err.message}</p></section>`;
     }
 }
 
-/* ---- Génère le HTML complet de la fiche coureur ---- */
-function buildProfileHTML(rider) {
+function renderProfileView(container) {
+    container.innerHTML = buildProfileHTML(currentRider, profileState);
+
+    const avatarSlot = container.querySelector("[data-avatar-slot]");
+    if (avatarSlot) avatarSlot.appendChild(buildAvatar(currentRider.image, currentRider.name));
+
+    container.querySelectorAll(".fc-tab").forEach(btn => {
+        btn.addEventListener("click", () => {
+            profileState.tab = btn.dataset.tab;
+            renderProfileView(container);
+        });
+    });
+    container.querySelectorAll(".fc-year-tab").forEach(btn => {
+        btn.addEventListener("click", () => {
+            profileState.year = Number(btn.dataset.year);
+            renderProfileView(container);
+        });
+    });
+    container.querySelectorAll(".fc-category-tab").forEach(btn => {
+        btn.addEventListener("click", () => {
+            profileState.category = btn.dataset.category;
+            renderProfileView(container);
+        });
+    });
+}
+
+function jerseyIconHTML(jersey) {
+    return `<span class="jersey-icon ${jersey || "none"}"></span>`;
+}
+
+function buildProfileHTML(rider, state) {
+    const results = rider.results || [];
+    const years = [...new Set(results.map(r => r.year))].sort((a, b) => b - a);
+    const categories = ["Tous", "Plat", "Vallonné", "Montagne", "Contre-la-montre"];
+
     const specialtiesHTML = (rider.specialties || []).map(s => `
         <div class="specialty-row">
             <span class="specialty-label">${s.label}</span>
@@ -150,82 +176,22 @@ function buildProfileHTML(rider) {
         </div>
     `).join("");
 
-    const linksHTML = (rider.links || []).map(l =>
-        `<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`
-    ).join("");
-
-    const palmaresHTML = (rider.palmares || []).map(p => `
-        <div class="palmares-year">
-            <span class="year-label">${p.year}</span>
-            <ul>
-                ${p.results.map(r => `
-                    <li class="${r.win ? "win" : ""}">
-                        <span class="result-pos">${r.pos}</span>
-                        <span class="result-race">${r.race}${r.note ? ` <span class="stage">(${r.note})</span>` : ""}</span>
-                    </li>
-                `).join("")}
-            </ul>
+    const tabsHTML = `
+        <div class="fc-tabs">
+            <button type="button" class="fc-tab ${state.tab === "results" ? "active" : ""}" data-tab="results">Résultats</button>
+            <button type="button" class="fc-tab ${state.tab === "palmares" ? "active" : ""}" data-tab="palmares">Palmarès</button>
+            <button type="button" class="fc-tab ${state.tab === "classement" ? "active" : ""}" data-tab="classement">Classement</button>
+            <button type="button" class="fc-tab ${state.tab === "specialties" ? "active" : ""}" data-tab="specialties">Spécialités</button>
+            <button type="button" class="fc-tab ${state.tab === "equipes" ? "active" : ""}" data-tab="equipes">Équipes</button>
         </div>
-    `).join("");
-
-    const resultsRowsHTML = (rider.recentResults || []).map(r => `
-        <tr>
-            <td>${r.race}</td>
-            <td>${r.stage}</td>
-            <td>${r.pos}</td>
-            <td>${r.time}</td>
-        </tr>
-    `).join("");
-
-    return `
-        <section>
-            <div class="rider-header">
-                <span data-avatar-slot></span>
-                <div class="rider-identity">
-                    <h1>${rider.name}</h1>
-                    <p class="rider-team">${rider.flag || ""} ${rider.team || ""}</p>
-                    <span class="rider-rank">Classement RP : <strong>N°${rider.rpRank ?? "—"}</strong></span>
-                </div>
-            </div>
-
-            <div class="rider-info-grid">
-                <dl><dt>Date de naissance</dt><dd>${rider.dob || "—"}</dd></dl>
-                <dl><dt>Nationalité</dt><dd>${rider.flag || ""} ${rider.nationality || "—"}</dd></dl>
-                <dl><dt>Poids</dt><dd>${rider.weight || "—"}</dd></dl>
-                <dl><dt>Taille</dt><dd>${rider.height || "—"}</dd></dl>
-                <dl><dt>Équipe</dt><dd>${rider.team || "—"}</dd></dl>
-            </div>
-
-            ${linksHTML ? `<div class="rider-links">${linksHTML}</div>` : ""}
-        </section>
-
-        ${specialtiesHTML ? `
-        <section>
-            <h2>Spécialités</h2>
-            <div class="specialty-list">${specialtiesHTML}</div>
-        </section>` : ""}
-
-        ${palmaresHTML ? `
-        <section>
-            <h2>Palmarès RP</h2>
-            <div class="palmares">${palmaresHTML}</div>
-        </section>` : ""}
-
-        ${resultsRowsHTML ? `
-        <section>
-            <h2>Résultats récents</h2>
-            <table>
-                <thead>
-                    <tr><th>Course</th><th>Étape</th><th>Position</th><th>Temps</th></tr>
-                </thead>
-                <tbody>${resultsRowsHTML}</tbody>
-            </table>
-        </section>` : ""}
     `;
-}
 
-/* ---- Lance le bon rendu selon la page où le script est chargé ---- */
-document.addEventListener("DOMContentLoaded", () => {
-    renderRidersList();
-    renderRiderProfile();
-});
+    let panelHTML = "";
+
+    if (state.tab === "results") {
+        const yearTabsHTML = years.length ? `
+            <div class="fc-year-tabs">
+                ${years.map(y => `<button type="button" class="fc-year-tab ${y === state.year ? "active" : ""}" data-year="${y}">${y}</button>`).join("")}
+            </div>` : "";
+
+        const
