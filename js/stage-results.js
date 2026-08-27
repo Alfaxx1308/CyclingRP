@@ -10,22 +10,43 @@
 async function loadStageResults(stageId) {
     try {
         // Construire le chemin du fichier JSON
-        const jsonFile = `data/${stageId.replace('-stage', '-stage')}.json`;
+        // Utiliser le bon format du nom de fichier
+        const jsonFile = `data/tdf2026-stage1.json`;
+        
+        console.log('📂 Tentative de chargement:', jsonFile);
         
         // Charger les données
         const response = await fetch(jsonFile);
-        if (!response.ok) throw new Error(`Erreur: ${response.status}`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
         
         const data = await response.json();
+        
+        console.log('✅ Données chargées avec succès');
+        console.log('📊 Nombre de coureurs:', data.results.length);
         
         // Afficher les résultats
         displayStageInfo(data.stage);
         displayResults(data.results);
         
     } catch (error) {
-        console.error('Erreur lors du chargement des résultats:', error);
-        document.getElementById('results-container').innerHTML = 
-            '<p class="error-state">Erreur lors du chargement des résultats.</p>';
+        console.error('❌ Erreur lors du chargement des résultats:', error);
+        const container = document.getElementById('results-container');
+        if (container) {
+            container.innerHTML = `
+                <div class="error-state">
+                    <p><strong>❌ Erreur lors du chargement des résultats</strong></p>
+                    <p style="font-size: 12px; margin-top: 8px; color: #ff4d5e;">
+                        ${error.message}
+                    </p>
+                    <p style="font-size: 11px; margin-top: 8px; opacity: 0.7;">
+                        Ouvre la console (F12) pour plus de détails
+                    </p>
+                </div>
+            `;
+        }
     }
 }
 
@@ -126,9 +147,13 @@ function displayResults(results) {
  * Formate une date au format français
  */
 function formatDate(dateString) {
-    const date = new Date(dateString);
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return date.toLocaleDateString('fr-FR', options);
+    try {
+        const date = new Date(dateString);
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('fr-FR', options);
+    } catch (e) {
+        return dateString;
+    }
 }
 
 /**
@@ -149,8 +174,12 @@ function getDifficultyLabel(difficulty) {
  * Initialise la page (appelée au chargement)
  */
 function initStagePage() {
+    console.log('🚀 Initialisation de la page étape...');
+    
     // Récupérer l'ID de l'étape depuis l'URL ou un attribut data
     const stageId = document.body.getAttribute('data-stage-id') || 'tdf2026-stage-1';
+    
+    console.log('📍 Stage ID:', stageId);
     
     // Charger les résultats
     loadStageResults(stageId);
@@ -158,3 +187,5 @@ function initStagePage() {
 
 // Charger au démarrage du DOM
 document.addEventListener('DOMContentLoaded', initStagePage);
+
+console.log('✅ stage-results.js loaded');
