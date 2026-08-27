@@ -5,18 +5,23 @@
      2. la fiche complète d'un coureur (page profil.html?id=...)
 
    TU N'AS NORMALEMENT JAMAIS BESOIN DE MODIFIER CE FICHIER.
-   Pour ajouter/éditer un coureur : va dans data/riders.json
+   Pour ajouter/éditer un coureur : utilise les boutons + et ✎
+   (ou modifie directement data/riders.json)
    ============================================================ */
 
+const RIDERS_JSON_PATH = "data/riders.json";
+
+/* ---- Récupère la liste des coureurs ---- */
 async function loadRiders() {
     const res = await fetch(RIDERS_JSON_PATH);
     if (!res.ok) {
         throw new Error("Impossible de charger data/riders.json (code " + res.status + ")");
     }
     const data = await res.json();
-    return data.riders; // ← le tableau est maintenant sous la clé "riders"
+    return data.riders; // le tableau de coureurs est sous la clé "riders"
 }
 
+/* ---- Génère des initiales à partir d'un nom, pour l'avatar de secours ---- */
 function getInitials(name) {
     return name
         .split(" ")
@@ -27,6 +32,8 @@ function getInitials(name) {
         .toUpperCase();
 }
 
+/* ---- Construit un <img> avec repli automatique en initiales
+   si l'image n'existe pas ou ne charge pas ---- */
 function buildAvatar(imagePath, name) {
     const img = document.createElement("img");
     img.src = imagePath;
@@ -41,6 +48,11 @@ function buildAvatar(imagePath, name) {
     return img;
 }
 
+/* ============================================================
+   PAGE LISTE — coureurs.html
+   Cherche un élément #riders-list et le remplit avec une carte
+   par coureur trouvé dans riders.json
+   ============================================================ */
 async function renderRidersList() {
     const container = document.getElementById("riders-list");
     if (!container) return;
@@ -50,7 +62,7 @@ async function renderRidersList() {
     try {
         const riders = await loadRiders();
 
-        if (riders.length === 0) {
+        if (!riders || riders.length === 0) {
             container.innerHTML = '<p class="empty-state">Aucun coureur pour le moment.</p>';
             return;
         }
@@ -71,7 +83,7 @@ async function renderRidersList() {
 
             const meta = document.createElement("p");
             meta.className = "meta";
-            meta.innerHTML = `<span class="flag">${rider.flag}</span>${rider.team}`;
+            meta.innerHTML = `<span class="flag">${rider.flag || ""}</span>${rider.team || ""}`;
             card.appendChild(meta);
 
             const link = document.createElement("a");
@@ -87,6 +99,10 @@ async function renderRidersList() {
     }
 }
 
+/* ============================================================
+   PAGE PROFIL — profil.html?id=egan-bernal
+   Cherche un élément #rider-profile et construit toute la fiche
+   ============================================================ */
 async function renderRiderProfile() {
     const container = document.getElementById("rider-profile");
     if (!container) return;
@@ -124,6 +140,7 @@ async function renderRiderProfile() {
     }
 }
 
+/* ---- Génère le HTML complet de la fiche coureur ---- */
 function buildProfileHTML(rider) {
     const specialtiesHTML = (rider.specialties || []).map(s => `
         <div class="specialty-row">
@@ -166,17 +183,17 @@ function buildProfileHTML(rider) {
                 <span data-avatar-slot></span>
                 <div class="rider-identity">
                     <h1>${rider.name}</h1>
-                    <p class="rider-team">${rider.flag} ${rider.team}</p>
-                    <span class="rider-rank">Classement RP : <strong>N°${rider.rpRank}</strong></span>
+                    <p class="rider-team">${rider.flag || ""} ${rider.team || ""}</p>
+                    <span class="rider-rank">Classement RP : <strong>N°${rider.rpRank ?? "—"}</strong></span>
                 </div>
             </div>
 
             <div class="rider-info-grid">
-                <dl><dt>Date de naissance</dt><dd>${rider.dob}</dd></dl>
-                <dl><dt>Nationalité</dt><dd>${rider.flag} ${rider.nationality}</dd></dl>
-                <dl><dt>Poids</dt><dd>${rider.weight}</dd></dl>
-                <dl><dt>Taille</dt><dd>${rider.height}</dd></dl>
-                <dl><dt>Équipe</dt><dd>${rider.team}</dd></dl>
+                <dl><dt>Date de naissance</dt><dd>${rider.dob || "—"}</dd></dl>
+                <dl><dt>Nationalité</dt><dd>${rider.flag || ""} ${rider.nationality || "—"}</dd></dl>
+                <dl><dt>Poids</dt><dd>${rider.weight || "—"}</dd></dl>
+                <dl><dt>Taille</dt><dd>${rider.height || "—"}</dd></dl>
+                <dl><dt>Équipe</dt><dd>${rider.team || "—"}</dd></dl>
             </div>
 
             ${linksHTML ? `<div class="rider-links">${linksHTML}</div>` : ""}
@@ -207,6 +224,7 @@ function buildProfileHTML(rider) {
     `;
 }
 
+/* ---- Lance le bon rendu selon la page où le script est chargé ---- */
 document.addEventListener("DOMContentLoaded", () => {
     renderRidersList();
     renderRiderProfile();
