@@ -1,53 +1,160 @@
+# `coureurs.html`
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Coureurs — Cycle League RP</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
+
 <body>
 
+
 <header>
+
     <div class="header-top">
-        <h1>Cycle League <span class="tag">RP</span></h1>
+
+        <h1>
+            Cycle League
+            <span class="tag">RP</span>
+        </h1>
+
+
         <div class="site-search">
-            <input type="text" id="site-search-input" placeholder="Rechercher un coureur, une page..." autocomplete="off">
-            <div id="site-search-results" class="site-search-results"></div>
+
+            <input
+                type="text"
+                id="site-search-input"
+                placeholder="Rechercher un coureur, une page..."
+                autocomplete="off"
+            >
+
+            <div
+                id="site-search-results"
+                class="site-search-results"
+            ></div>
+
         </div>
+
     </div>
+
+
     <nav>
-        <a href="index.html">Accueil</a>
-        <a href="coureurs.html" class="active">Coureurs</a>
-        <a href="equipes.html">Équipes</a>
-        <a href="courses.html">Courses</a>
-        <a href="classements.html">Classements</a>
+
+        <a href="index.html">
+            Accueil
+        </a>
+
+        <a
+            href="coureurs.html"
+            class="active"
+        >
+            Coureurs
+        </a>
+
+        <a href="equipes.html">
+            Équipes
+        </a>
+
+        <a href="courses.html">
+            Courses
+        </a>
+
+        <a href="classements.html">
+            Classements
+        </a>
+
     </nav>
+
 </header>
 
+
 <main>
-    <section>
-        <h2>Les coureurs</h2>
-        <p>Retrouvez ici les coureurs présents dans le Cycle League RP.</p>
-    </section>
+
 
     <section>
-        <div class="section-header-row">
-            <h2>Coureurs populaires</h2>
-            <button type="button" id="add-rider-btn" class="icon-btn" title="Ajouter un coureur" aria-label="Ajouter un coureur">+</button>
-        </div>
-        <div id="riders-list" class="card-grid">
-            <p class="empty-state">Chargement des coureurs…</p>
-        </div>
+
+        <h2>
+            Les coureurs
+        </h2>
+
+        <p>
+            Retrouvez ici les coureurs présents dans le Cycle League RP.
+        </p>
+
     </section>
+
+
+    <section>
+
+        <div class="section-header-row">
+
+            <h2>
+                Coureurs populaires
+            </h2>
+
+
+            <button
+                type="button"
+                id="add-rider-btn"
+                class="icon-btn"
+                title="Ajouter un coureur"
+                aria-label="Ajouter un coureur"
+            >
+                +
+            </button>
+
+        </div>
+
+
+        <div
+            id="riders-list"
+            class="card-grid"
+        >
+
+            <p class="empty-state">
+                Chargement des coureurs…
+            </p>
+
+        </div>
+
+    </section>
+
+
 </main>
 
+
 <footer>
+
     Cycle League RP — 2026
+
 </footer>
 
+
 <script src="js/riders.js"></script>
+
 <script src="js/admin.js"></script>
+
 <script src="js/search.js"></script>
+
+
 </body>
+
 </html>
+```
