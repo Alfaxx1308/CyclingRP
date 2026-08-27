@@ -1187,7 +1187,184 @@
     Projet de simulation cycliste RP · 2026
 
 </footer>
+<script>
+/* ============================================================
+   ÉDITEUR GITHUB — CYCLE LEAGUE RP
+============================================================ */
 
+const GITHUB_OWNER = "alfaxx1308";
+const GITHUB_REPO = "CyclingRP";
+const GITHUB_FILE = "tdf2026.html";
+const GITHUB_BRANCH = "main";
+
+/*
+   IMPORTANT :
+   Ne mets PAS ton token directement dans ce code si le site
+   est public. Il serait visible par n'importe qui.
+*/
+
+const editButton = document.getElementById("edit-page-button");
+const editModal = document.getElementById("edit-modal");
+const editor = document.getElementById("page-editor");
+const status = document.getElementById("edit-status");
+
+editButton.addEventListener("click", openEditor);
+
+async function openEditor() {
+
+    editModal.classList.add("open");
+
+    status.textContent = "Chargement de la page...";
+
+    try {
+
+        const response = await fetch(
+            `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}?ref=${GITHUB_BRANCH}`
+        );
+
+        if (!response.ok) {
+            throw new Error("Impossible de récupérer la page.");
+        }
+
+        const data = await response.json();
+
+        const content = decodeURIComponent(
+            escape(
+                atob(data.content.replace(/\n/g, ""))
+            )
+        );
+
+        editor.value = content;
+
+        editor.dataset.sha = data.sha;
+
+        status.textContent = "Page chargée.";
+
+    } catch (error) {
+
+        console.error(error);
+
+        status.textContent =
+            "❌ Impossible de charger la page depuis GitHub.";
+    }
+}
+
+function closeEditor() {
+    editModal.classList.remove("open");
+}
+
+async function savePageToGitHub() {
+
+    const token = prompt(
+        "Entre ton token GitHub pour enregistrer la modification :"
+    );
+
+    if (!token) {
+        return;
+    }
+
+    status.textContent = "⏳ Enregistrement sur GitHub...";
+
+    try {
+
+        const content = editor.value;
+
+        const encodedContent = btoa(
+            unescape(
+                encodeURIComponent(content)
+            )
+        );
+
+        const response = await fetch(
+            `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`,
+            {
+                method: "PUT",
+
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Accept": "application/vnd.github+json",
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    message: "Modification de tdf2026.html depuis Cycle League RP",
+
+                    content: encodedContent,
+
+                    sha: editor.dataset.sha,
+
+                    branch: GITHUB_BRANCH
+
+                })
+            }
+        );
+
+        const result = await response.json();
+
+        if (!response.ok) {
+
+            console.error(result);
+
+            throw new Error(
+                result.message || "Erreur GitHub"
+            );
+        }
+
+        status.textContent =
+            "✅ Modification envoyée sur GitHub !";
+
+        editor.dataset.sha = result.content.sha;
+
+    } catch (error) {
+
+        console.error(error);
+
+        status.textContent =
+            "❌ Erreur : " + error.message;
+    }
+}
+
+/* Fermer en cliquant hors de la fenêtre */
+
+editModal.addEventListener("click", function(event) {
+
+    if (event.target === editModal) {
+        closeEditor();
+    }
+
+});
+</script>
 </body>
+<div id="edit-page-button" class="edit-page-button" title="Modifier cette page">
+    ✏️
+</div>
+
+<div id="edit-modal" class="edit-modal">
+    <div class="edit-modal-content">
+
+        <button class="edit-close" onclick="closeEditor()">×</button>
+
+        <h2>✏️ Modifier la page</h2>
+
+        <p class="edit-description">
+            Modifie le contenu de la page puis enregistre directement sur GitHub.
+        </p>
+
+        <textarea id="page-editor"></textarea>
+
+        <div class="edit-actions">
+            <button class="edit-cancel" onclick="closeEditor()">
+                Annuler
+            </button>
+
+            <button class="edit-save" onclick="savePageToGitHub()">
+                💾 Enregistrer sur GitHub
+            </button>
+        </div>
+
+        <div id="edit-status"></div>
+
+    </div>
 </html>
-```
+
