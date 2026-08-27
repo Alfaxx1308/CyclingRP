@@ -80,10 +80,6 @@ function displayStageInfo(stage) {
                 <span class="label">Dénivelé</span>
                 <span class="value">${stage.elevation} m</span>
             </div>
-            <div class="info-item">
-                <span class="label">Difficulté</span>
-                <span class="value difficulty-${stage.difficulty}">${getDifficultyLabel(stage.difficulty)}</span>
-            </div>
         </div>
         
         <p class="stage-description">${stage.description}</p>
@@ -154,20 +150,6 @@ function formatDate(dateString) {
     } catch (e) {
         return dateString;
     }
-}
-
-/**
- * Retourne le label de difficulté
- */
-function getDifficultyLabel(difficulty) {
-    const labels = {
-        1: '⭐ Facile',
-        2: '⭐⭐ Moyen',
-        3: '⭐⭐⭐ Difficile',
-        4: '⭐⭐⭐⭐ Très difficile',
-        5: '⭐⭐⭐⭐⭐ Extrême'
-    };
-    return labels[difficulty] || 'Inconnu';
 }
 
 /**
