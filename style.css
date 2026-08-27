@@ -445,6 +445,251 @@ footer a:hover {
 }
 
 /* ============================================================
+   12. PROFIL COUREUR v2 — style FirstCycling (noir & blanc)
+   ============================================================ */
+.fc-profile {
+    background: #ffffff;
+    color: #1a1a1a;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.fc-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
+    flex-wrap: wrap;
+}
+
+.fc-header img,
+.fc-header .img-fallback {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #000;
+    font-size: 22px;
+    color: #000;
+    background: #ddd;
+}
+
+.fc-header-info h1 {
+    margin: 0;
+    font-size: 26px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+    color: #111;
+}
+
+.fc-header-info p {
+    margin: 4px 0 0;
+    color: #555;
+    font-size: 15px;
+}
+
+.fc-stats-row {
+    display: flex;
+    gap: 24px;
+    padding: 10px 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
+    color: #333;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+}
+
+.fc-stats-row span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.fc-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 0 20px;
+    background: #fff;
+    border-bottom: 2px solid #e0e0e0;
+    overflow-x: auto;
+}
+
+.fc-tab {
+    padding: 12px 14px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #888;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+}
+
+.fc-tab.active {
+    color: #000;
+    border-bottom-color: #000;
+    font-weight: 700;
+}
+
+.fc-tab:hover {
+    color: #000;
+}
+
+.fc-year-tabs {
+    display: flex;
+    gap: 6px;
+    padding: 12px 20px;
+    overflow-x: auto;
+    border-bottom: 1px solid #e0e0e0;
+    background: #fff;
+}
+
+.fc-year-tab {
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: #333;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.fc-year-tab.active {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+}
+
+.fc-category-tabs {
+    display: flex;
+    gap: 16px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 13px;
+    color: #888;
+    flex-wrap: wrap;
+    background: #fff;
+}
+
+.fc-category-tab {
+    cursor: pointer;
+    padding-bottom: 6px;
+    border-bottom: 2px solid transparent;
+}
+
+.fc-category-tab.active {
+    color: #000;
+    border-bottom-color: #000;
+    font-weight: 700;
+}
+
+.fc-results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: #fff;
+}
+
+.fc-results-table td {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+    color: #222;
+    vertical-align: middle;
+}
+
+.fc-results-table tr:hover {
+    background: #fafafa;
+}
+
+.fc-date {
+    color: #888;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    width: 60px;
+}
+
+.fc-pos {
+    font-weight: 700;
+    width: 36px;
+}
+
+.fc-race {
+    font-weight: 600;
+}
+
+.fc-tag {
+    display: inline-block;
+    background: #eee;
+    color: #555;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.jersey-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    vertical-align: middle;
+}
+
+.jersey-icon.yellow { background: #FFD700; }
+.jersey-icon.green { background: #3aa655; }
+.jersey-icon.polka { background: radial-gradient(circle, #e63946 30%, #fff 31%) 0 0 / 8px 8px, #fff; }
+.jersey-icon.rainbow { background: conic-gradient(red, orange, yellow, green, blue, indigo, violet, red); }
+.jersey-icon.plain { background: #ddd; }
+.jersey-icon.none { background: transparent; border-color: transparent; }
+
+.fc-panel {
+    padding: 20px;
+    background: #fff;
+}
+
+.fc-empty {
+    padding: 30px;
+    text-align: center;
+    color: #888;
+    font-family: var(--font-mono);
+    font-size: 13px;
+}
+
+.fc-classement-box {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px 24px;
+}
+
+.fc-classement-box .fc-classement-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.fc-classement-box .fc-classement-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111;
+}
+/* ============================================================
    10bis. PROFIL COUREUR (façon FirstCycling)
    Fiche technique dense : identité, stats, spécialités, palmarès.
    ============================================================ */
