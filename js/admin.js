@@ -1,16 +1,12 @@
 /* ============================================================
    ADMIN.JS — ajout / édition / suppression de coureurs
    directement depuis le navigateur, via l'API GitHub.
-
-   ⚙️ CONFIGURE CES 3 LIGNES SI BESOIN :
    ============================================================ */
 const GITHUB_OWNER = "alfaxx1308";
 const GITHUB_REPO = "CyclingRP-";
-const GITHUB_BRANCH = "main"; // mets "master" si c'est ta branche par défaut
+const GITHUB_BRANCH = "main";
 const RIDERS_FILE_PATH = "data/riders.json";
 
-/* ---- Gestion du token (enregistré durablement dans le navigateur,
-   plus besoin de le retaper à chaque visite) ---- */
 function getToken() {
     let token = localStorage.getItem("gh_token");
     if (!token) {
@@ -22,8 +18,6 @@ function getToken() {
     return token;
 }
 
-/* ---- Pour retirer le token plus tard et redemander une connexion ----
-   Tape forgetToken() dans la console (F12) le jour où tu veux réinitialiser */
 function forgetToken() {
     localStorage.removeItem("gh_token");
     showToast("Token oublié — il sera redemandé au prochain ajout/édition.");
@@ -58,7 +52,6 @@ async function githubApiFetch(path, options = {}) {
     return res;
 }
 
-/* ---- Lecture / écriture de riders.json (structure { "riders": [...] }) ---- */
 async function fetchRidersFile() {
     const res = await githubApiFetch(`${RIDERS_FILE_PATH}?ref=${GITHUB_BRANCH}`);
     if (!res.ok) throw new Error("Impossible de lire riders.json sur GitHub (" + res.status + ")");
@@ -86,7 +79,6 @@ async function saveRidersFile(ridersArray, sha, commitMessage) {
     return res.json();
 }
 
-/* ---- Notification discrète en bas à droite ---- */
 function showToast(message, type = "success") {
     const toast = document.createElement("div");
     toast.className = `toast toast-${type}`;
@@ -99,7 +91,6 @@ function showToast(message, type = "success") {
     }, 4000);
 }
 
-/* ---- Transforme un nom en identifiant d'URL (slug) ---- */
 function slugify(str) {
     return str
         .toLowerCase()
@@ -109,20 +100,30 @@ function slugify(str) {
         .replace(/(^-|-$)/g, "");
 }
 
-/* ---- Petit gestionnaire de listes dynamiques (spécialités, résultats...) ---- */
+/* ---- Gestionnaire de listes dynamiques (résultats, spécialités, liens) ---- */
 function createDynamicList(container, fields) {
     function addRow(values = {}) {
         const row = document.createElement("div");
         row.className = "dynamic-list-row";
         fields.forEach(f => {
-            const input = document.createElement("input");
-            input.name = f.name;
-            input.type = f.type || "text";
-            input.placeholder = f.placeholder || f.name;
-            if (f.type === "checkbox") {
-                input.checked = !!values[f.name];
+            let input;
+            if (f.type === "select") {
+                input = document.createElement("select");
+                input.name = f.name;
+                (f.options || []).forEach(opt => {
+                    const o = document.createElement("option");
+                    o.value = opt.value;
+                    o.textContent = opt.label;
+                    if (values[f.name] === opt.value) o.selected = true;
+                    input.appendChild(o);
+                });
             } else {
-                input.value = values[f.name] ?? "";
+                input = document.createElement("input");
+                input.name = f.name;
+                input.type = f.type || "text";
+                input.placeholder = f.placeholder || f.name;
+                if (f.type === "checkbox") input.checked = !!values[f.name];
+                else input.value = values[f.name] ?? "";
             }
             row.appendChild(input);
         });
@@ -156,7 +157,7 @@ function createDynamicList(container, fields) {
     return { addRow, getValues };
 }
 
-/* ---- Construit et affiche la modale d'ajout / édition ---- */
+/* ---- Modale d'ajout / édition ---- */
 function openRiderForm(existingRider = null) {
     const isEdit = !!existingRider;
 
@@ -174,28 +175,34 @@ function openRiderForm(existingRider = null) {
                         <input required name="name" value="${isEdit ? existingRider.name : ""}">
                     </label>
                     <label>Drapeau (emoji)
-                        <input name="flag" value="${isEdit ? existingRider.flag : ""}" placeholder="🇫🇷">
+                        <input name="flag" value="${isEdit ? existingRider.flag || "" : ""}" placeholder="🇫🇷">
                     </label>
                     <label>Nationalité
-                        <input name="nationality" value="${isEdit ? existingRider.nationality : ""}">
+                        <input name="nationality" value="${isEdit ? existingRider.nationality || "" : ""}">
                     </label>
                     <label>Équipe
-                        <input name="team" value="${isEdit ? existingRider.team : ""}">
+                        <input name="team" value="${isEdit ? existingRider.team || "" : ""}">
+                    </label>
+                    <label>Âge
+                        <input type="number" name="age" value="${isEdit ? existingRider.age ?? "" : ""}">
                     </label>
                     <label>Date de naissance
-                        <input name="dob" value="${isEdit ? existingRider.dob : ""}" placeholder="13 janv. 1997">
+                        <input name="dob" value="${isEdit ? existingRider.dob || "" : ""}" placeholder="13 Jan 1997">
                     </label>
                     <label>Poids
-                        <input name="weight" value="${isEdit ? existingRider.weight : ""}" placeholder="60 kg">
+                        <input name="weight" value="${isEdit ? existingRider.weight || "" : ""}" placeholder="60 kg">
                     </label>
                     <label>Taille
-                        <input name="height" value="${isEdit ? existingRider.height : ""}" placeholder="1,75 m">
+                        <input name="height" value="${isEdit ? existingRider.height || "" : ""}" placeholder="1,75 m">
                     </label>
-                    <label>Classement RP
-                        <input type="number" name="rpRank" value="${isEdit ? existingRider.rpRank : ""}">
+                    <label>Vélo (marque)
+                        <input name="bike" value="${isEdit ? existingRider.bike || "" : ""}" placeholder="Pinarello">
+                    </label>
+                    <label>Classement général RP (N°)
+                        <input name="gcRank" value="${isEdit ? existingRider.gcRank ?? "" : ""}">
                     </label>
                     <label class="span-2">URL de la photo
-                        <input name="image" value="${isEdit ? existingRider.image : ""}" placeholder="images/coureurs/nom.jpg">
+                        <input name="image" value="${isEdit ? existingRider.image || "" : ""}" placeholder="images/coureurs/nom.jpg">
                     </label>
                 </div>
 
@@ -203,13 +210,9 @@ function openRiderForm(existingRider = null) {
                 <div class="dynamic-list" data-list="specialties"></div>
                 <button type="button" class="btn btn-outline" data-add="specialties">+ Ajouter une spécialité</button>
 
-                <h3>Résultats récents</h3>
+                <h3>Résultats</h3>
                 <div class="dynamic-list" data-list="results"></div>
                 <button type="button" class="btn btn-outline" data-add="results">+ Ajouter un résultat</button>
-
-                <h3>Palmarès</h3>
-                <div class="dynamic-list" data-list="palmares"></div>
-                <button type="button" class="btn btn-outline" data-add="palmares">+ Ajouter une ligne de palmarès</button>
 
                 <h3>Liens</h3>
                 <div class="dynamic-list" data-list="links"></div>
@@ -233,14 +236,36 @@ function openRiderForm(existingRider = null) {
         overlay.querySelector('[data-list="specialties"]'),
         [{ name: "label", placeholder: "Grimpeur" }, { name: "value", type: "number", placeholder: "0-100" }]
     );
+
+    const CATEGORY_OPTIONS = [
+        { value: "Plat", label: "Plat" },
+        { value: "Vallonné", label: "Vallonné" },
+        { value: "Montagne", label: "Montagne" },
+        { value: "Contre-la-montre", label: "Contre-la-montre" }
+    ];
+    const JERSEY_OPTIONS = [
+        { value: "none", label: "Aucun" },
+        { value: "yellow", label: "Jaune (leader/général)" },
+        { value: "green", label: "Vert (points)" },
+        { value: "polka", label: "Pois (montagne)" },
+        { value: "rainbow", label: "Arc-en-ciel (champion du monde)" },
+        { value: "plain", label: "Neutre (étape)" }
+    ];
+
     const resultsMgr = createDynamicList(
         overlay.querySelector('[data-list="results"]'),
-        [{ name: "race", placeholder: "Course" }, { name: "stage", placeholder: "Étape" }, { name: "pos", placeholder: "Position" }, { name: "time", placeholder: "Temps" }]
+        [
+            { name: "year", type: "number", placeholder: "Année" },
+            { name: "date", placeholder: "26.07" },
+            { name: "pos", placeholder: "Position" },
+            { name: "win", type: "checkbox" },
+            { name: "category", type: "select", options: CATEGORY_OPTIONS },
+            { name: "jersey", type: "select", options: JERSEY_OPTIONS },
+            { name: "race", placeholder: "Nom de la course" },
+            { name: "tag", placeholder: "Étiquette (ex: 8e étape, Général)" }
+        ]
     );
-    const palmaresMgr = createDynamicList(
-        overlay.querySelector('[data-list="palmares"]'),
-        [{ name: "year", type: "number", placeholder: "Année" }, { name: "pos", placeholder: "Position" }, { name: "race", placeholder: "Course" }, { name: "note", placeholder: "Note (optionnel)" }, { name: "win", type: "checkbox" }]
-    );
+
     const linksMgr = createDynamicList(
         overlay.querySelector('[data-list="links"]'),
         [{ name: "label", placeholder: "Instagram" }, { name: "url", placeholder: "https://..." }]
@@ -248,24 +273,18 @@ function openRiderForm(existingRider = null) {
 
     overlay.querySelector('[data-add="specialties"]').onclick = () => specialtiesMgr.addRow();
     overlay.querySelector('[data-add="results"]').onclick = () => resultsMgr.addRow();
-    overlay.querySelector('[data-add="palmares"]').onclick = () => palmaresMgr.addRow();
     overlay.querySelector('[data-add="links"]').onclick = () => linksMgr.addRow();
 
     if (isEdit) {
         (existingRider.specialties || []).forEach(s => specialtiesMgr.addRow(s));
-        (existingRider.recentResults || []).forEach(r => resultsMgr.addRow(r));
-        (existingRider.palmares || []).forEach(p =>
-            p.results.forEach(r => palmaresMgr.addRow({ year: p.year, pos: r.pos, race: r.race, note: r.note || "", win: !!r.win }))
-        );
+        (existingRider.results || []).forEach(r => resultsMgr.addRow(r));
         (existingRider.links || []).forEach(l => linksMgr.addRow(l));
     } else {
         specialtiesMgr.addRow();
         resultsMgr.addRow();
-        palmaresMgr.addRow();
         linksMgr.addRow();
     }
 
-    /* ---- Suppression ---- */
     const deleteBtn = overlay.querySelector("[data-delete]");
     if (deleteBtn) {
         deleteBtn.onclick = async () => {
@@ -282,7 +301,6 @@ function openRiderForm(existingRider = null) {
         };
     }
 
-    /* ---- Enregistrement (création ou édition) ---- */
     const form = overlay.querySelector("form");
     const statusEl = overlay.querySelector(".form-status");
 
@@ -297,32 +315,22 @@ function openRiderForm(existingRider = null) {
 
         const id = isEdit ? existingRider.id : slugify(name);
 
-        const palmaresFlat = palmaresMgr.getValues();
-        const grouped = {};
-        palmaresFlat.forEach(r => {
-            const year = r.year || "—";
-            if (!grouped[year]) grouped[year] = [];
-            grouped[year].push({ pos: r.pos, win: r.win, race: r.race, ...(r.note ? { note: r.note } : {}) });
-        });
-        const palmares = Object.keys(grouped)
-            .sort((a, b) => b - a)
-            .map(year => ({ year: isNaN(year) ? year : Number(year), results: grouped[year] }));
-
         const riderData = {
             id,
             name,
             flag: fd.get("flag").trim(),
             nationality: fd.get("nationality").trim(),
             team: fd.get("team").trim(),
+            age: Number(fd.get("age")) || null,
             dob: fd.get("dob").trim(),
             weight: fd.get("weight").trim(),
             height: fd.get("height").trim(),
-            rpRank: Number(fd.get("rpRank")) || null,
+            bike: fd.get("bike").trim(),
+            gcRank: fd.get("gcRank").trim(),
             image: fd.get("image").trim() || `images/coureurs/${id}.jpg`,
             specialties: specialtiesMgr.getValues(),
             links: linksMgr.getValues(),
-            palmares,
-            recentResults: resultsMgr.getValues()
+            results: resultsMgr.getValues().map(r => ({ ...r, year: Number(r.year) || null }))
         };
 
         try {
@@ -356,24 +364,5 @@ function openRiderForm(existingRider = null) {
     });
 }
 
-/* ---- Branchement des boutons + et crayon ---- */
 document.addEventListener("DOMContentLoaded", () => {
-    const addBtn = document.getElementById("add-rider-btn");
-    if (addBtn) addBtn.addEventListener("click", () => openRiderForm(null));
-
-    const editBtn = document.getElementById("edit-rider-btn");
-    if (editBtn) {
-        editBtn.addEventListener("click", async () => {
-            const riderId = new URLSearchParams(window.location.search).get("id");
-            if (!riderId) return;
-            try {
-                const { riders } = await fetchRidersFile();
-                const rider = riders.find(r => r.id === riderId);
-                if (rider) openRiderForm(rider);
-                else showToast("Coureur introuvable", "error");
-            } catch (err) {
-                showToast("Erreur : " + err.message, "error");
-            }
-        });
-    }
-});
+    const addBtn =
