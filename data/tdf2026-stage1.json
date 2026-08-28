@@ -6,7 +6,6 @@
     "type": "Contre-la-montre par équipes",
     "distance": "19.6 km",
     "elevation": 120,
-    "difficulty": 1,
     "startCity": "Barcelone",
     "finishCity": "Barcelone",
     "description": "Étape de prologue en contre-la-montre par équipe. La première vraie bataille du Tour de France 2026 commence à Barcelone avec les équipes face à la montre."
@@ -125,7 +124,7 @@
     {"position": 111, "name": "Higuita", "country": "🇨🇴", "countryName": "Colombie", "time": "23'50\"00", "gap": "+1'46\"00", "points": 0},
     {"position": 112, "name": "Bauhaus", "country": "🇩🇪", "countryName": "Allemagne", "time": "23'50\"00", "gap": "+1'46\"00", "points": 0},
     {"position": 113, "name": "Balderstone", "country": "🇦🇺", "countryName": "Australie", "time": "23'52\"12", "gap": "+1'48\"12", "points": 0},
-    {"position": 114, "name": "Stock", "country": "🇬🇧", "countryName": "Grande-Bretagne", "time": "23'52\"84", "gap": "+1'48\"84", "points": 0},
+    {"position": 114, "name": "Slock", "country": "🇧🇪", "countryName": "Belgique", "time": "23'52\"84", "gap": "+1'48\"84", "points": 0},
     {"position": 115, "name": "Engelhardt", "country": "🇩🇪", "countryName": "Allemagne", "time": "23'52\"93", "gap": "+1'48\"93", "points": 0},
     {"position": 116, "name": "O'Brien", "country": "🇮🇪", "countryName": "Irlande", "time": "23'52\"93", "gap": "+1'48\"93", "points": 0},
     {"position": 117, "name": "Aranburu", "country": "🇪🇸", "countryName": "Espagne", "time": "23'53\"49", "gap": "+1'49\"49", "points": 0},
