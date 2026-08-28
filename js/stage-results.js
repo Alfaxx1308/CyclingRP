@@ -5,32 +5,32 @@
 
 /**
  * Charge les résultats d'une étape depuis un fichier JSON
- * @param {string} stageId - ID de l'étape (ex: 'tdf2026-stage-1')
+ * @param {string} stageId - ID de l'étape (ex: '1', '2', ...)
  */
 async function loadStageResults(stageId) {
     try {
-        // Construire le chemin du fichier JSON
-        // Utiliser le bon format du nom de fichier
-        const jsonFile = `data/tdf2026-stage1.json`;
-        
+        // Construire le chemin du fichier JSON à partir du numéro d'étape
+        // Convention de nommage : data/tdf2026-stage{N}.json
+        const jsonFile = `data/tdf2026-stage${stageId}.json`;
+
         console.log('📂 Tentative de chargement:', jsonFile);
-        
+
         // Charger les données
         const response = await fetch(jsonFile);
-        
+
         if (!response.ok) {
             throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
-        
+
         const data = await response.json();
-        
+
         console.log('✅ Données chargées avec succès');
         console.log('📊 Nombre de coureurs:', data.results.length);
-        
+
         // Afficher les résultats
         displayStageInfo(data.stage);
         displayResults(data.results);
-        
+
     } catch (error) {
         console.error('❌ Erreur lors du chargement des résultats:', error);
         const container = document.getElementById('results-container');
@@ -56,13 +56,13 @@ async function loadStageResults(stageId) {
 function displayStageInfo(stage) {
     const infoContainer = document.getElementById('stage-info');
     if (!infoContainer) return;
-    
+
     const html = `
         <div class="stage-info-header">
             <h2>Étape ${stage.number}</h2>
             <span class="stage-type-badge">${stage.type}</span>
         </div>
-        
+
         <div class="stage-info-details">
             <div class="info-item">
                 <span class="label">Date</span>
@@ -81,10 +81,10 @@ function displayStageInfo(stage) {
                 <span class="value">${stage.elevation} m</span>
             </div>
         </div>
-        
+
         <p class="stage-description">${stage.description}</p>
     `;
-    
+
     infoContainer.innerHTML = html;
 }
 
@@ -94,7 +94,7 @@ function displayStageInfo(stage) {
 function displayResults(results) {
     const container = document.getElementById('results-container');
     if (!container) return;
-    
+
     // Créer le tableau
     let html = `
         <table class="results-table">
@@ -111,7 +111,7 @@ function displayResults(results) {
             </thead>
             <tbody>
     `;
-    
+
     // Ajouter les lignes
     results.forEach((rider, index) => {
         const rowClass = index === 0 ? 'winner' : '';
@@ -130,12 +130,12 @@ function displayResults(results) {
             </tr>
         `;
     });
-    
+
     html += `
             </tbody>
         </table>
     `;
-    
+
     container.innerHTML = html;
 }
 
@@ -157,12 +157,13 @@ function formatDate(dateString) {
  */
 function initStagePage() {
     console.log('🚀 Initialisation de la page étape...');
-    
-    // Récupérer l'ID de l'étape depuis l'URL ou un attribut data
-    const stageId = document.body.getAttribute('data-stage-id') || 'tdf2026-stage-1';
-    
+
+    // Récupérer le numéro d'étape depuis l'attribut data-stage-id du <body>
+    // (ex: data-stage-id="2" -> charge data/tdf2026-stage2.json)
+    const stageId = document.body.getAttribute('data-stage-id') || '1';
+
     console.log('📍 Stage ID:', stageId);
-    
+
     // Charger les résultats
     loadStageResults(stageId);
 }
