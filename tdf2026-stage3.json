@@ -1,0 +1,1637 @@
+{
+  "stage": {
+    "id": "tdf2026-stage-3",
+    "number": 3,
+    "date": "2026-07-06",
+    "type": "Montagne",
+    "distance": "195,9 km",
+    "startCity": "Granollers",
+    "finishCity": "Les Angles",
+    "description": "À compléter : décris ici le profil de l'étape (villes de départ/arrivée, cols franchis, difficulté)."
+  },
+  "results": [
+    {
+      "position": 1,
+      "name": "Pogacar",
+      "country": "🇸🇮",
+      "countryName": "Slovénie",
+      "time": "4h41'40\"",
+      "gap": "+0:00",
+      "points": 20,
+      "bonification": "-10\""
+    },
+    {
+      "position": 2,
+      "name": "Evenepoel",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "4h41'40\"",
+      "gap": "+0:00",
+      "points": 17,
+      "bonification": "-6\""
+    },
+    {
+      "position": 3,
+      "name": "Vauquelin",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "4h41'40\"",
+      "gap": "+0:00",
+      "points": 15,
+      "bonification": "-4\""
+    },
+    {
+      "position": 4,
+      "name": "Seixas",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "4h41'40\"",
+      "gap": "+0:00",
+      "points": 13
+    },
+    {
+      "position": 5,
+      "name": "Skjelmose",
+      "country": "🇩🇰",
+      "countryName": "Danemark",
+      "time": "4h41'40\"",
+      "gap": "+0:00",
+      "points": 11
+    },
+    {
+      "position": 6,
+      "name": "Vingegaard",
+      "country": "🇩🇰",
+      "countryName": "Danemark",
+      "time": "4h41'40\"",
+      "gap": "+0:00",
+      "points": 10
+    },
+    {
+      "position": 7,
+      "name": "Martinez L.",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "4h41'47\"",
+      "gap": "+7\"",
+      "points": 9
+    },
+    {
+      "position": 8,
+      "name": "del Toro",
+      "country": "🇲🇽",
+      "countryName": "Mexique",
+      "time": "4h41'47\"",
+      "gap": "+7\"",
+      "points": 8
+    },
+    {
+      "position": 9,
+      "name": "Pidcock T.",
+      "country": "🇬🇧",
+      "countryName": "Grande-Bretagne",
+      "time": "4h41'47\"",
+      "gap": "+7\"",
+      "points": 7
+    },
+    {
+      "position": 10,
+      "name": "Johannessen T.",
+      "country": "🇳🇴",
+      "countryName": "Norvège",
+      "time": "4h41'47\"",
+      "gap": "+7\"",
+      "points": 6
+    },
+    {
+      "position": 11,
+      "name": "Piganzoli",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "4h41'47\"",
+      "gap": "+7\"",
+      "points": 5
+    },
+    {
+      "position": 12,
+      "name": "Riccitello",
+      "country": "🇺🇸",
+      "countryName": "États-Unis",
+      "time": "4h41'47\"",
+      "gap": "+7\"",
+      "points": 4
+    },
+    {
+      "position": 13,
+      "name": "Jorgenson",
+      "country": "🇺🇸",
+      "countryName": "États-Unis",
+      "time": "4h41'47\"",
+      "gap": "+7\"",
+      "points": 3
+    },
+    {
+      "position": 14,
+      "name": "O'Connor",
+      "country": "🇦🇺",
+      "countryName": "Australie",
+      "time": "4h41'54\"",
+      "gap": "+14\"",
+      "points": 2
+    },
+    {
+      "position": 15,
+      "name": "McNulty",
+      "country": "🇺🇸",
+      "countryName": "États-Unis",
+      "time": "4h41'54\"",
+      "gap": "+14\"",
+      "points": 1
+    },
+    {
+      "position": 16,
+      "name": "Carapaz",
+      "country": "🇪🇨",
+      "countryName": "Équateur",
+      "time": "4h41'59\"",
+      "gap": "+19\"",
+      "points": 0
+    },
+    {
+      "position": 17,
+      "name": "Lipowitz",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "4h42'05\"",
+      "gap": "+25\"",
+      "points": 0
+    },
+    {
+      "position": 18,
+      "name": "Arensman",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "4h42'08\"",
+      "gap": "+28\"",
+      "points": 0
+    },
+    {
+      "position": 19,
+      "name": "Healy",
+      "country": "🇮🇪",
+      "countryName": "Irlande",
+      "time": "4h42'08\"",
+      "gap": "+28\"",
+      "points": 0
+    },
+    {
+      "position": 20,
+      "name": "Tiberi",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "4h42'26\"",
+      "gap": "+46\"",
+      "points": 0
+    },
+    {
+      "position": 21,
+      "name": "Yates A.",
+      "country": "🇬🇧",
+      "countryName": "Grande-Bretagne",
+      "time": "4h42'51\"",
+      "gap": "+1'11\"",
+      "points": 0
+    },
+    {
+      "position": 22,
+      "name": "Uijtdebroeks",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "4h42'51\"",
+      "gap": "+1'11\"",
+      "points": 0
+    },
+    {
+      "position": 23,
+      "name": "Romo",
+      "country": "🇪🇸",
+      "countryName": "Espagne",
+      "time": "4h43'31\"",
+      "gap": "+1'51\"",
+      "points": 0
+    },
+    {
+      "position": 24,
+      "name": "Caruso",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "4h43'42\"",
+      "gap": "+2'02\"",
+      "points": 0
+    },
+    {
+      "position": 25,
+      "name": "Wellens",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "4h43'42\"",
+      "gap": "+2'02\"",
+      "points": 0
+    },
+    {
+      "position": 26,
+      "name": "Benoot",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "4h44'07\"",
+      "gap": "+2'27\"",
+      "points": 0
+    },
+    {
+      "position": 27,
+      "name": "Plapp",
+      "country": "🇦🇺",
+      "countryName": "Australie",
+      "time": "4h44'10\"",
+      "gap": "+2'30\"",
+      "points": 0
+    },
+    {
+      "position": 28,
+      "name": "Prodhomme",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "4h44'10\"",
+      "gap": "+2'30\"",
+      "points": 0
+    },
+    {
+      "position": 29,
+      "name": "Harper",
+      "country": "🇦🇺",
+      "countryName": "Australie",
+      "time": "4h45'12\"",
+      "gap": "+3'32\"",
+      "points": 0
+    },
+    {
+      "position": 30,
+      "name": "Steinhauser",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "4h45'12\"",
+      "gap": "+3'32\"",
+      "points": 0
+    },
+    {
+      "position": 31,
+      "name": "Ayuso",
+      "country": "🇪🇸",
+      "countryName": "Espagne",
+      "time": "4h46'13\"",
+      "gap": "+4'33\"",
+      "points": 0
+    },
+    {
+      "position": 32,
+      "name": "Van Wilder",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "4h47'19\"",
+      "gap": "+5'39\"",
+      "points": 0
+    },
+    {
+      "position": 33,
+      "name": "Schmid",
+      "country": "🇨🇭",
+      "countryName": "Suisse",
+      "time": "4h47'19\"",
+      "gap": "+5'39\"",
+      "points": 0
+    },
+    {
+      "position": 34,
+      "name": "Kuss",
+      "country": "🇺🇸",
+      "countryName": "États-Unis",
+      "time": "4h48'09\"",
+      "gap": "+6'29\"",
+      "points": 0
+    },
+    {
+      "position": 35,
+      "name": "Godon",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "4h48'15\"",
+      "gap": "+6'35\"",
+      "points": 0
+    },
+    {
+      "position": 36,
+      "name": "Gee-West",
+      "country": "🇨🇦",
+      "countryName": "Canada",
+      "time": "4h49'30\"",
+      "gap": "+7'50\"",
+      "points": 0
+    },
+    {
+      "position": 37,
+      "name": "Bernal",
+      "country": "🇨🇴",
+      "countryName": "Colombie",
+      "time": "4h49'30\"",
+      "gap": "+7'50\"",
+      "points": 0
+    },
+    {
+      "position": 38,
+      "name": "Baudin",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "4h49'47\"",
+      "gap": "+8'07\"",
+      "points": 0
+    },
+    {
+      "position": 39,
+      "name": "Hindley",
+      "country": "🇦🇺",
+      "countryName": "Australie",
+      "time": "4h49'47\"",
+      "gap": "+8'07\"",
+      "points": 0
+    },
+    {
+      "position": 40,
+      "name": "Voisard",
+      "country": "🇨🇭",
+      "countryName": "Suisse",
+      "time": "4h49'47\"",
+      "gap": "+8'07\"",
+      "points": 0
+    },
+    {
+      "position": 41,
+      "name": "Paret-Peintre A.",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "4h49'54\"",
+      "gap": "+8'14\"",
+      "points": 0
+    },
+    {
+      "position": 42,
+      "name": "Storer",
+      "country": "🇦🇺",
+      "countryName": "Australie",
+      "time": "4h49'54\"",
+      "gap": "+8'14\"",
+      "points": 0
+    },
+    {
+      "position": 43,
+      "name": "Jegat",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "4h51'21\"",
+      "gap": "+9'41\"",
+      "points": 0
+    },
+    {
+      "position": 44,
+      "name": "Castrillo",
+      "country": "🇪🇸",
+      "countryName": "Espagne",
+      "time": "4h51'44\"",
+      "gap": "+10'04\"",
+      "points": 0
+    },
+    {
+      "position": 45,
+      "name": "Mohoric",
+      "country": "🇸🇮",
+      "countryName": "Slovénie",
+      "time": "4h55'41\"",
+      "gap": "+14'01\"",
+      "points": 0
+    },
+    {
+      "position": 46,
+      "name": "Simmons Q.",
+      "country": "🇺🇸",
+      "countryName": "États-Unis",
+      "time": "4h55'41\"",
+      "gap": "+14'01\"",
+      "points": 0
+    },
+    {
+      "position": 47,
+      "name": "Armirail",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "4h55'41\"",
+      "gap": "+14'01\"",
+      "points": 0
+    },
+    {
+      "position": 48,
+      "name": "Stannard",
+      "country": "🇬🇧",
+      "countryName": "Grande-Bretagne",
+      "time": "4h55'41\"",
+      "gap": "+14'01\"",
+      "points": 0
+    },
+    {
+      "position": 49,
+      "name": "Großschartner",
+      "country": "🇦🇹",
+      "countryName": "Autriche",
+      "time": "4h55'41\"",
+      "gap": "+14'01\"",
+      "points": 0
+    },
+    {
+      "position": 50,
+      "name": "Izagirre I.",
+      "country": "🇪🇸",
+      "countryName": "Espagne",
+      "time": "4h58'17\"",
+      "gap": "+16'37\"",
+      "points": 0
+    },
+    {
+      "position": 51,
+      "name": "Van Eetvelt",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "4h58'17\"",
+      "gap": "+16'37\"",
+      "points": 0
+    },
+    {
+      "position": 52,
+      "name": "Paret-Peintre V.",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "4h59'54\"",
+      "gap": "+18'14\"",
+      "points": 0
+    },
+    {
+      "position": 53,
+      "name": "Ganna",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "5h00'01\"",
+      "gap": "+18'21\"",
+      "points": 0
+    },
+    {
+      "position": 54,
+      "name": "Kwiatkowski",
+      "country": "🇵🇱",
+      "countryName": "Pologne",
+      "time": "5h00'01\"",
+      "gap": "+18'21\"",
+      "points": 0
+    },
+    {
+      "position": 55,
+      "name": "Foss",
+      "country": "🇳🇴",
+      "countryName": "Norvège",
+      "time": "5h00'01\"",
+      "gap": "+18'21\"",
+      "points": 0
+    },
+    {
+      "position": 56,
+      "name": "Van Gils",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h00'08\"",
+      "gap": "+18'28\"",
+      "points": 0
+    },
+    {
+      "position": 57,
+      "name": "Tejada",
+      "country": "🇨🇴",
+      "countryName": "Colombie",
+      "time": "5h00'08\"",
+      "gap": "+18'28\"",
+      "points": 0
+    },
+    {
+      "position": 58,
+      "name": "Campenaerts",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h00'36\"",
+      "gap": "+18'56\"",
+      "points": 0
+    },
+    {
+      "position": 59,
+      "name": "Quinn",
+      "country": "🇺🇸",
+      "countryName": "États-Unis",
+      "time": "5h07'08\"",
+      "gap": "+25'28\"",
+      "points": 0
+    },
+    {
+      "position": 60,
+      "name": "Hermans Q.",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h07'08\"",
+      "gap": "+25'28\"",
+      "points": 0
+    },
+    {
+      "position": 61,
+      "name": "Howson",
+      "country": "🇦🇺",
+      "countryName": "Australie",
+      "time": "5h07'08\"",
+      "gap": "+25'28\"",
+      "points": 0
+    },
+    {
+      "position": 62,
+      "name": "Meurisse",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h07'08\"",
+      "gap": "+25'28\"",
+      "points": 0
+    },
+    {
+      "position": 63,
+      "name": "Skujiņš",
+      "country": "🇱🇻",
+      "countryName": "Lettonie",
+      "time": "5h07'14\"",
+      "gap": "+25'34\"",
+      "points": 0
+    },
+    {
+      "position": 64,
+      "name": "Rubio",
+      "country": "🇨🇴",
+      "countryName": "Colombie",
+      "time": "5h09'05\"",
+      "gap": "+27'25\"",
+      "points": 0
+    },
+    {
+      "position": 65,
+      "name": "Abrahamsen",
+      "country": "🇳🇴",
+      "countryName": "Norvège",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 66,
+      "name": "Braz Afonso",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 67,
+      "name": "Delbove",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 68,
+      "name": "Pacher",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 69,
+      "name": "Cort Nielsen",
+      "country": "🇩🇰",
+      "countryName": "Danemark",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 70,
+      "name": "Bennett G.",
+      "country": "🇳🇿",
+      "countryName": "Nouvelle-Zélande",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 71,
+      "name": "Higuita",
+      "country": "🇨🇴",
+      "countryName": "Colombie",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 72,
+      "name": "Alaphilippe",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 73,
+      "name": "Germani",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 74,
+      "name": "Costiou",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 75,
+      "name": "Nicolau",
+      "country": "🇪🇸",
+      "countryName": "Espagne",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 76,
+      "name": "Vervaeke",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 77,
+      "name": "Balderstone",
+      "country": "🇦🇺",
+      "countryName": "Australie",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 78,
+      "name": "Oliveira N.",
+      "country": "🇵🇹",
+      "countryName": "Portugal",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 79,
+      "name": "Berwick",
+      "country": "🇦🇺",
+      "countryName": "Australie",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 80,
+      "name": "Craps",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 81,
+      "name": "Barguil",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 82,
+      "name": "Zimmermann",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 83,
+      "name": "Martin Guyonnet",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 84,
+      "name": "Vercher",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 85,
+      "name": "Johannessen A.",
+      "country": "🇳🇴",
+      "countryName": "Norvège",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 86,
+      "name": "Frigo",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 87,
+      "name": "Engelhardt",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 88,
+      "name": "Berthet",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 89,
+      "name": "Parra J.",
+      "country": "🇪🇸",
+      "countryName": "Espagne",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 90,
+      "name": "Træen",
+      "country": "🇳🇴",
+      "countryName": "Norvège",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 91,
+      "name": "García Pierna R.",
+      "country": "🇪🇸",
+      "countryName": "Espagne",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 92,
+      "name": "Debruyne",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 93,
+      "name": "van Baarle",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 94,
+      "name": "Vinokurov",
+      "country": "🇰🇿",
+      "countryName": "Kazakhstan",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 95,
+      "name": "Delettre",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 96,
+      "name": "Cepeda J.",
+      "country": "🇪🇨",
+      "countryName": "Équateur",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 97,
+      "name": "Berckmoes",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 98,
+      "name": "Breuillard",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 99,
+      "name": "Dhondt",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 100,
+      "name": "Turgis",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 101,
+      "name": "Velasco",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 102,
+      "name": "Stuyven",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 103,
+      "name": "Verstrynge",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 104,
+      "name": "Thomas B.",
+      "country": "🇬🇧",
+      "countryName": "Grande-Bretagne",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 105,
+      "name": "Trentin",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 106,
+      "name": "Grégoire",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 107,
+      "name": "van der Poel M.",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h09'59\"",
+      "gap": "+28'19\"",
+      "points": 0
+    },
+    {
+      "position": 108,
+      "name": "Affini",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "5h10'28\"",
+      "gap": "+28'48\"",
+      "points": 0
+    },
+    {
+      "position": 109,
+      "name": "De Lie",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h10'28\"",
+      "gap": "+28'48\"",
+      "points": 0
+    },
+    {
+      "position": 110,
+      "name": "Vacek",
+      "country": "🇨🇿",
+      "countryName": "Tchéquie",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 111,
+      "name": "Aranburu",
+      "country": "🇪🇸",
+      "countryName": "Espagne",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 112,
+      "name": "van den Broek",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 113,
+      "name": "Matthews",
+      "country": "🇦🇺",
+      "countryName": "Australie",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 114,
+      "name": "Valgren",
+      "country": "🇩🇰",
+      "countryName": "Danemark",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 115,
+      "name": "Hoole",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 116,
+      "name": "Le Berre",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 117,
+      "name": "Bittner",
+      "country": "🇨🇿",
+      "countryName": "Tchéquie",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 118,
+      "name": "Politt",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 119,
+      "name": "Dillier",
+      "country": "🇨🇭",
+      "countryName": "Suisse",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 120,
+      "name": "Fretin",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 121,
+      "name": "Vermeersch F.",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h11'41\"",
+      "gap": "+30'01\"",
+      "points": 0
+    },
+    {
+      "position": 122,
+      "name": "Azparren X.",
+      "country": "🇪🇸",
+      "countryName": "Espagne",
+      "time": "5h12'14\"",
+      "gap": "+30'34\"",
+      "points": 0
+    },
+    {
+      "position": 123,
+      "name": "Durbridge",
+      "country": "🇦🇺",
+      "countryName": "Australie",
+      "time": "5h12'14\"",
+      "gap": "+30'34\"",
+      "points": 0
+    },
+    {
+      "position": 124,
+      "name": "Asgreen",
+      "country": "🇩🇰",
+      "countryName": "Danemark",
+      "time": "5h12'17\"",
+      "gap": "+30'37\"",
+      "points": 0
+    },
+    {
+      "position": 125,
+      "name": "Page",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h12'17\"",
+      "gap": "+30'37\"",
+      "points": 0
+    },
+    {
+      "position": 126,
+      "name": "Kirsch",
+      "country": "🇱🇺",
+      "countryName": "Luxembourg",
+      "time": "5h12'17\"",
+      "gap": "+30'37\"",
+      "points": 0
+    },
+    {
+      "position": 127,
+      "name": "Pedersen M.",
+      "country": "🇩🇰",
+      "countryName": "Danemark",
+      "time": "5h12'17\"",
+      "gap": "+30'37\"",
+      "points": 0
+    },
+    {
+      "position": 128,
+      "name": "Wright F.",
+      "country": "🇬🇧",
+      "countryName": "Grande-Bretagne",
+      "time": "5h12'17\"",
+      "gap": "+30'37\"",
+      "points": 0
+    },
+    {
+      "position": 129,
+      "name": "Neilands",
+      "country": "🇱🇻",
+      "countryName": "Lettonie",
+      "time": "5h12'17\"",
+      "gap": "+30'37\"",
+      "points": 0
+    },
+    {
+      "position": 130,
+      "name": "Merlier",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h12'17\"",
+      "gap": "+30'37\"",
+      "points": 0
+    },
+    {
+      "position": 131,
+      "name": "Denz",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "5h13'11\"",
+      "gap": "+31'31\"",
+      "points": 0
+    },
+    {
+      "position": 132,
+      "name": "Molenaar",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 133,
+      "name": "Eenkhoorn",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 134,
+      "name": "Otruba",
+      "country": "🇵🇱",
+      "countryName": "Pologne",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 135,
+      "name": "Guernalec",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 136,
+      "name": "Van Moer",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 137,
+      "name": "Artz",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 138,
+      "name": "Oldani",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 139,
+      "name": "Degenkolb",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 140,
+      "name": "Gate",
+      "country": "🇳🇿",
+      "countryName": "Nouvelle-Zélande",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 141,
+      "name": "Hagenes",
+      "country": "🇳🇴",
+      "countryName": "Norvège",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 142,
+      "name": "Van Mechelen",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 143,
+      "name": "Tratnik",
+      "country": "🇸🇮",
+      "countryName": "Slovénie",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 144,
+      "name": "Girmay",
+      "country": "🇪🇷",
+      "countryName": "Érythrée",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 145,
+      "name": "Gaviria",
+      "country": "🇨🇴",
+      "countryName": "Colombie",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 146,
+      "name": "Charmig",
+      "country": "🇩🇰",
+      "countryName": "Danemark",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 147,
+      "name": "Van Asbroeck",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 148,
+      "name": "Pluimers",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 149,
+      "name": "Askey",
+      "country": "🇬🇧",
+      "countryName": "Grande-Bretagne",
+      "time": "5h13'15\"",
+      "gap": "+31'35\"",
+      "points": 0
+    },
+    {
+      "position": 150,
+      "name": "Hirschi",
+      "country": "🇨🇭",
+      "countryName": "Suisse",
+      "time": "5h13'37\"",
+      "gap": "+31'57\"",
+      "points": 0
+    },
+    {
+      "position": 151,
+      "name": "Verona",
+      "country": "🇪🇸",
+      "countryName": "Espagne",
+      "time": "5h13'37\"",
+      "gap": "+31'57\"",
+      "points": 0
+    },
+    {
+      "position": 152,
+      "name": "Tarling",
+      "country": "🇬🇧",
+      "countryName": "Grande-Bretagne",
+      "time": "5h13'37\"",
+      "gap": "+31'57\"",
+      "points": 0
+    },
+    {
+      "position": 153,
+      "name": "Marsman",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 154,
+      "name": "Stewart J.",
+      "country": "🇬🇧",
+      "countryName": "Grande-Bretagne",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 155,
+      "name": "Planckaert E.",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 156,
+      "name": "Russo",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 157,
+      "name": "Biesterbos",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 158,
+      "name": "Haller",
+      "country": "🇦🇹",
+      "countryName": "Autriche",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 159,
+      "name": "Louvel",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 160,
+      "name": "Skaarseth",
+      "country": "🇳🇴",
+      "countryName": "Norvège",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 161,
+      "name": "Allegaert",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 162,
+      "name": "Bol C.",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 163,
+      "name": "Rickaert",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 164,
+      "name": "Kanter",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 165,
+      "name": "Ackermann",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 166,
+      "name": "Slock",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 167,
+      "name": "Kooij",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 168,
+      "name": "Bauhaus",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "5h13'49\"",
+      "gap": "+32'09\"",
+      "points": 0
+    },
+    {
+      "position": 169,
+      "name": "Biermans",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h14'01\"",
+      "gap": "+32'21\"",
+      "points": 0
+    },
+    {
+      "position": 170,
+      "name": "Wærenskjold",
+      "country": "🇳🇴",
+      "countryName": "Norvège",
+      "time": "5h14'01\"",
+      "gap": "+32'21\"",
+      "points": 0
+    },
+    {
+      "position": 171,
+      "name": "Walker",
+      "country": "🇬🇧",
+      "countryName": "Grande-Bretagne",
+      "time": "5h15'18\"",
+      "gap": "+33'38\"",
+      "points": 0
+    },
+    {
+      "position": 172,
+      "name": "de Kleijn",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h15'18\"",
+      "gap": "+33'38\"",
+      "points": 0
+    },
+    {
+      "position": 173,
+      "name": "Velstroffer",
+      "country": "🇫🇷",
+      "countryName": "France",
+      "time": "5h15'18\"",
+      "gap": "+33'38\"",
+      "points": 0
+    },
+    {
+      "position": 174,
+      "name": "Ballerini",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "5h15'18\"",
+      "gap": "+33'38\"",
+      "points": 0
+    },
+    {
+      "position": 175,
+      "name": "O'Brien",
+      "country": "🇮🇪",
+      "countryName": "Irlande",
+      "time": "5h15'18\"",
+      "gap": "+33'38\"",
+      "points": 0
+    },
+    {
+      "position": 176,
+      "name": "Märkl",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "5h15'18\"",
+      "gap": "+33'38\"",
+      "points": 0
+    },
+    {
+      "position": 177,
+      "name": "Cattaneo",
+      "country": "🇮🇹",
+      "countryName": "Italie",
+      "time": "5h16'23\"",
+      "gap": "+34'43\"",
+      "points": 0
+    },
+    {
+      "position": 178,
+      "name": "Van Lerberghe",
+      "country": "🇧🇪",
+      "countryName": "Belgique",
+      "time": "5h20'04\"",
+      "gap": "+38'24\"",
+      "points": 0
+    },
+    {
+      "position": 179,
+      "name": "Hessmann",
+      "country": "🇩🇪",
+      "countryName": "Allemagne",
+      "time": "5h24'08\"",
+      "gap": "+42'28\"",
+      "points": 0
+    },
+    {
+      "position": 180,
+      "name": "van Dijke T.",
+      "country": "🇳🇱",
+      "countryName": "Pays-Bas",
+      "time": "5h23'40\"",
+      "gap": "+42'00\"",
+      "points": 0
+    }
+  ]
+}
