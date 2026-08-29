@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Équipes — Cycle League RP</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =========================================================
+           PAGE ÉQUIPES
+           ========================================================= */
+
+        .teams-page {
+            min-height: 100vh;
+        }
+
+        .teams-container {
+            width: min(1000px, 92%);
+            margin: 30px auto 60px;
+        }
+
+        /* =========================
+           FILTRES
+           ========================= */
+
+        .teams-filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .teams-filter {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid #d8dce2;
+            border-radius: 8px;
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1d23;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .teams-filter-wrap {
+            position: relative;
+        }
+
+        .teams-filter-wrap::after {
+            content: "▾";
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #6b7280;
+            font-size: 12px;
+        }
+
+        .teams-filter-wrap select {
+            padding-right: 30px;
+        }
+
+        /* =========================
+           LISTE ÉQUIPES
+           ========================= */
+
+        .teams-card {
+            border: 1px solid #d8dce2;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .teams-card-header {
+            background: #12141a;
+            color: #fff;
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 12px 18px;
+        }
+
+        .teams-list {
+            display: grid;
+        }
+
+        .team-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 20px;
+            border-left: 5px solid var(--team-color, #ccc);
+            border-bottom: 1px solid #eceff2;
+            background: var(--team-bg, #fff);
+            text-decoration: none;
+            transition: filter 0.15s ease;
+        }
+
+        .team-row:hover {
+            filter: brightness(0.97);
+        }
+
+        .team-row:last-child {
+            border-bottom: none;
+        }
+
+        .team-info h3 {
+            margin: 0;
+            font-size: 17px;
+            font-weight: 800;
+            color: #14151a;
+        }
+
+        .team-country {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 4px;
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        .team-country .flag {
+            font-size: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .teams-container {
+                margin: 20px auto 40px;
+            }
+
+            .team-row {
+                padding: 12px 14px;
+            }
+
+            .team-info h3 {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body class="teams-page">
+
+    <!-- =====================================================
+         NAVIGATION
+         ===================================================== -->
+
+    <header>
+        <div class="header-top">
+            <h1>Cycle League <span class="tag">RP</span></h1>
+            <div class="site-search">
+                <input type="text" id="site-search-input" placeholder="Rechercher un coureur, une page..." autocomplete="off">
+                <div id="site-search-results" class="site-search-results"></div>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="coureurs.html">Coureurs</a>
+            <a href="equipes.html">Équipes</a>
+            <a href="courses.html">Courses</a>
+            <a href="classements.html">Classements</a>
+            <a href="tdf2026.html" class="nav-tdf">
+                <img src="https://i.la-croix.com/836x/smart/2024/06/18/1489295-le-logo-du-tour-de-france-avant-le-depart-de-l-edi.jpg" alt="TdF 2026" class="tdf-icon">
+                Tour de France 2026
+            </a>
+        </nav>
+    </header>
+
+    <main>
+
+        <div class="teams-container">
+
+            <!-- =================================================
+                 FILTRES
+                 ================================================= -->
+
+            <div class="teams-filters">
+
+                <div class="teams-filter-wrap">
+                    <select class="teams-filter" id="filter-division">
+                        <option>WorldTeam</option>
+                        <option>ProTeam</option>
+                        <option>Continental</option>
+                    </select>
+                </div>
+
+                <div class="teams-filter-wrap">
+                    <select class="teams-filter" id="filter-season">
+                        <option>2026</option>
+                        <option>2025</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- =================================================
+                 LISTE DES ÉQUIPES
+                 ================================================= -->
+
+            <div class="teams-card">
+
+                <div class="teams-card-header">
+                    Équipes
+                </div>
+
+                <div class="teams-list">
+
+                    <a href="equipe-alpecin-premier-tech.html" class="team-row" style="--team-color:#2e6fdb; --team-bg:#eef4fd;">
+                        <div class="team-info">
+                            <h3>Alpecin-Premier Tech</h3>
+                            <div class="team-country"><span class="flag">🇧🇪</span> Belgique</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-bahrain-victorious.html" class="team-row" style="--team-color:#8b1e2e; --team-bg:#f7eef0;">
+                        <div class="team-info">
+                            <h3>Bahrain Victorious</h3>
+                            <div class="team-country"><span class="flag">🇧🇭</span> Bahrëin</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-decathlon-cma-cgm.html" class="team-row" style="--team-color:#12203c; --team-bg:#f4f5f7;">
+                        <div class="team-info">
+                            <h3>Decathlon CMA CGM</h3>
+                            <div class="team-country"><span class="flag">🇫🇷</span> France</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-ef-education-easypost.html" class="team-row" style="--team-color:#e0457b; --team-bg:#fdf1f6;">
+                        <div class="team-info">
+                            <h3>EF Education-EasyPost</h3>
+                            <div class="team-country"><span class="flag">🇺🇸</span> États-Unis</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-groupama-fdj-united.html" class="team-row" style="--team-color:#1e73be; --team-bg:#eef5fc;">
+                        <div class="team-info">
+                            <h3>Groupama-FDJ United</h3>
+                            <div class="team-country"><span class="flag">🇫🇷</span> France</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-lidl-trek.html" class="team-row" style="--team-color:#e0242c; --team-bg:#f6f7f8;">
+                        <div class="team-info">
+                            <h3>Lidl-Trek</h3>
+                            <div class="team-country"><span class="flag">🇩🇪</span> Allemagne</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-lotto-intermarche.html" class="team-row" style="--team-color:#7a1f2b; --team-bg:#faf1f2;">
+                        <div class="team-info">
+                            <h3>Lotto-Intermarché</h3>
+                            <div class="team-country"><span class="flag">🇧🇪</span> Belgique</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-movistar.html" class="team-row" style="--team-color:#8f97a1; --team-bg:#f6f7f8;">
+                        <div class="team-info">
+                            <h3>Movistar</h3>
+                            <div class="team-country"><span class="flag">🇪🇸</span> Espagne</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-netcompany-ineos.html" class="team-row" style="--team-color:#14213d; --team-bg:#f4f5f7;">
+                        <div class="team-info">
+                            <h3>Netcompany INEOS</h3>
+                            <div class="team-country"><span class="flag">🇬🇧</span> Royaume-Uni</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-nsn-cycling-team.html" class="team-row" style="--team-color:#c8102e; --team-bg:#f6f7f8;">
+                        <div class="team-info">
+                            <h3>NSN Cycling Team</h3>
+                            <div class="team-country"><span class="flag">🇨🇭</span> Suisse</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-red-bull-bora-hansgrohe.html" class="team-row" style="--team-color:#d40000; --team-bg:#fbeeee;">
+                        <div class="team-info">
+                            <h3>Red Bull-BORA-hansgrohe</h3>
+                            <div class="team-country"><span class="flag">🇩🇪</span> Allemagne</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-soudal-quick-step.html" class="team-row" style="--team-color:#1550a4; --team-bg:#eef3fb;">
+                        <div class="team-info">
+                            <h3>Soudal Quick-Step</h3>
+                            <div class="team-country"><span class="flag">🇧🇪</span> Belgique</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-team-jayco-alula.html" class="team-row" style="--team-color:#1f8a4c; --team-bg:#eef8f1;">
+                        <div class="team-info">
+                            <h3>Team Jayco AlUla</h3>
+                            <div class="team-country"><span class="flag">🇦🇺</span> Australie</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-team-picnic-postnl.html" class="team-row" style="--team-color:#f28c00; --team-bg:#fef6ea;">
+                        <div class="team-info">
+                            <h3>Team Picnic PostNL</h3>
+                            <div class="team-country"><span class="flag">🇳🇱</span> Pays-Bas</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-visma-lease-a-bike.html" class="team-row" style="--team-color:#0a0a0a; --team-bg:#f6f7f8;">
+                        <div class="team-info">
+                            <h3>Visma-Lease a Bike</h3>
+                            <div class="team-country"><span class="flag">🇳🇱</span> Pays-Bas</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-uae-team-emirates-xrg.html" class="team-row" style="--team-color:#d21f2e; --team-bg:#fbeeee;">
+                        <div class="team-info">
+                            <h3>UAE Team Emirates-XRG</h3>
+                            <div class="team-country"><span class="flag">🇦🇪</span> Émirats Arabes Unis</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-uno-x-mobility.html" class="team-row" style="--team-color:#0b3d91; --team-bg:#eef3fb;">
+                        <div class="team-info">
+                            <h3>Uno-X Mobility</h3>
+                            <div class="team-country"><span class="flag">🇳🇴</span> Norvège</div>
+                        </div>
+                    </a>
+
+                    <a href="equipe-xds-astana-team.html" class="team-row" style="--team-color:#0ab4b0; --team-bg:#eafbfa;">
+                        <div class="team-info">
+                            <h3>XDS Astana Team</h3>
+                            <div class="team-country"><span class="flag">🇰🇿</span> Kazakhstan</div>
+                        </div>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+        Cycle League RP — 2026
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/search.js"></script>
+
+</body>
+
+</html>
