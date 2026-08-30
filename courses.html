@@ -1,801 +1,565 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<title>Calendrier UCI WorldTour 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --border:#e2e2e2;
+    --text:#222;
+    --muted:#6b6b6b;
+    --link:#2a6ebb;
+    --bg:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:24px 12px;
+    background:#f2f2f2;
+    font-family:Arial, Helvetica, sans-serif;
+    color:var(--text);
+  }
+  .wrap{
+    max-width:1000px;
+    margin:0 auto;
+    background:var(--bg);
+    border:1px solid var(--border);
+  }
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+  /* --- top controls: WorldTour/Proteam select + 2026 tab --- */
+  .top-controls{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 14px 10px 14px;
+  }
+  .dropdown-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid #ccc;
+    background:#fafafa;
+    padding:6px 10px;
+    font-size:14px;
+    border-radius:2px;
+    cursor:pointer;
+    color:var(--text);
+  }
+  .dropdown-btn:hover{ background:#f0f0f0; }
+  .dropdown-btn::after{
+    content:"▾";
+    font-size:11px;
+    color:#666;
+  }
+  select.circuit-select{
+    appearance:none;
+    -webkit-appearance:none;
+    border:1px solid #ccc;
+    background:#fafafa url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="%23666"/></svg>') no-repeat right 10px center;
+    padding:6px 26px 6px 10px;
+    font-size:14px;
+    border-radius:2px;
+    color:var(--text);
+    cursor:pointer;
+  }
+  .year-tab{
+    border-bottom:2px solid #222;
+    padding:8px 2px 6px 2px;
+    font-size:14px;
+    font-weight:bold;
+    color:var(--text);
+  }
 
-    <title>Tour de France 2026 — Cycle League RP</title>
+  /* --- CALENDRIER header bar --- */
+  .section-bar{
+    background:#1c1c1c;
+    color:#fff;
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:.03em;
+    padding:8px 14px;
+  }
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+  /* --- race rows --- */
+  .race-row{
+    display:flex;
+    align-items:center;
+    padding:10px 14px;
+    border-bottom:1px solid var(--border);
+    border-left:4px solid var(--accent, #888);
+    gap:14px;
+  }
+  .race-row:hover{ background:#fafafa; }
 
-    <style>
+  .date-box{
+    width:60px;
+    flex:0 0 60px;
+    font-size:13px;
+    line-height:1.3;
+    color:var(--text);
+  }
 
-        .race-hero {
-            background: linear-gradient(
-                135deg,
-                #111827,
-                #1f2937
-            );
-            color: white;
-            border-radius: 18px;
-            padding: 35px;
-            margin-bottom: 30px;
-        }
+  .flag{
+    font-size:22px;
+    flex:0 0 26px;
+    text-align:center;
+  }
 
-        .race-hero h2 {
-            margin: 0 0 8px;
-            font-size: 34px;
-        }
+  .race-info{
+    flex:1 1 auto;
+    min-width:0;
+  }
+  .race-info a.race-link{
+    display:block;
+    font-weight:bold;
+    font-size:14.5px;
+    color:var(--text);
+    text-decoration:none;
+  }
+  .race-info a.race-link:hover{ color:var(--link); text-decoration:underline; }
 
-        .race-hero p {
-            margin: 6px 0;
-            opacity: .85;
-        }
+  .race-info a.winner-link{
+    display:block;
+    font-size:13px;
+    color:var(--link);
+    text-decoration:none;
+    margin-top:2px;
+  }
+  .race-info a.winner-link:hover{ text-decoration:underline; }
+  .race-info a.winner-link.tbd{
+    color:#999;
+    font-style:italic;
+  }
 
-        .race-info {
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
-            margin-top: 25px;
-        }
+  .class-tag{
+    flex:0 0 auto;
+    font-size:13px;
+    color:var(--muted);
+    text-align:right;
+    min-width:44px;
+  }
 
-        .race-info-box {
-            background: rgba(255,255,255,.08);
-            border-radius: 12px;
-            padding: 15px;
-        }
-
-        .race-info-box strong {
-            display: block;
-            font-size: 22px;
-        }
-
-        .stages-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .stage-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 15px;
-            padding: 20px;
-            transition: .2s;
-        }
-
-        .stage-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,.08);
-        }
-
-        .stage-top {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .stage-number {
-            min-width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #111827;
-            color: white;
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        .stage-title {
-            flex: 1;
-        }
-
-        .stage-title h3 {
-            margin: 0 0 5px;
-            font-size: 19px;
-        }
-
-        .stage-title p {
-            margin: 0;
-            color: #6b7280;
-        }
-
-        .stage-type {
-            display: inline-block;
-            padding: 5px 9px;
-            border-radius: 999px;
-            background: #f3f4f6;
-            font-size: 12px;
-            font-weight: 600;
-            color: #374151;
-        }
-
-        .stage-fields {
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        .stage-field {
-            background: #f9fafb;
-            border-radius: 10px;
-            padding: 12px;
-        }
-
-        .stage-field small {
-            display: block;
-            color: #6b7280;
-            margin-bottom: 5px;
-        }
-
-        .stage-field strong {
-            color: #111827;
-        }
-
-        .stage-notes {
-            margin-top: 15px;
-            padding: 15px;
-            border-left: 4px solid #111827;
-            background: #f9fafb;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .rest-day {
-            background: #f3f4f6;
-            border: 1px dashed #9ca3af;
-            border-radius: 12px;
-            padding: 15px 20px;
-            color: #4b5563;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        @media (max-width: 700px) {
-
-            .race-hero {
-                padding: 25px 20px;
-            }
-
-            .race-hero h2 {
-                font-size: 27px;
-            }
-
-            .stage-top {
-                align-items: flex-start;
-            }
-
-            .stage-type {
-                display: none;
-            }
-
-        }
-
-    </style>
-
+  footer.note{
+    padding:12px 14px;
+    font-size:11px;
+    color:#999;
+  }
+</style>
 </head>
-
-
 <body>
 
+<div class="wrap">
 
-<header>
+  <div class="top-controls">
+    <select class="circuit-select">
+      <option>WorldTour</option>
+      <option>ProTeam</option>
+    </select>
+    <div class="year-tab">2026</div>
+  </div>
 
-    <div class="header-top">
+  <div class="section-bar">CALENDRIER</div>
 
-        <h1>
-            Cycle League
-            <span class="tag">RP</span>
-        </h1>
-
-        <div class="site-search">
-
-            <input
-                type="text"
-                id="site-search-input"
-                placeholder="Rechercher un coureur, une page..."
-                autocomplete="off"
-            >
-
-            <div
-                id="site-search-results"
-                class="site-search-results"
-            ></div>
-
-        </div>
-
+  <!-- 1 -->
+  <div class="race-row" style="--accent:#e07b2a;">
+    <div class="date-box">20.01<br>25.01</div>
+    <div class="flag">🇦🇺</div>
+    <div class="race-info">
+      <a class="race-link" href="tourdownunder2026.html" target="_blank" rel="noopener">Santos Tour Down Under</a>
+      <a class="winner-link" href="tourdownunder2026.html" target="_blank" rel="noopener">ALMEIDA João</a>
     </div>
-
-
-    <nav>
-
-        <a href="index.html">
-            Accueil
-        </a>
-
-        <a href="coureurs.html">
-            Coureurs
-        </a>
-
-        <a href="equipes.html">
-            Équipes
-        </a>
-
-        <a
-            href="courses.html"
-            class="active"
-        >
-            Courses
-        </a>
-
-        <a href="classements.html">
-            Classements
-        </a>
-
-    </nav>
-
-</header>
-
-
-<main>
-
-
-    <!-- =====================================================
-         EN-TÊTE DU TOUR
-         ===================================================== -->
-
-    <section>
-
-        <div class="race-hero">
-
-            <h2>
-                Tour de France 2026
-            </h2>
-
-            <p>
-                113e édition du Tour de France
-            </p>
-
-            <p>
-                4 juillet — 26 juillet 2026
-            </p>
-
-
-            <div class="race-info">
-
-                <div class="race-info-box">
-
-                    <small>
-                        Étapes
-                    </small>
-
-                    <strong>
-                        21
-                    </strong>
-
-                </div>
-
-
-                <div class="race-info-box">
-
-                    <small>
-                        Distance
-                    </small>
-
-                    <strong>
-                        3 320,7 km
-                    </strong>
-
-                </div>
-
-
-                <div class="race-info-box">
-
-                    <small>
-                        Départ
-                    </small>
-
-                    <strong>
-                        Barcelone
-                    </strong>
-
-                </div>
-
-
-                <div class="race-info-box">
-
-                    <small>
-                        Arrivée
-                    </small>
-
-                    <strong>
-                        Paris
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         INFORMATIONS RP
-         ===================================================== -->
-
-    <section>
-
-        <h2>
-            Informations RP
-        </h2>
-
-        <div class="stage-fields">
-
-            <div class="stage-field">
-
-                <small>
-                    Vainqueur du Tour
-                </small>
-
-                <strong>
-                    À renseigner
-                </strong>
-
-            </div>
-
-
-            <div class="stage-field">
-
-                <small>
-                    Maillot jaune final
-                </small>
-
-                <strong>
-                    À renseigner
-                </strong>
-
-            </div>
-
-
-            <div class="stage-field">
-
-                <small>
-                    Maillot vert
-                </small>
-
-                <strong>
-                    À renseigner
-                </strong>
-
-            </div>
-
-
-            <div class="stage-field">
-
-                <small>
-                    Maillot à pois
-                </small>
-
-                <strong>
-                    À renseigner
-                </strong>
-
-            </div>
-
-
-            <div class="stage-field">
-
-                <small>
-                    Meilleur jeune
-                </small>
-
-                <strong>
-                    À renseigner
-                </strong>
-
-            </div>
-
-
-            <div class="stage-field">
-
-                <small>
-                    Équipe gagnante
-                </small>
-
-                <strong>
-                    À renseigner
-                </strong>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         ÉTAPES
-         ===================================================== -->
-
-    <section>
-
-        <h2>
-            Les étapes
-        </h2>
-
-        <div class="stages-list">
-
-
-            <!-- ÉTAPE 1 -->
-
-            <article class="stage-card">
-
-                <div class="stage-top">
-
-                    <div class="stage-number">
-                        1
-                    </div>
-
-                    <div class="stage-title">
-
-                        <h3>
-                            Barcelone → Barcelone
-                        </h3>
-
-                        <p>
-                            4 juillet 2026 · 19,6 km
-                        </p>
-
-                    </div>
-
-                    <span class="stage-type">
-                        Contre-la-montre par équipe
-                    </span>
-
-                </div>
-
-                <div class="stage-fields">
-
-                    <div class="stage-field">
-                        <small>Vainqueur</small>
-                        <strong>À renseigner</strong>
-                    </div>
-
-                    <div class="stage-field">
-                        <small>Maillot jaune</small>
-                        <strong>À renseigner</strong>
-                    </div>
-
-                    <div class="stage-field">
-                        <small>Temps</small>
-                        <strong>À renseigner</strong>
-                    </div>
-
-                </div>
-
-                <div class="stage-notes">
-                    <strong>Notes :</strong>
-                    À renseigner
-                </div>
-
-            </article>
-
-
-            <!-- ÉTAPE 2 -->
-
-            <article class="stage-card">
-
-                <div class="stage-top">
-
-                    <div class="stage-number">2</div>
-
-                    <div class="stage-title">
-
-                        <h3>
-                            Tarragone → Barcelone
-                        </h3>
-
-                        <p>
-                            5 juillet 2026 · 168,5 km
-                        </p>
-
-                    </div>
-
-                    <span class="stage-type">
-                        Accidentée
-                    </span>
-
-                </div>
-
-                <div class="stage-fields">
-
-                    <div class="stage-field">
-                        <small>Vainqueur</small>
-                        <strong>À renseigner</strong>
-                    </div>
-
-                    <div class="stage-field">
-                        <small>Maillot jaune</small>
-                        <strong>À renseigner</strong>
-                    </div>
-
-                    <div class="stage-field">
-                        <small>Temps</small>
-                        <strong>À renseigner</strong>
-                    </div>
-
-                </div>
-
-                <div class="stage-notes">
-                    <strong>Notes :</strong>
-                    À renseigner
-                </div>
-
-            </article>
-
-
-            <!-- ÉTAPE 3 -->
-
-            <article class="stage-card">
-
-                <div class="stage-top">
-
-                    <div class="stage-number">3</div>
-
-                    <div class="stage-title">
-
-                        <h3>
-                            Granollers → Les Angles
-                        </h3>
-
-                        <p>
-                            6 juillet 2026 · 195,9 km
-                        </p>
-
-                    </div>
-
-                    <span class="stage-type">
-                        Montagne
-                    </span>
-
-                </div>
-
-                <div class="stage-fields">
-
-                    <div class="stage-field">
-                        <small>Vainqueur</small>
-                        <strong>À renseigner</strong>
-                    </div>
-
-                    <div class="stage-field">
-                        <small>Maillot jaune</small>
-                        <strong>À renseigner</strong>
-                    </div>
-
-                    <div class="stage-field">
-                        <small>Temps</small>
-                        <strong>À renseigner</strong>
-                    </div>
-
-                </div>
-
-                <div class="stage-notes">
-                    <strong>Notes :</strong>
-                    À renseigner
-                </div>
-
-            </article>
-
-
-            <!-- ÉTAPES 4 À 21 -->
-
-            <script>
-
-                const stages = [
-
-                    [4, "Carcassonne", "Foix", "7 juillet 2026", "181,9 km", "Accidentée"],
-
-                    [5, "Lannemezan", "Pau", "8 juillet 2026", "158,3 km", "Plat"],
-
-                    [6, "Pau", "Gavarnie-Gèdre", "9 juillet 2026", "186,2 km", "Montagne"],
-
-                    [7, "Hagetmau", "Bordeaux", "10 juillet 2026", "175,1 km", "Plat"],
-
-                    [8, "Périgueux", "Bergerac", "11 juillet 2026", "180,4 km", "Plat"],
-
-                    [9, "Malemort", "Ussel", "12 juillet 2026", "154,6 km", "Accidentée"],
-
-                    [10, "Aurillac", "Le Lioran", "14 juillet 2026", "166,6 km", "Montagne"],
-
-                    [11, "Vichy", "Nevers", "15 juillet 2026", "161,3 km", "Plat"],
-
-                    [12, "Circuit Nevers Magny-Cours", "Chalon-sur-Saône", "16 juillet 2026", "179,1 km", "Plat"],
-
-                    [13, "Dole", "Belfort", "17 juillet 2026", "205,8 km", "Accidentée"],
-
-                    [14, "Mulhouse", "Le Markstein Fellering", "18 juillet 2026", "155,3 km", "Montagne"],
-
-                    [15, "Champagnole", "Plateau de Solaison", "19 juillet 2026", "183,9 km", "Montagne"],
-
-                    [16, "Évian-les-Bains", "Thonon-les-Bains", "21 juillet 2026", "26,1 km", "Contre-la-montre individuel"],
-
-                    [17, "Chambéry", "Voiron", "22 juillet 2026", "174,7 km", "Plat"],
-
-                    [18, "Voiron", "Orcières-Merlette", "23 juillet 2026", "185,2 km", "Montagne"],
-
-                    [19, "Gap", "Alpe d'Huez", "24 juillet 2026", "127,9 km", "Montagne"],
-
-                    [20, "Le Bourg d'Oisans", "Alpe d'Huez", "25 juillet 2026", "170,9 km", "Montagne"],
-
-                    [21, "Thoiry", "Paris Champs-Élysées", "26 juillet 2026", "88,7 km", "Plat"]
-
-                ];
-
-
-                const stagesContainer =
-                    document.querySelector(".stages-list");
-
-
-                stages.forEach(stage => {
-
-                    const [
-                        number,
-                        start,
-                        finish,
-                        date,
-                        distance,
-                        type
-                    ] = stage;
-
-
-                    const article =
-                        document.createElement("article");
-
-                    article.className =
-                        "stage-card";
-
-
-                    article.innerHTML = `
-
-                        <div class="stage-top">
-
-                            <div class="stage-number">
-                                ${number}
-                            </div>
-
-                            <div class="stage-title">
-
-                                <h3>
-                                    ${start} → ${finish}
-                                </h3>
-
-                                <p>
-                                    ${date} · ${distance}
-                                </p>
-
-                            </div>
-
-                            <span class="stage-type">
-                                ${type}
-                            </span>
-
-                        </div>
-
-
-                        <div class="stage-fields">
-
-                            <div class="stage-field">
-
-                                <small>
-                                    Vainqueur
-                                </small>
-
-                                <strong>
-                                    À renseigner
-                                </strong>
-
-                            </div>
-
-
-                            <div class="stage-field">
-
-                                <small>
-                                    Maillot jaune
-                                </small>
-
-                                <strong>
-                                    À renseigner
-                                </strong>
-
-                            </div>
-
-
-                            <div class="stage-field">
-
-                                <small>
-                                    Temps
-                                </small>
-
-                                <strong>
-                                    À renseigner
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="stage-notes">
-
-                            <strong>
-                                Notes :
-                            </strong>
-
-                            À renseigner
-
-                        </div>
-
-                    `;
-
-
-                    stagesContainer.appendChild(
-                        article
-                    );
-
-                });
-
-            </script>
-
-
-            <!-- JOUR DE REPOS -->
-
-            <div class="rest-day">
-
-                💤 Jour de repos — 13 juillet 2026 — Cantal
-
-            </div>
-
-
-            <div class="rest-day">
-
-                💤 Jour de repos — 20 juillet 2026 — Haute-Savoie
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-</main>
-
-
-<footer>
-
-    Cycle League RP — 2026
-
-</footer>
-
-
-<script src="js/search.js"></script>
-
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 2 -->
+  <div class="race-row" style="--accent:#1c1c1c;">
+    <div class="date-box">01.02</div>
+    <div class="flag">🇦🇺</div>
+    <div class="race-info">
+      <a class="race-link" href="cadelevans2026.html" target="_blank" rel="noopener">Mapei Cadel Evans Great Ocean Road Race</a>
+      <a class="winner-link tbd" href="cadelevans2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 3 -->
+  <div class="race-row" style="--accent:#c8102e;">
+    <div class="date-box">16.02<br>22.02</div>
+    <div class="flag">🇦🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="uaetour2026.html" target="_blank" rel="noopener">UAE Tour</a>
+      <a class="winner-link tbd" href="uaetour2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 4 -->
+  <div class="race-row" style="--accent:#f4c20d;">
+    <div class="date-box">28.02</div>
+    <div class="flag">🇧🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="omloop2026.html" target="_blank" rel="noopener">Omloop Het Nieuwsblad</a>
+      <a class="winner-link tbd" href="omloop2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 5 -->
+  <div class="race-row" style="--accent:#8a1c1c;">
+    <div class="date-box">07.03</div>
+    <div class="flag">🇮🇹</div>
+    <div class="race-info">
+      <a class="race-link" href="stradebianche2026.html" target="_blank" rel="noopener">Strade Bianche</a>
+      <a class="winner-link tbd" href="stradebianche2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 6 -->
+  <div class="race-row" style="--accent:#2f7fc1;">
+    <div class="date-box">08.03<br>15.03</div>
+    <div class="flag">🇫🇷</div>
+    <div class="race-info">
+      <a class="race-link" href="parisnice2026.html" target="_blank" rel="noopener">Paris-Nice</a>
+      <a class="winner-link tbd" href="parisnice2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 7 -->
+  <div class="race-row" style="--accent:#0b6e3a;">
+    <div class="date-box">09.03<br>15.03</div>
+    <div class="flag">🇮🇹</div>
+    <div class="race-info">
+      <a class="race-link" href="tirreno2026.html" target="_blank" rel="noopener">Tirreno-Adriatico</a>
+      <a class="winner-link tbd" href="tirreno2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 8 -->
+  <div class="race-row" style="--accent:#8a1c1c;">
+    <div class="date-box">21.03</div>
+    <div class="flag">🇮🇹</div>
+    <div class="race-info">
+      <a class="race-link" href="milanosanremo2026.html" target="_blank" rel="noopener">Milano-Sanremo</a>
+      <a class="winner-link tbd" href="milanosanremo2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 9 -->
+  <div class="race-row" style="--accent:#c8102e;">
+    <div class="date-box">23.03<br>29.03</div>
+    <div class="flag">🇪🇸</div>
+    <div class="race-info">
+      <a class="race-link" href="catalunya2026.html" target="_blank" rel="noopener">Volta Ciclista a Catalunya</a>
+      <a class="winner-link tbd" href="catalunya2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 10 -->
+  <div class="race-row" style="--accent:#f4c20d;">
+    <div class="date-box">25.03</div>
+    <div class="flag">🇧🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="brugge2026.html" target="_blank" rel="noopener">Ronde van Brugge – Tour of Bruges</a>
+      <a class="winner-link tbd" href="brugge2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 11 -->
+  <div class="race-row" style="--accent:#f4c20d;">
+    <div class="date-box">27.03</div>
+    <div class="flag">🇧🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="e3harelbeke2026.html" target="_blank" rel="noopener">E3 Saxo Classic</a>
+      <a class="winner-link tbd" href="e3harelbeke2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 12 -->
+  <div class="race-row" style="--accent:#f4c20d;">
+    <div class="date-box">29.03</div>
+    <div class="flag">🇧🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="gentwevelgem2026.html" target="_blank" rel="noopener">In Flanders Fields (Gand-Wevelgem)</a>
+      <a class="winner-link tbd" href="gentwevelgem2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 13 -->
+  <div class="race-row" style="--accent:#f4c20d;">
+    <div class="date-box">01.04</div>
+    <div class="flag">🇧🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="dwarsdoorvlaanderen2026.html" target="_blank" rel="noopener">Dwars door Vlaanderen</a>
+      <a class="winner-link tbd" href="dwarsdoorvlaanderen2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 14 -->
+  <div class="race-row" style="--accent:#f4c20d;">
+    <div class="date-box">05.04</div>
+    <div class="flag">🇧🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="ronde2026.html" target="_blank" rel="noopener">Ronde van Vlaanderen</a>
+      <a class="winner-link tbd" href="ronde2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 15 -->
+  <div class="race-row" style="--accent:#c8102e;">
+    <div class="date-box">06.04<br>11.04</div>
+    <div class="flag">🇪🇸</div>
+    <div class="race-info">
+      <a class="race-link" href="itzulia2026.html" target="_blank" rel="noopener">Itzulia Basque Country</a>
+      <a class="winner-link tbd" href="itzulia2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 16 -->
+  <div class="race-row" style="--accent:#2f7fc1;">
+    <div class="date-box">12.04</div>
+    <div class="flag">🇫🇷</div>
+    <div class="race-info">
+      <a class="race-link" href="parisroubaix2026.html" target="_blank" rel="noopener">Paris-Roubaix</a>
+      <a class="winner-link tbd" href="parisroubaix2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 17 -->
+  <div class="race-row" style="--accent:#e07b2a;">
+    <div class="date-box">19.04</div>
+    <div class="flag">🇳🇱</div>
+    <div class="race-info">
+      <a class="race-link" href="amstelgold2026.html" target="_blank" rel="noopener">Amstel Gold Race</a>
+      <a class="winner-link tbd" href="amstelgold2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 18 -->
+  <div class="race-row" style="--accent:#f4c20d;">
+    <div class="date-box">22.04</div>
+    <div class="flag">🇧🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="flechewallonne2026.html" target="_blank" rel="noopener">La Flèche Wallonne</a>
+      <a class="winner-link tbd" href="flechewallonne2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 19 -->
+  <div class="race-row" style="--accent:#f4c20d;">
+    <div class="date-box">26.04</div>
+    <div class="flag">🇧🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="liegebastogneliege2026.html" target="_blank" rel="noopener">Liège-Bastogne-Liège</a>
+      <a class="winner-link tbd" href="liegebastogneliege2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 20 -->
+  <div class="race-row" style="--accent:#c8102e;">
+    <div class="date-box">28.04<br>03.05</div>
+    <div class="flag">🇨🇭</div>
+    <div class="race-info">
+      <a class="race-link" href="romandie2026.html" target="_blank" rel="noopener">Tour de Romandie</a>
+      <a class="winner-link tbd" href="romandie2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 21 -->
+  <div class="race-row" style="--accent:#1c1c1c;">
+    <div class="date-box">01.05</div>
+    <div class="flag">🇩🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="eschbornfrankfurt2026.html" target="_blank" rel="noopener">Eschborn-Frankfurt</a>
+      <a class="winner-link tbd" href="eschbornfrankfurt2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 22 -->
+  <div class="race-row" style="--accent:#8a1c1c;">
+    <div class="date-box">08.05<br>31.05</div>
+    <div class="flag">🇮🇹</div>
+    <div class="race-info">
+      <a class="race-link" href="giro2026.html" target="_blank" rel="noopener">Giro d'Italia</a>
+      <a class="winner-link tbd" href="giro2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 23 -->
+  <div class="race-row" style="--accent:#2f7fc1;">
+    <div class="date-box">07.06<br>14.06</div>
+    <div class="flag">🇫🇷</div>
+    <div class="race-info">
+      <a class="race-link" href="dauphine2026.html" target="_blank" rel="noopener">Tour Auvergne - Rhône-Alpes</a>
+      <a class="winner-link tbd" href="dauphine2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 24 -->
+  <div class="race-row" style="--accent:#c8102e;">
+    <div class="date-box">14.06</div>
+    <div class="flag">🇩🇰</div>
+    <div class="race-info">
+      <a class="race-link" href="copenhagen2026.html" target="_blank" rel="noopener">Copenhagen Sprint</a>
+      <a class="winner-link tbd" href="copenhagen2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 25 -->
+  <div class="race-row" style="--accent:#c8102e;">
+    <div class="date-box">17.06<br>21.06</div>
+    <div class="flag">🇨🇭</div>
+    <div class="race-info">
+      <a class="race-link" href="tourdesuisse2026.html" target="_blank" rel="noopener">Tour de Suisse</a>
+      <a class="winner-link tbd" href="tourdesuisse2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 26 -->
+  <div class="race-row" style="--accent:#2f7fc1;">
+    <div class="date-box">04.07<br>26.07</div>
+    <div class="flag">🇫🇷</div>
+    <div class="race-info">
+      <a class="race-link" href="tdf2026.html" target="_blank" rel="noopener">Tour de France</a>
+      <a class="winner-link tbd" href="tdf2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 27 -->
+  <div class="race-row" style="--accent:#c8102e;">
+    <div class="date-box">01.08</div>
+    <div class="flag">🇪🇸</div>
+    <div class="race-info">
+      <a class="race-link" href="sansebastian2026.html" target="_blank" rel="noopener">Donostia San Sebastián Klasikoa</a>
+      <a class="winner-link tbd" href="sansebastian2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 28 -->
+  <div class="race-row" style="--accent:#c8102e;">
+    <div class="date-box">03.08<br>09.08</div>
+    <div class="flag">🇵🇱</div>
+    <div class="race-info">
+      <a class="race-link" href="tourdepologne2026.html" target="_blank" rel="noopener">Tour de Pologne</a>
+      <a class="winner-link tbd" href="tourdepologne2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 29 -->
+  <div class="race-row" style="--accent:#1c1c1c;">
+    <div class="date-box">16.08</div>
+    <div class="flag">🇩🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="cyclassics2026.html" target="_blank" rel="noopener">ADAC Cyclassics</a>
+      <a class="winner-link tbd" href="cyclassics2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 30 -->
+  <div class="race-row" style="--accent:#f4c20d;">
+    <div class="date-box">19.08<br>23.08</div>
+    <div class="flag">🇧🇪</div>
+    <div class="race-info">
+      <a class="race-link" href="renewitour2026.html" target="_blank" rel="noopener">Renewi Tour</a>
+      <a class="winner-link tbd" href="renewitour2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 31 -->
+  <div class="race-row" style="--accent:#c8102e;">
+    <div class="date-box">22.08<br>13.09</div>
+    <div class="flag">🇪🇸</div>
+    <div class="race-info">
+      <a class="race-link" href="vuelta2026.html" target="_blank" rel="noopener">La Vuelta Ciclista a España</a>
+      <a class="winner-link tbd" href="vuelta2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <!-- 32 -->
+  <div class="race-row" style="--accent:#2f7fc1;">
+    <div class="date-box">30.08</div>
+    <div class="flag">🇫🇷</div>
+    <div class="race-info">
+      <a class="race-link" href="bretagneclassic2026.html" target="_blank" rel="noopener">Bretagne Classic - CIC</a>
+      <a class="winner-link tbd" href="bretagneclassic2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 33 -->
+  <div class="race-row" style="--accent:#c8102e;">
+    <div class="date-box">11.09</div>
+    <div class="flag">🇨🇦</div>
+    <div class="race-info">
+      <a class="race-link" href="gpquebec2026.html" target="_blank" rel="noopener">Grand Prix Cycliste de Québec</a>
+      <a class="winner-link tbd" href="gpquebec2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 34 -->
+  <div class="race-row" style="--accent:#c8102e;">
+    <div class="date-box">13.09</div>
+    <div class="flag">🇨🇦</div>
+    <div class="race-info">
+      <a class="race-link" href="gpmontreal2026.html" target="_blank" rel="noopener">Grand Prix Cycliste de Montréal</a>
+      <a class="winner-link tbd" href="gpmontreal2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 35 -->
+  <div class="race-row" style="--accent:#8a1c1c;">
+    <div class="date-box">10.10</div>
+    <div class="flag">🇮🇹</div>
+    <div class="race-info">
+      <a class="race-link" href="lombardia2026.html" target="_blank" rel="noopener">Il Lombardia</a>
+      <a class="winner-link tbd" href="lombardia2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">1.UWT</div>
+  </div>
+
+  <!-- 36 -->
+  <div class="race-row" style="--accent:#e0b400; border-bottom:none;">
+    <div class="date-box">13.10<br>18.10</div>
+    <div class="flag">🇨🇳</div>
+    <div class="race-info">
+      <a class="race-link" href="guangxi2026.html" target="_blank" rel="noopener">Tour of Guangxi</a>
+      <a class="winner-link tbd" href="guangxi2026.html">à renseigner</a>
+    </div>
+    <div class="class-tag">2.UWT</div>
+  </div>
+
+  <footer class="note">36 courses UCI WorldTour 2026 — dates officielles UCI.</footer>
+
+</div>
 
 </body>
-
 </html>
