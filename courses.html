@@ -71,6 +71,58 @@
     color:var(--text);
   }
 
+  /* --- gender toggle (Hommes / Femmes) --- */
+  .top-controls{
+    justify-content:space-between;
+  }
+  .left-controls{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .gender-toggle{
+    display:flex;
+    border:1px solid #ccc;
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .gender-toggle a{
+    padding:6px 14px;
+    font-size:13px;
+    text-decoration:none;
+    color:var(--text);
+    background:#fafafa;
+  }
+  .gender-toggle a:hover{ background:#f0f0f0; }
+  .gender-toggle a.active{
+    background:#1c1c1c;
+    color:#fff;
+  }
+  .gender-toggle a + a{
+    border-left:1px solid #ccc;
+  }
+
+  /* --- sub tabs: Tous / Course d'un jour / Course par étapes --- */
+  .sub-tabs{
+    display:flex;
+    gap:22px;
+    padding:0 14px;
+    border-bottom:1px solid var(--border);
+  }
+  .sub-tabs a{
+    display:inline-block;
+    padding:8px 2px 10px 2px;
+    font-size:13.5px;
+    color:var(--muted);
+    text-decoration:none;
+  }
+  .sub-tabs a:hover{ color:var(--text); }
+  .sub-tabs a.active{
+    color:var(--text);
+    font-weight:bold;
+    border-bottom:2px solid #222;
+  }
+
   /* --- CALENDRIER header bar --- */
   .section-bar{
     background:#1c1c1c;
@@ -145,9 +197,128 @@
     font-size:11px;
     color:#999;
   }
+
+  /* ===== SITE HEADER : CYCLE LEAGUE ===== */
+  .site-header{
+    background:linear-gradient(180deg,#14161c 0%,#1b1e26 100%);
+    padding:18px 28px 0 28px;
+  }
+  .header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:14px;
+    padding-bottom:16px;
+  }
+  .site-logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+  }
+  .site-logo .logo-text{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:900;
+    font-style:italic;
+    font-size:26px;
+    letter-spacing:.5px;
+    color:#fff;
+    text-transform:uppercase;
+  }
+  .site-logo .badge{
+    background:#d4ff43;
+    color:#14161c;
+    font-weight:800;
+    font-size:13px;
+    padding:3px 9px;
+    border-radius:4px;
+    letter-spacing:.03em;
+  }
+  .site-search{
+    background:#22252e;
+    border:1px solid #2e323d;
+    color:#c9cbd1;
+    font-size:14px;
+    padding:9px 16px;
+    border-radius:8px;
+    min-width:260px;
+    outline:none;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+  .site-search::placeholder{ color:#7c7f89; }
+
+  .site-nav{
+    display:flex;
+    align-items:center;
+    gap:26px;
+    flex-wrap:wrap;
+    padding-bottom:16px;
+  }
+  .site-nav a{
+    color:#9a9ca3;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+  .site-nav a:hover{ color:#fff; }
+  .site-nav a.active{ color:#fff; }
+  .site-nav a.tdf-link{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#ffd400;
+  }
+  .site-nav a.tdf-link:hover{ color:#ffe45c; }
+  .tdf-badge{
+    background:#fff;
+    border-radius:4px;
+    width:22px;
+    height:22px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+  }
+
+  .zigzag-border{
+    height:12px;
+    background-image:
+      linear-gradient(135deg, #33d9b2 25%, transparent 25%),
+      linear-gradient(225deg, #33d9b2 25%, transparent 25%),
+      linear-gradient(315deg, #d4ff43 25%, transparent 25%),
+      linear-gradient(45deg,  #d4ff43 25%, transparent 25%);
+    background-position:0 0, 6px 0, 6px 0, 0 0;
+    background-size:12px 12px;
+    background-repeat:repeat-x;
+    background-color:#14161c;
+  }
+
 </style>
 </head>
 <body>
+<header class="site-header">
+  <div class="header-top">
+    <a class="site-logo" href="index.html">
+      <span class="logo-text">Cycle League</span>
+      <span class="badge">RP</span>
+    </a>
+    <input class="site-search" type="text" placeholder="Rechercher un coureur, une page...">
+  </div>
+  <nav class="site-nav">
+    <a href="index.html">Accueil</a>
+    <a href="coureurs.html">Coureurs</a>
+    <a href="equipes.html">Équipes</a>
+    <a href="course.html" class="active">Courses</a>
+    <a href="classements.html">Classements</a>
+    <a href="tdf2026.html" class="tdf-link"><span class="tdf-badge">🚴</span>Tour de France 2026</a>
+  </nav>
+</header>
+<div class="zigzag-border"></div>
+
 
 <div class="wrap">
 
