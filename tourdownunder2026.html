@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Down Under — Cycle League RP</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* =========================================================
+           PAGE COURSE — TOUR DOWN UNDER
+           Gabarit générique "page course" (bandeau + onglets + classements)
+           ========================================================= */
+
+        .race-page {
+            min-height: 100vh;
+        }
+
+        /* =========================
+           BANDEAU COURSE
+           ========================= */
+
+        .race-hero {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px 40px;
+            background: linear-gradient(135deg, #ffe3d0, #ffd2b0);
+        }
+
+        .race-logo {
+            flex-shrink: 0;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+        }
+
+        .race-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .race-title-block h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            font-family: var(--font-display);
+        }
+
+        .race-title-block p {
+            margin: 4px 0 0;
+            font-size: 13px;
+            color: #5a5a5a;
+        }
+
+        /* =========================
+           ONGLETS PRINCIPAUX
+           ========================= */
+
+        .race-tabs {
+            display: flex;
+            gap: 28px;
+            padding: 0 40px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .race-tabs a {
+            display: inline-block;
+            padding: 14px 0;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 3px solid transparent;
+            transition: 0.15s ease;
+        }
+
+        .race-tabs a:hover {
+            color: var(--text);
+        }
+
+        .race-tabs a.active {
+            color: var(--text);
+            border-bottom-color: var(--accent);
+        }
+
+        /* =========================
+           BARRE DE CLASSEMENTS
+           ========================= */
+
+        .classification-bar {
+            display: flex;
+            align-items: stretch;
+            flex-wrap: wrap;
+            background: var(--surface-alt);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .classification-select {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 2px;
+            padding: 8px 24px;
+            border-right: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .classification-select .label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .classification-select .value {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .classification-select .value::after {
+            content: " ▾";
+            color: var(--text-muted);
+            font-size: 10px;
+        }
+
+        .classification-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 10px 26px;
+            border-right: 1px solid var(--border);
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--text-muted);
+            background: transparent;
+            transition: 0.15s ease;
+        }
+
+        .classification-tab .cls-icon {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .classification-tab:hover {
+            color: var(--text);
+        }
+
+        .classification-tab.active {
+            background: var(--surface);
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .classification-tab.active .cls-icon {
+            filter: none;
+        }
+
+        .cls-gc { color: #f97316; }
+        .cls-jeune { color: #cbd5e1; }
+        .cls-points { color: #22c55e; }
+        .cls-montagne { color: #a855f7; }
+        .cls-equipe { color: var(--text-muted); }
+
+        /* =========================
+           CONTENU
+           ========================= */
+
+        .race-content {
+            padding: 40px;
+        }
+
+        .race-content .empty-state {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 60px 20px;
+            border: 1px dashed var(--border);
+            border-radius: var(--radius);
+            background: var(--surface);
+        }
+
+        /* =========================
+           RESPONSIVE
+           ========================= */
+
+        @media (max-width: 700px) {
+            .race-hero {
+                padding: 18px 20px;
+            }
+
+            .race-tabs {
+                padding: 0 20px;
+                gap: 18px;
+                overflow-x: auto;
+            }
+
+            .classification-select,
+            .classification-tab {
+                padding: 8px 14px;
+            }
+
+            .race-content {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body class="race-page">
+
+    <!-- =====================================================
+         NAVIGATION
+         ===================================================== -->
+
+    <header>
+        <div class="header-top">
+            <h1>Cycle League <span class="tag">RP</span></h1>
+            <div class="site-search">
+                <input type="text" id="site-search-input" placeholder="Rechercher un coureur, une page..." autocomplete="off">
+                <div id="site-search-results" class="site-search-results"></div>
+            </div>
+        </div>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="coureurs.html">Coureurs</a>
+            <a href="equipes.html">Équipes</a>
+            <a href="courses.html">Courses</a>
+            <a href="classements.html">Classements</a>
+            <a href="tdf2026.html" class="nav-tdf">
+                <img src="https://i.la-croix.com/836x/smart/2024/06/18/1489295-le-logo-du-tour-de-france-avant-le-depart-de-l-edi.jpg" alt="TdF 2026" class="tdf-icon">
+                Tour de France 2026
+            </a>
+        </nav>
+    </header>
+
+    <!-- =====================================================
+         BANDEAU COURSE
+         ===================================================== -->
+
+    <section class="race-hero">
+        <div class="race-logo">
+            <img src="images/tourdownunder-logo.png" alt="Logo Tour Down Under">
+        </div>
+        <div class="race-title-block">
+            <h1></h1>
+            <p></p>
+        </div>
+    </section>
+
+    <!-- =====================================================
+         ONGLETS PRINCIPAUX
+         ===================================================== -->
+
+    <nav class="race-tabs" id="race-tabs">
+        <a href="#resultats" class="active" data-tab="resultats">Résultats</a>
+        <a href="#partants" data-tab="partants">Partants</a>
+        <a href="#etapes" data-tab="etapes">Étapes</a>
+        <a href="#histoire" data-tab="histoire">Histoire</a>
+    </nav>
+
+    <!-- =====================================================
+         BARRE DE CLASSEMENTS
+         ===================================================== -->
+
+    <div class="classification-bar" id="classification-bar">
+        <div class="classification-select">
+            <span class="label">Général</span>
+            <span class="value">GC</span>
+        </div>
+        <div class="classification-tab active" data-cls="gc">
+            <span class="cls-icon cls-gc">●</span>
+            <span>GC</span>
+        </div>
+        <div class="classification-tab" data-cls="jeune">
+            <span class="cls-icon cls-jeune">●</span>
+            <span>Jeune</span>
+        </div>
+        <div class="classification-tab" data-cls="points">
+            <span class="cls-icon cls-points">●</span>
+            <span>Points</span>
+        </div>
+        <div class="classification-tab" data-cls="montagne">
+            <span class="cls-icon cls-montagne">●</span>
+            <span>Montagne</span>
+        </div>
+        <div class="classification-tab" data-cls="equipe">
+            <span class="cls-icon cls-equipe">●</span>
+            <span>Équipe</span>
+        </div>
+    </div>
+
+    <!-- =====================================================
+         CONTENU
+         ===================================================== -->
+
+    <main class="race-content">
+        <div class="empty-state" id="race-content-body">
+            Sélectionnez un onglet ou un classement pour afficher le contenu.
+        </div>
+    </main>
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+        Cycle League RP — 2026
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Bascule visuelle des onglets principaux (aucune donnée chargée)
+        document.querySelectorAll('#race-tabs a').forEach(function (tab) {
+            tab.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelectorAll('#race-tabs a').forEach(function (t) { t.classList.remove('active'); });
+                tab.classList.add('active');
+            });
+        });
+
+        // Bascule visuelle des classements (aucune donnée chargée)
+        document.querySelectorAll('.classification-tab').forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                document.querySelectorAll('.classification-tab').forEach(function (t) { t.classList.remove('active'); });
+                tab.classList.add('active');
+            });
+        });
+    </script>
+    <script src="js/search.js"></script>
+
+</body>
+
+</html>
