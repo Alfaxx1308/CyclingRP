@@ -255,6 +255,78 @@
         }
 
         /* =========================
+           PARTANTS
+           ========================= */
+
+        .race-teams {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .race-team {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .race-team-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--surface-alt);
+            border-bottom: 1px solid var(--border);
+            font-weight: 800;
+            font-size: 13px;
+            color: var(--text);
+        }
+
+        .race-team-flag {
+            font-size: 16px;
+        }
+
+        .race-team-riders {
+            list-style: none;
+            margin: 0;
+            padding: 10px 16px;
+        }
+
+        .race-team-riders li {
+            padding: 5px 0;
+            font-size: 13px;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .race-team-riders li:last-child {
+            border-bottom: none;
+        }
+
+        .race-team-riders a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .race-team-riders a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .race-teams {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .race-teams {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* =========================
            RESPONSIVE
            ========================= */
 
@@ -377,8 +449,268 @@
         </div>
 
         <div class="race-tab-panel" id="panel-partants">
-            <div class="empty-state">
-                Liste des partants à venir.
+            <div class="race-teams">
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇧🇪</span> Alpecin-Premier Tech</div>
+                    <ul class="race-team-riders">
+                        <li><a href="dillier.html">Dillier</a></li>
+                        <li><a href="thijssen.html">Thijssen</a></li>
+                        <li><a href="uhlig.html">Uhlig</a></li>
+                        <li><a href="busatto.html">Busatto</a></li>
+                        <li><a href="riesebeek.html">Riesebeek</a></li>
+                        <li><a href="vergallito.html">Vergallito</a></li>
+                        <li><a href="bayer.html">Bayer</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇧🇭</span> Bahrain Victorious</div>
+                    <ul class="race-team-riders">
+                        <li><a href="caruso.html">Caruso</a></li>
+                        <li><a href="vanmechelen.html">Van Mechelen</a></li>
+                        <li><a href="zambanini.html">Zambanini</a></li>
+                        <li><a href="valter.html">Valter</a></li>
+                        <li><a href="erzen.html">Erzen</a></li>
+                        <li><a href="omrzel.html">Omrzel</a></li>
+                        <li><a href="vandermeulen.html">van der Meulen</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇫🇷</span> Decathlon CMA CGM Team</div>
+                    <ul class="race-team-riders">
+                        <li><a href="riccitello.html">Riccitello</a></li>
+                        <li><a href="bolc.html">Bol C.</a></li>
+                        <li><a href="lundandresen.html">Lund Andresen</a></li>
+                        <li><a href="bisiaux.html">Bisiaux</a></li>
+                        <li><a href="muhlberger.html">Muhlberger</a></li>
+                        <li><a href="depestel.html">De Pestel</a></li>
+                        <li><a href="ghys.html">Ghys</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇺🇸</span> EF Education-EasyPost</div>
+                    <ul class="race-team-riders">
+                        <li><a href="steinhauser.html">Steinhauser</a></li>
+                        <li><a href="powless.html">Powless</a></li>
+                        <li><a href="lamperti.html">Lamperti</a></li>
+                        <li><a href="honore.html">Honoré</a></li>
+                        <li><a href="ryan.html">Ryan</a></li>
+                        <li><a href="nerurkar.html">Nerurkar</a></li>
+                        <li><a href="schwarzbacher.html">Schwarzbacher</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇫🇷</span> Groupama-FDJ United</div>
+                    <ul class="race-team-riders">
+                        <li><a href="brazafonso.html">Braz Afonso</a></li>
+                        <li><a href="russo.html">Russo</a></li>
+                        <li><a href="gaudu.html">Gaudu</a></li>
+                        <li><a href="tronchon.html">Tronchon</a></li>
+                        <li><a href="huens.html">Huens</a></li>
+                        <li><a href="geniets.html">Geniets</a></li>
+                        <li><a href="milanm.html">Milan M.</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇦🇺</span> Team Jayco AlUla</div>
+                    <ul class="race-team-riders">
+                        <li><a href="schmid.html">Schmid</a></li>
+                        <li><a href="matthews.html">Matthews</a></li>
+                        <li><a href="durbridge.html">Durbridge</a></li>
+                        <li><a href="foldager.html">Foldager</a></li>
+                        <li><a href="depretto.html">De Pretto</a></li>
+                        <li><a href="bouwman.html">Bouwman</a></li>
+                        <li><a href="hatherly.html">Hatherly</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇺🇸</span> Lidl-Trek</div>
+                    <ul class="race-team-riders">
+                        <li><a href="geewest.html">Gee West</a></li>
+                        <li><a href="skujins.html">Skujins</a></li>
+                        <li><a href="withenphilipsen.html">Withen Philipsen</a></li>
+                        <li><a href="bernard.html">Bernard</a></li>
+                        <li><a href="mollema.html">Mollema</a></li>
+                        <li><a href="mosca.html">Mosca</a></li>
+                        <li><a href="geogheganhart.html">Geoghegan Hart</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇧🇪</span> Lotto-Intermarché</div>
+                    <ul class="race-team-riders">
+                        <li><a href="berckmoes.html">Berckmoes</a></li>
+                        <li><a href="widar.html">Widar</a></li>
+                        <li><a href="braet.html">Braet</a></li>
+                        <li><a href="kockelmann.html">Kockelmann</a></li>
+                        <li><a href="beullens.html">Beullens</a></li>
+                        <li><a href="vanboven.html">Van Boven</a></li>
+                        <li><a href="grignard.html">Grignard</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇪🇸</span> Movistar Team</div>
+                    <ul class="race-team-riders">
+                        <li><a href="uijtdebroeks.html">Uijtdebroeks</a></li>
+                        <li><a href="barrenetxea.html">Barrenetxea</a></li>
+                        <li><a href="aular.html">Aular</a></li>
+                        <li><a href="milesi.html">Milesi</a></li>
+                        <li><a href="formolo.html">Formolo</a></li>
+                        <li><a href="quintana.html">Quintana</a></li>
+                        <li><a href="maciejuk.html">Maciejuk</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇨🇭</span> NSN Cycling Team</div>
+                    <ul class="race-team-riders">
+                        <li><a href="askey.html">Askey</a></li>
+                        <li><a href="stewartj.html">Stewart J.</a></li>
+                        <li><a href="vanasbroeck.html">Van Asbroeck</a></li>
+                        <li><a href="strong.html">Strong</a></li>
+                        <li><a href="vernon.html">Vernon</a></li>
+                        <li><a href="pinarello.html">Pinarello</a></li>
+                        <li><a href="williams.html">Williams</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇬🇧</span> Netcompany INEOS Cycling Team</div>
+                    <ul class="race-team-riders">
+                        <li><a href="kwiatkowski.html">Kwiatkowski</a></li>
+                        <li><a href="deplus.html">De Plus</a></li>
+                        <li><a href="rivera.html">Rivera</a></li>
+                        <li><a href="swiftc.html">Swift C.</a></li>
+                        <li><a href="langellotti.html">Langellotti</a></li>
+                        <li><a href="svestadbarsteng.html">Svestad Barsteng</a></li>
+                        <li><a href="haig.html">Haig</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇮🇹</span> Team Novo Nordisk</div>
+                    <ul class="race-team-riders">
+                        <li><a href="peron.html">Peron</a></li>
+                        <li><a href="lozano.html">Lozano</a></li>
+                        <li><a href="ridolfo.html">Ridolfo</a></li>
+                        <li><a href="dauge.html">Dauge</a></li>
+                        <li><a href="brand.html">Brand</a></li>
+                        <li><a href="perracchione.html">Perracchione</a></li>
+                        <li><a href="wattelle.html">Wattelle</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇳🇱</span> Team Picnic PostNL</div>
+                    <ul class="race-team-riders">
+                        <li><a href="biesterbos.html">Biesterbos</a></li>
+                        <li><a href="poole.html">Poole</a></li>
+                        <li><a href="vanuden.html">Van Uden</a></li>
+                        <li><a href="gaffuri.html">Gaffuri</a></li>
+                        <li><a href="leemreize.html">Leemreize</a></li>
+                        <li><a href="roosen.html">Roosen</a></li>
+                        <li><a href="corkery.html">Corkery</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇩🇪</span> Red Bull-BORA-hansgrohe</div>
+                    <ul class="race-team-riders">
+                        <li><a href="vangils.html">Van Gils</a></li>
+                        <li><a href="denz.html">Denz</a></li>
+                        <li><a href="tuckwell.html">Tuckwell</a></li>
+                        <li><a href="martinezd.html">Martinez D.</a></li>
+                        <li><a href="etxeberria.html">Etxeberria</a></li>
+                        <li><a href="wandahl.html">Wandahl</a></li>
+                        <li><a href="thornley.html">Thornley</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇧🇪</span> Soudal Quick-Step</div>
+                    <ul class="race-team-riders">
+                        <li><a href="vervaeke.html">Vervaeke</a></li>
+                        <li><a href="schachmann.html">Schachmann</a></li>
+                        <li><a href="zana.html">Zana</a></li>
+                        <li><a href="dainese.html">Dainese</a></li>
+                        <li><a href="raccagninoviero.html">Raccagni Noviero</a></li>
+                        <li><a href="gelders.html">Gelders</a></li>
+                        <li><a href="svrcek.html">Svrcek</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇨🇭</span> Tudor Pro Cycling Team</div>
+                    <ul class="race-team-riders">
+                        <li><a href="pluimers.html">Pluimers</a></li>
+                        <li><a href="dekleijn.html">de Kleijn</a></li>
+                        <li><a href="rondel.html">Rondel</a></li>
+                        <li><a href="mozzato.html">Mozzato</a></li>
+                        <li><a href="mayrhofer.html">Mayrhofer</a></li>
+                        <li><a href="bartaw.html">Barta W.</a></li>
+                        <li><a href="lienhard.html">Lienhard</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇦🇪</span> UAE Team Emirates XRG</div>
+                    <ul class="race-team-riders">
+                        <li><a href="grosschartner.html">Grosschartner</a></li>
+                        <li><a href="almeida.html">Almeida</a></li>
+                        <li><a href="narvaez.html">Narvaez</a></li>
+                        <li><a href="molano.html">Molano</a></li>
+                        <li><a href="oliveirar.html">Oliveira R.</a></li>
+                        <li><a href="vermaerke.html">Vermaerke</a></li>
+                        <li><a href="herregodts.html">Herregodts</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇳🇴</span> Uno-X Mobility</div>
+                    <ul class="race-team-riders">
+                        <li><a href="skaarseth.html">Skaarseth</a></li>
+                        <li><a href="leknessund.html">Leknessund</a></li>
+                        <li><a href="fredheim.html">Fredheim</a></li>
+                        <li><a href="tjotta.html">Tjotta</a></li>
+                        <li><a href="kulsetj.html">Kulset J.</a></li>
+                        <li><a href="holter.html">Holter</a></li>
+                        <li><a href="ingebrigtsen.html">Ingebrigtsen</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇳🇱</span> Team Visma | Lease a Bike</div>
+                    <ul class="race-team-riders">
+                        <li><a href="kelderman.html">Kelderman</a></li>
+                        <li><a href="barre.html">Barré</a></li>
+                        <li><a href="lemmen.html">Lemmen</a></li>
+                        <li><a href="graat.html">Graat</a></li>
+                        <li><a href="schiffer.html">Schiffer</a></li>
+                        <li><a href="rext.html">Rex T.</a></li>
+                        <li><a href="mattio.html">Mattio</a></li>
+                    </ul>
+                </div>
+
+                <div class="race-team">
+                    <div class="race-team-header"><span class="race-team-flag">🇰🇿</span> XDS Astana Team</div>
+                    <ul class="race-team-riders">
+                        <li><a href="vinokurov.html">Vinokurov</a></li>
+                        <li><a href="rodriguezcr.html">Rodriguez Cr.</a></li>
+                        <li><a href="champoussin.html">Champoussin</a></li>
+                        <li><a href="ulissi.html">Ulissi</a></li>
+                        <li><a href="syritsa.html">Syritsa</a></li>
+                        <li><a href="livyns.html">Livyns</a></li>
+                        <li><a href="fedorov.html">Fedorov</a></li>
+                    </ul>
+                </div>
+
             </div>
         </div>
 
